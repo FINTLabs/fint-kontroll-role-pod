@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "icon": "/logo192.png",
+    "name": "Resource 1",
+    "description": "This is the first resource",
+    "active": true
+  },
+  {
+    "id": 2,
+    "icon": "/logo192.png",
+    "name": "Resource 2",
+    "description": "This is the second resource",
+    "active": true
+  },
+  {
+    "id": 3,
+    "icon": "/logo192.png",
+    "name": "Resource 3",
+    "description": "This is the third resource",
+    "active": false
+  },
+  {
+    "id": 4,
+    "icon": "/logo192.png",
+    "name": "Resource 4",
+    "description": "This is the fourth resource",
+    "active": true
+  },
+  {
+    "id": 5,
+    "icon": "/logo192.png",
+    "name": "Resource 5",
+    "description": "This is the fifth resource",
+    "active": false
+  },
+  {
+    "id": 6,
+    "icon": "/logo192.png",
+    "name": "Resource 6",
+    "description": "This is the sixth resource",
+    "active": true
+  },
+  {
+    "id": 7,
+    "icon": "/logo192.png",
+    "name": "Resource 7",
+    "description": "This is the seventh resource",
+    "active": true
+  },
+  {
+    "id": 8,
+    "icon": "/logo192.png",
+    "name": "Resource 8",
+    "description": "This is the eighth resource",
+    "active": false
+  },
+  {
+    "id": 9,
+    "icon": "/logo192.png",
+    "name": "Resource 9",
+    "description": "This is the ninth resource",
+    "active": true
+  },
+  {
+    "id": 10,
+    "icon": "/logo192.png",
+    "name": "Resource 10",
+    "description": "This is the tenth resource",
+    "active": true
+  }
+]

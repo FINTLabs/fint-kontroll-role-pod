@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import theme from './template/theme';
+import {ThemeProvider} from "@mui/material/styles";
+import {Routes, Route} from 'react-router-dom';
+import MainContainer from './features/main/Container';
+import RolesProvider from "./context/roleContext/RolesContext";
+import DetailsContainer from "./features/details/Container";
+import ResourceAddGrid from "./features/resources/ResourceAddGrid";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <ThemeProvider theme={theme}>
+            <RolesProvider>
+                <Routes>
+                    <Route path="/" element={<MainContainer/>}/>
+                    <Route path="/info/:roleId" element={<DetailsContainer/>}/>
+                    <Route path="/add/:roleId" element={<ResourceAddGrid/>}/>
+                </Routes>
+            </RolesProvider>
+        </ThemeProvider>
+    );
 }
 
 export default App;
