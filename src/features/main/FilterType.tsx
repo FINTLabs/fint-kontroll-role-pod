@@ -3,11 +3,15 @@ import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Theme} fro
 import {useContext} from "react";
 import {RolesContext} from "../../context/roleContext";
 
-export default function FilterTypeRole() {
+export default function FilterType() {
 
     const {roleType, updateRoleType} = useContext(RolesContext);
 
-
+    const options = [
+        { value: "all", label: "Alle" },
+        { value: "students", label: "Elev" },
+        { value: "employees", label: "Ansatt" }
+    ];
 
     function handleChange(event: SelectChangeEvent) {
         updateRoleType(event.target.value as string);
@@ -22,21 +26,23 @@ export default function FilterTypeRole() {
     return (
         <FormControl style={{minWidth: 220}} sx={{mx: '2rem'}}>
             <InputLabel
-                id="demo-simple-select-label"
+                id="filter-type-select-label"
             >
-                Gruppername
+                Brukertype
             </InputLabel>
             <Select
-                labelId="Grupper-select-label"
-                id="Grupper-select-autowidth"
+                labelId="filter-type-select-label"
+                id="filter-type-select"
                 value={roleType}
-                label="Gruppertype"
+                label="brukertype"
                 onChange={handleChange}
                 size="small"
             >
-                <MenuItem value={"all"} onClick={updatePage}>Alle</MenuItem>
-                <MenuItem value={"students"} onClick={updatePage}>Elev</MenuItem>
-                <MenuItem value={"employees"} onClick={updatePage}>Ansatt</MenuItem>
+                {options.map((option) => (
+                    <MenuItem key={option.value} value={option.value} onClick={updatePage}>
+                        {option.label}
+                    </MenuItem>
+                ))}
             </Select>
         </FormControl>
     );

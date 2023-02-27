@@ -12,7 +12,7 @@ function Container() {
     return (
         <Box sx={style.content}>
             <Box>
-                <Typography>filters ?</Typography>
+                <Typography></Typography>
             </Box>
             <Box>
                 <DataTable></DataTable>

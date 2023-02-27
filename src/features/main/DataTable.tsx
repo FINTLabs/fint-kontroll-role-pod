@@ -7,25 +7,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import {ArrowBackIos, ArrowForwardIos, SettingsRounded} from "@mui/icons-material";
-import {createStyles, makeStyles} from "@mui/styles";
-import {Box, Button, Theme, Typography,} from "@mui/material";
+import {Box, Button, Typography,} from "@mui/material";
 import {Link} from "react-router-dom";
 import {useContext, useEffect} from "react";
 import {RolesContext} from "../../context/roleContext";
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        icon: {
-            color: theme.palette.primary.main
-        },
-        buttons: {
-            display: "flex",
-            justifyContent: "center",
-        },
-    }));
-
 export const DataTable: any = () => {
-    const classes = useStyles();
+
     // const {getRolePage, page, roleType, currentPage, updateCurrentPage, size} = useContext(RolesContext);
     const {getAllRoles, getRolePage, roles, page, roleType, currentPage, updateCurrentPage, size} = useContext(RolesContext);
 
@@ -47,14 +35,13 @@ export const DataTable: any = () => {
 
     return (
         <Box sx={{p: 1}}>
-            <TableContainer sx={{maxWidth: 1040}}>
-                <Table aria-label="Roless">
+            <TableContainer sx={{maxWidth: 1040}} id={"myDataTable"}>
+                <Table aria-label="Roless" >
                     <TableHead sx={{ th: { fontWeight: 'bold' } }}>
                         <TableRow>
                             <TableCell align="left">Navn</TableCell>
                             <TableCell align="left">Enhet</TableCell>
-                            <TableCell align="left">Brukertype</TableCell>
-                            <TableCell align="left"></TableCell>
+                            <TableCell align="left" colSpan={2}>Brukertype</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -72,7 +59,7 @@ export const DataTable: any = () => {
                                     <IconButton aria-label="settings"
                                                 component={Link} to={`/info/${role.id}`}
                                     >
-                                        <SettingsRounded className={classes.icon}/>
+                                        <SettingsRounded color={"primary"}/>
                                     </IconButton>
                                 </TableCell>
                             </TableRow>
@@ -80,7 +67,7 @@ export const DataTable: any = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Box className={classes.buttons}>
+            <Box sx={{ display: "flex", justifyContent: "center"}}>
                 <Button
                     variant="text"
                     color={"primary"}

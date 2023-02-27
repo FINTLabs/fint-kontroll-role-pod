@@ -36,3 +36,18 @@
 //   }
 // }
 
+declare global {
+    namespace Cypress {
+        interface Chainable {
+            goToHome: typeof goToHome
+        }
+    }
+}
+
+export function goToHome() {
+    return cy.visit('http://localhost:3000');
+}
+
+Cypress.Commands.add('goToHome', goToHome)
+
+

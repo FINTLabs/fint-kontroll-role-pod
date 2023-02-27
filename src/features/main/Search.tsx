@@ -37,8 +37,7 @@ export default function Search() {
     };
 
     return (
-        <FormControl style={{minWidth: 220}} sx={{mx: '2rem'}}>
-
+        <FormControl style={{minWidth: 240}} sx={{mx: '2rem'}}>
                 <TextField
                     // label={"search-role"}
                     size="small"
@@ -53,7 +52,10 @@ export default function Search() {
                         endAdornment: (
                             <InputAdornment
                                 position="end"
-                                style={{ display: showClearIcon }}
+                                style={{
+                                    display: showClearIcon,
+                                    width: '1.5rem' // set a fixed width
+                                }}
                                 onClick={handleClick}
                             >
                                 <ClearIcon/>

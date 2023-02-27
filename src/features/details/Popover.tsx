@@ -18,8 +18,8 @@ export default function BasicPopover() {
     };
 
     const handleDelete = () => {
-        handleClose()
-        console.log("DELETE GOES HERE")
+        handleClose();
+        console.log("DELETE GOES HERE");
     }
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
@@ -47,7 +47,7 @@ export default function BasicPopover() {
                     horizontal: 'left',
                 }}
             >
-                <Paper sx={{ p: .3, backgroundColor: 'warning.main' }} className="alert">
+                <Paper sx={{ p: .3, backgroundColor: 'warning.main' }} className="warning">
                     <Alert severity="warning"
                            action={
                                <IconButton

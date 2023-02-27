@@ -73,6 +73,7 @@ const RolesProvider = ({children}: Props) => {
         setRoleType(roleType)
     }
     const updateRoleName = (roleName: string) => {
+        console.log("updating role name to", roleName)
         setRoleName(roleName)
     }
 

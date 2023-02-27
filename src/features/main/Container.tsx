@@ -1,8 +1,8 @@
 import {Box, Card, InputAdornment, TextField, Theme, Typography} from "@mui/material";
 import {DataTable} from "./DataTable";
-import FilterTypeRole from "./FilterType";
+import FilterType from "./FilterType";
 import FilterUnitRole from "./FilterUnit";
-import FilterNameRole from "./FilterName";
+import FilterName from "./FilterName";
 import Search from "./Search";
 import style from "../../template/style"
 
@@ -15,9 +15,9 @@ function Container() {
                 <Box><Typography variant={"h2"} color="primary">Grupper</Typography></Box>
 
                 <Box sx={style.filters} my={6}>
-                    <FilterNameRole/>
+                    <FilterName/>
                     <FilterUnitRole/>
-                    <FilterTypeRole/>
+                    <FilterType/>
                     <Search />
                 </Box>
                 <Box>
