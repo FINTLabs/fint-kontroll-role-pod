@@ -1,13 +1,18 @@
 import * as React from 'react';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { useContext } from 'react';
+import {useContext} from 'react';
 import { RolesContext } from '../../context/roleContext';
 
 export default function FilterUnit() {
-    const { roleType, updateRoleType } = useContext(RolesContext);
+    const { roleType, setRoleType } = useContext(RolesContext);
+
+    // useEffect(() => {
+    //     // getAllRoles();
+    //     console.log("get all roles", roles)
+    // }, [])
 
     function handleChange(event: SelectChangeEvent) {
-        updateRoleType(event.target.value as string);
+        setRoleType(event.target.value as string);
     }
 
     const menuItems = [
@@ -17,7 +22,7 @@ export default function FilterUnit() {
     ];
 
     const updatePage = () => {
-        console.log('paging stuff for later');
+        console.log('get a new list');
     };
 
     return (

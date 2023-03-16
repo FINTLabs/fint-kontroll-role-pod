@@ -6,29 +6,35 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
-import {Box, Button, Theme, Typography} from "@mui/material";
+import {Box, Button, Typography} from "@mui/material";
 import {Link, useParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
-import {RolesContext} from "../../context/roleContext";
+import {ResourceContext} from "../../../context/resourceContext";
 import AddIcon from '@mui/icons-material/Add';
 import CreateIcon from '@mui/icons-material/Create';
-import BasicPopover from "./Popover";
-import {getRoles} from "@testing-library/react";
+import BasicPopover from "../Popover";
 
 export const DataTable: any = () => {
     let roleId = String(useParams().roleId);
-    const {getResourcesByRoleId, resources, getRoleById, role} = useContext(RolesContext);
+    const {resources, getResourcePage,} = useContext(ResourceContext);
     const [showDelete, setShowDelete] = useState(false);
-    const [confirmDelete, setConfirmDelete] = useState(false);
-    const [showConfirmation, setShowConfirmation] = useState(false);
-
+    // const [confirmDelete, setConfirmDelete] = useState(false);
+    // const [showConfirmation, setShowConfirmation] = useState(false);
 
     useEffect(() => {
-        // getRolePage(currentPage, size, roleType);
-        getResourcesByRoleId(roleId);
-        getRoleById(roleId);
-        console.log("get resources based on a role id:", resources.length);
-    }, [])
+        getResourcePage();
+    }, [roleId])
+
+    const someFakeResources = [
+        { id: 1, name: 'Mount Everest' },
+        { id: 2, name: 'Grand Canyon' },
+        { id: 3, name: 'Niagara Falls' },
+        { id: 4, name: 'Yellowstone National Park' },
+        { id: 5, name: 'Great Barrier Reef' },
+    ];
+
+
+
 
     const ShowDeleteToggle = () => {
 
@@ -51,9 +57,8 @@ export const DataTable: any = () => {
 
     return (
         <Box sx={{p: 1}}>
-            <Typography variant={"h2"} color="primary">{role?.roleName}</Typography>
             <TableContainer sx={{minWidth: 1040}}>
-                <Table aria-label="Members">
+                <Table aria-label="resources">
                     <TableHead sx={{ th: { fontWeight: 'bold' } }}>
                         <TableRow>
                             <TableCell align="left">Ressurser</TableCell>
@@ -64,7 +69,7 @@ export const DataTable: any = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {resources?.map((row) => (
+                        {someFakeResources?.map((row) => (
                             <TableRow
                                 key={row.id}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}

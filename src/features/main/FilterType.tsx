@@ -5,7 +5,7 @@ import {RolesContext} from "../../context/roleContext";
 
 export default function FilterType() {
 
-    const {roleType, updateRoleType} = useContext(RolesContext);
+    const {roleType, setRoleType} = useContext(RolesContext);
 
     const options = [
         { value: "all", label: "Alle" },
@@ -14,7 +14,7 @@ export default function FilterType() {
     ];
 
     function handleChange(event: SelectChangeEvent) {
-        updateRoleType(event.target.value as string);
+        setRoleType(event.target.value as string);
     }
 
     const updatePage = () => {

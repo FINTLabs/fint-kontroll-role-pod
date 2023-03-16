@@ -5,65 +5,58 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import IconButton from '@mui/material/IconButton';
-import {ArrowBackIos, ArrowForwardIos, SettingsRounded} from "@mui/icons-material";
-import {Box, Button, Typography,} from "@mui/material";
-import {Link} from "react-router-dom";
+import {Box, Button, Typography} from "@mui/material";
+import {useParams} from "react-router-dom";
 import {useContext, useEffect} from "react";
-import {RolesContext} from "../../context/roleContext";
+import {MemberContext} from "../../../context/memberContext";
+import {ArrowBackIos, ArrowForwardIos} from "@mui/icons-material";
 
 export const DataTable: any = () => {
 
-    const {page, roleType, currentPage, setCurrentPage, size, searchValue} = useContext(RolesContext);
+    let paramRoleId = Number(useParams().roleId);
+    const {page, currentPage, setCurrentPage, setSearchValue, setRoleId} = useContext(MemberContext);
 
-    // useEffect(() => {
-    //     getRolePage();
-    // }, [currentPage,searchValue])
+    useEffect(() => {
+        setSearchValue("");
+        setCurrentPage(0);
+        setRoleId(paramRoleId);
+        // getPage();
+    }, []);
 
     const nextPage = () => {
         setCurrentPage(currentPage + 1);
-        // getRolePage();
     }
 
     const previousPage = () => {
         setCurrentPage(currentPage - 1);
-        // getRolePage();
     }
 
     return (
         <Box sx={{p: 1}}>
-            <TableContainer sx={{maxWidth: 1040}} id={"rolesDataTable"}>
-                <Table aria-label="Roles" >
+            <TableContainer sx={{minWidth: 1040}}>
+                <Table aria-label="Members">
                     <TableHead sx={{ th: { fontWeight: 'bold' } }}>
                         <TableRow>
-                            <TableCell align="left">Navn</TableCell>
-                            <TableCell align="left">Enhet</TableCell>
-                            <TableCell align="left" colSpan={2}>Brukertype</TableCell>
+                            <TableCell align="left">Name </TableCell>
+                            <TableCell align="left">User Type</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {page?.roles?.map((role) => (
+                        {page?.members?.map((row) => (
                             <TableRow
-                                key={role.id}
+                                key={row.id}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
                             >
                                 <TableCell align="left" component="th" scope="row">
-                                    {role.roleName}
+                                    {row?.firstName} {row?.lastName}
                                 </TableCell>
-                                <TableCell align="left">{role.organisationUnitName}</TableCell>
-                                <TableCell align="left">{role.roleType} </TableCell>
-                                <TableCell align="left">
-                                    <IconButton aria-label="settings"
-                                                component={Link} to={`/info/${role.id}`}
-                                    >
-                                        <SettingsRounded color={"primary"}/>
-                                    </IconButton>
-                                </TableCell>
+                                <TableCell align="left"> {row?.userType} </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
+
             <Box sx={{ display: "flex", justifyContent: "center"}}>
                 <Button
                     variant="text"
@@ -89,6 +82,7 @@ export const DataTable: any = () => {
             <Typography align={"center"}>
                 side {currentPage + 1} av {page?.totalPages}
             </Typography>
+
         </Box>
     );
 };

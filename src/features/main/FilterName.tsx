@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { RolesContext } from '../../context/roleContext';
 
 export default function FilterName() {
-    const { roleName, updateRoleName } = useContext(RolesContext);
+    // const { roleName, setRoleName } = useContext(RolesContext);
 
     const options = [
         { value: 'all', label: 'Alle' },
@@ -15,7 +15,8 @@ export default function FilterName() {
     ];
 
     function handleChange(event: SelectChangeEvent) {
-        updateRoleName(event.target.value as string);
+        // updateRoleName(event.target.value as string);
+        console.log("update role name?")
     }
 
     return (
@@ -24,7 +25,7 @@ export default function FilterName() {
             <Select
                 labelId="filter-name-select-label"
                 id="filter-name-select"
-                value={roleName}
+                // value={roleName}
                 label="navn"
                 onChange={handleChange}
                 size="small"

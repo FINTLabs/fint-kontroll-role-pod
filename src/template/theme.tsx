@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material/styles';
 
-// @ts-ignore
 const theme = createTheme({
     palette: {
         secondary: {
@@ -19,30 +18,42 @@ const theme = createTheme({
         h2: {
             fontSize: '3em',
             fontWeight: "bold",
-            paddingBottom: '1em'
         },
         fontFamily: [
             "Nunito Sans", 'sans-serif'
         ].join(',')
     },
 
-    // components: {
-    //     MuiButton: {
-    //         variants: [
-    //             {
-    //                 props: { variant: "contained" },
-    //                 style: {
-    //                     color: "blue",
-    //                 }
-    //             }
-    //         ],
-    //         defaultProps: {
-    //             style: {
-    //                 textAlign: "right"
-    //             }
-    //         }
-    //     }
-    // }
+    components: {
+        MuiButton: {
+            variants: [
+                {
+                    props: { variant: "contained" },
+                    style: {
+                        color: "primary",
+                        textTransform: 'none',
+                        fontSize: 16,
+                        fontWeight: 600,
+                    }
+                },
+                {
+                    props: { variant: "text" },
+                    style: {
+                        color: "primary",
+                        textTransform: 'none',
+                        fontSize: 16,
+                        fontWeight: 600,
+                    }
+                },
+
+            ],
+            defaultProps: {
+                style: {
+                    // textAlign: "right"
+                }
+            }
+        }
+    }
 });
 
 export default theme;

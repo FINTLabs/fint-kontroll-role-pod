@@ -7,27 +7,17 @@ export interface IRoleItem {
     "roleSubType": string;
     "aggregatedRole": boolean;
     "roleSource": string;
-    "members": IMemberItem[];
+    "organisationUnitName": string;
 }
 
-interface IMemberItem {
-    id: number;
-    resourceId: string;
-    firstName: string;
-    lastName: string;
-    userType: string;
-    userName?: null;
-    userId?: null;
-}
-
-// How will resources look ?? Do we need this
-export interface IResourceItem {
-    id: number;
-    "icon": string;
-    "name": string;
-    "description": string;
-    "active": boolean;
-}
+// // How will resources look ?? Do we need this
+// export interface IResourceItem {
+//     id: number;
+//     "icon": string;
+//     "name": string;
+//     "description": string;
+//     "active": boolean;
+// }
 
 export interface IRolePage {
     totalItems: number;
@@ -37,44 +27,31 @@ export interface IRolePage {
 }
 
 export type RoleContextState = {
-    role: IRoleItem | null;
-    roles: IRoleItem[];
-    resources: IResourceItem[];
     page: IRolePage | null;
+    role: IRoleItem | null;
     currentPage: number;
+    setCurrentPage: (currentPage:number) => void;
     size: number;
-    updateCurrentPage: (currentPage: number) => void;
+    setSize: (size:number) => void;
     roleType: string;
-    roleName: string;
-    getRoleById: (id: string) => void;
-    getAllRoles: () => void;
-    getRolePage: (page: number, size: number, roleType: string) => void;
-    updateRoleType: (roleType: string) => void;
-    updateRoleName: (roleType: string) => void;
-    getResourcesByRoleId: (roleId: string) => void;
+    setRoleType: (roleType:string) => void;
+    searchValue: string;
+    setSearchValue: (searchValue: string) => void;
+    roleId: number;
+    setRoleId: (roleId: number) => void;
 };
 
 export const contextDefaultValues: RoleContextState = {
-    roleType: "all",
-    roleName: "all",
-    role: null,
-    roles: [],
-    resources: [],
     page: null,
+    role: null,
     currentPage: 0,
+    setCurrentPage(currentPage: number): void {},
     size: 5,
-    getAllRoles: () => {
-    },
-    getRoleById: (id: string) => {
-    },
-    getRolePage: (page: number, size: number, roleType: string) => {
-    },
-    updateRoleType(roleType: string): void {
-    },
-    updateRoleName(roleName: string): void {
-    },
-    updateCurrentPage(currentPage: number): void {
-    },
-    getResourcesByRoleId(roleId: string): void {
-    },
+    setSize(size: number): void {},
+    roleType: "all",
+    setRoleType(roleType: string): void {},
+    searchValue: "",
+    setSearchValue(searchValue:string): void {},
+    roleId: 0,
+    setRoleId(roleId:number): void {},
 };
