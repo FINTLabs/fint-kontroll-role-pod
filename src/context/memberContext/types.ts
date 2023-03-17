@@ -30,7 +30,7 @@ export type MemberContextState = {
 
 export const contextDefaultValues: MemberContextState = {
     page: null,
-    currentPage: 5,
+    currentPage: 0,
     size: 5,
     searchValue:"",
     roleId:0,

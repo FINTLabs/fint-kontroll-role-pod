@@ -35,7 +35,7 @@ const MemberProvider = ({children}: Props) => {
 
     useEffect(() => {
         if(roleId !== 0) getPage();
-    }, [roleId, currentPage, searchValue]);
+    }, [roleId, currentPage, searchValue, size]);
 
     return (
         <MemberContext.Provider

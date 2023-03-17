@@ -6,24 +6,27 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
-import {Box, Button, Typography} from "@mui/material";
+import {Box, Button, Checkbox, Typography} from "@mui/material";
 import {Link, useParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {ResourceContext} from "../../../context/resourceContext";
 import AddIcon from '@mui/icons-material/Add';
 import CreateIcon from '@mui/icons-material/Create';
 import BasicPopover from "../Popover";
+import DataToolbar from "./DataToolbar";
 
 export const DataTable: any = () => {
     let roleId = String(useParams().roleId);
     const {resources, getResourcePage,} = useContext(ResourceContext);
     const [showDelete, setShowDelete] = useState(false);
+    const [selected, setSelected] = useState<number[]>([]);
+
     // const [confirmDelete, setConfirmDelete] = useState(false);
     // const [showConfirmation, setShowConfirmation] = useState(false);
 
-    useEffect(() => {
-        getResourcePage();
-    }, [roleId])
+    // useEffect(() => {
+    //     getResourcePage();
+    // }, [roleId])
 
     const someFakeResources = [
         { id: 1, name: 'Mount Everest' },
@@ -55,16 +58,24 @@ export const DataTable: any = () => {
         );
     }
 
-    return (
+
+    const handleClick = (event: React.MouseEvent<HTMLTableCellElement>, rowId:number) => {
+        setSelected([rowId]);
+    }
+
+
+
+return (
         <Box sx={{p: 1}}>
             <TableContainer sx={{minWidth: 1040}}>
+                <DataToolbar numSelected={selected.length} onDeleteClick={() => setShowDelete(!showDelete)} />
                 <Table aria-label="resources">
                     <TableHead sx={{ th: { fontWeight: 'bold' } }}>
                         <TableRow>
                             <TableCell align="left">Ressurser</TableCell>
                             <TableCell align="left">Tildelt av</TableCell>
                             <TableCell style={{width: '200px'}}>
-                                <ShowDeleteToggle />
+
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -78,9 +89,27 @@ export const DataTable: any = () => {
                                     {row?.name}
                                 </TableCell>
                                 <TableCell align="left"> xxx </TableCell>
-                                <TableCell>
+                                <TableCell 
+                                    padding="checkbox"
+                                    // hover
+                                    onClick={(event) => handleClick(event, row.id)}
+                                    role="checkbox"
+                                    // aria-checked={isItemSelected}
+                                    tabIndex={-1}
+                                    key={row.id}
+                                    // selected={isItemSelected}
+                                
+                                >
                                     {showDelete && (
-                                        <BasicPopover />
+
+                                            <Checkbox
+                                                color="primary"
+                                                checked={false}
+                                                // inputProps={{
+                                                //     'aria-labelledby': labelId,
+                                                // }}
+                                            />
+
                                     )}
                                 </TableCell>
                             </TableRow>

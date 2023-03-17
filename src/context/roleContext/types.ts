@@ -39,6 +39,7 @@ export type RoleContextState = {
     setSearchValue: (searchValue: string) => void;
     roleId: number;
     setRoleId: (roleId: number) => void;
+
 };
 
 export const contextDefaultValues: RoleContextState = {

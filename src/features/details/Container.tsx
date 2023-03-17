@@ -31,7 +31,7 @@ function ContainerWithTabs() {
                     <Tab label="Resources" />
                 </Tabs>
                 {selectedTab === 0 && (
-                    <Box >
+                    <Box sx={{ marginBottom: '1rem', padding: '2rem'}}>
                         <MemberContainer />
                     </Box>
                 )}

@@ -24,33 +24,54 @@ const RolesProvider = ({children}: Props) => {
     const [size, setSize] = useState<number>(contextDefaultValues.size);
     const [searchValue, setSearchValue] = useState<string>(contextDefaultValues.searchValue);
 
-    const getPage = () => {
-    //     const getPage = async () => {
-        RoleRepository.getRolePage(currentPage, size, roleType, searchValue)
-            .then(response => {
-                console.log("Returned Data: ", response.data);
-                setPage(response.data);
-            })
-            .catch((err) => console.error(err))
+    // const getPage = () => {
+    // //     const getPage = async () => {
+    //     RoleRepository.getRolePage(currentPage, size, roleType, searchValue)
+    //         .then(response => {
+    //             console.log("Returned Data: ", response.data);
+    //             setPage(response.data);
+    //         })
+    //         .catch((err) => console.error(err))
+    //
+    // }
 
-    }
-
-    const getRole = () => {
-        //     const getPage = async () => {
-        RoleRepository.getRoleById(roleId)
-            .then(response => {
-                console.log("Returned Data: ", response.data);
-                setRole(response.data);
-            })
-            .catch((err) => console.error(err))
-
-    }
+    // const getRole = () => {
+    //     //     const getPage = async () => {
+    //     RoleRepository.getRoleById(roleId)
+    //         .then(response => {
+    //             console.log("Returned Data: ", response.data);
+    //             setRole(response.data);
+    //         })
+    //         .catch((err) => console.error(err))
+    //
+    // }
 
     useEffect(() => {
+        const getPage = () => {
+            //     const getPage = async () => {
+            RoleRepository.getRolePage(currentPage, size, roleType, searchValue)
+                .then(response => {
+                    console.log("Returned Data: ", response.data);
+                    setPage(response.data);
+                })
+                .catch((err) => console.error(err))
+
+        }
         getPage();
-    }, [currentPage, searchValue, roleType]);
+    }, [currentPage, searchValue, roleType, size]);
 
     useEffect(() => {
+        const getRole = () => {
+            if(roleId) {
+                //     const getPage = async () => {
+                RoleRepository.getRoleById(roleId)
+                    .then(response => {
+                        console.log("Returned Role: ", response.data);
+                        setRole(response.data);
+                    })
+                    .catch((err) => console.error(err))
+            }
+        }
         getRole();
     }, [roleId]);
 

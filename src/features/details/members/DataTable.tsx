@@ -5,16 +5,17 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import {Box, Button, Typography} from "@mui/material";
+import {Box, Button, TableFooter, TablePagination, Typography} from "@mui/material";
 import {useParams} from "react-router-dom";
 import {useContext, useEffect} from "react";
 import {MemberContext} from "../../../context/memberContext";
-import {ArrowBackIos, ArrowForwardIos} from "@mui/icons-material";
+import TablePaginationActions from "../../common/TableFooter";
+import DataToolbar from "./DataToolbar";
 
 export const DataTable: any = () => {
 
     let paramRoleId = Number(useParams().roleId);
-    const {page, currentPage, setCurrentPage, setSearchValue, setRoleId} = useContext(MemberContext);
+    const {page, currentPage, setCurrentPage, setSearchValue, setRoleId, size, setSize} = useContext(MemberContext);
 
     useEffect(() => {
         setSearchValue("");
@@ -23,17 +24,27 @@ export const DataTable: any = () => {
         // getPage();
     }, []);
 
-    const nextPage = () => {
-        setCurrentPage(currentPage + 1);
-    }
+    const handleChangePage = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => {
+        console.log("new page:", newPage)
+        setCurrentPage(newPage)
+    };
 
-    const previousPage = () => {
-        setCurrentPage(currentPage - 1);
-    }
+    const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        // setRowsPerPage(parseInt(event.target.value, 10));
+        setSize(parseInt(event.target.value, 10));
+        setCurrentPage(0);
+    };
 
+    let handleSearch;
     return (
         <Box sx={{p: 1}}>
             <TableContainer sx={{minWidth: 1040}}>
+                <DataToolbar />
                 <Table aria-label="Members">
                     <TableHead sx={{ th: { fontWeight: 'bold' } }}>
                         <TableRow>
@@ -54,35 +65,30 @@ export const DataTable: any = () => {
                             </TableRow>
                         ))}
                     </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                rowsPerPageOptions={[5, 10, 25, 50]}
+                                colSpan={4}
+                                count={page ? page.totalItems : 0}
+                                // rowsPerPage={rowsPerPage}
+                                rowsPerPage={size}
+                                // page={page}
+                                page={currentPage}
+                                SelectProps={{
+                                    inputProps: {
+                                        'aria-label': 'rows per page',
+                                    },
+                                    native: true,
+                                }}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                                ActionsComponent={TablePaginationActions}
+                            />
+                        </TableRow>
+                    </TableFooter>
                 </Table>
             </TableContainer>
-
-            <Box sx={{ display: "flex", justifyContent: "center"}}>
-                <Button
-                    variant="text"
-                    color={"primary"}
-                    startIcon={<ArrowBackIos/>}
-                    onClick={previousPage}
-                    disabled={currentPage === 0}
-                    sx={{mr: 4, mt: 5}}
-                >
-                    Forrige
-                </Button>
-                <Button
-                    variant="text"
-                    color={"primary"}
-                    endIcon={<ArrowForwardIos/>}
-                    onClick={nextPage}
-                    disabled={currentPage === page?.totalPages - 1}
-                    sx={{mt: 5}}
-                >
-                    Neste
-                </Button>
-            </Box>
-            <Typography align={"center"}>
-                side {currentPage + 1} av {page?.totalPages}
-            </Typography>
-
         </Box>
     );
 };

@@ -5,10 +5,9 @@ import {Routes, Route} from 'react-router-dom';
 import MainContainer from './features/main/Container';
 import RolesProvider from "./context/roleContext/RolesContext";
 import MemberProvider from "./context/memberContext/MemberContext";
-// import DetailsContainer from "./features/details/Container";
 import ResourceAddGrid from "./features/resources/ResourceAddGrid";
 import DetailsContainer from "./features/details/Container";
-import DropDownTest from "./features/common/SelectTest";
+import UnitProvider from "./context/unitContext";
 
 
 function App() {
@@ -16,12 +15,13 @@ function App() {
         <ThemeProvider theme={theme}>
             <RolesProvider>
                 <MemberProvider>
+                    <UnitProvider>
                     <Routes>
                         <Route path="/" element={<MainContainer/>}/>
                         <Route path="/info/:roleId" element={<DetailsContainer/>}/>
                         <Route path="/add/:roleId" element={<ResourceAddGrid/>}/>
-                        <Route path="/test" element={<DropDownTest/>}/>
                     </Routes>
+                    </UnitProvider>
                 </MemberProvider>
             </RolesProvider>
         </ThemeProvider>

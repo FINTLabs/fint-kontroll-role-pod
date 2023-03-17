@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
     Dialog,
     DialogTitle,
@@ -10,12 +10,15 @@ import TreeView from '@mui/lab/TreeView';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem from '@mui/lab/TreeItem';
-import data from "../common/testData"
+import data from "../common/testData";
+// import {UnitContext} from "../../context/unitContext";
 
 
 
 const DialogUnit = ({ open, onClose }) => {
     const [selected, setSelected] = useState([]);
+
+    // const {unitTree} = useContext(UnitContext);
 
     const customDialogStyle = {
         width: '600px',
@@ -86,7 +89,7 @@ const DialogUnit = ({ open, onClose }) => {
 
     return (
         <Dialog open={open} onClose={handleClose} sx={{ '& .MuiPaper-root': customDialogStyle }}>
-            <DialogTitle>Select items</DialogTitle>
+            <DialogTitle>Select items </DialogTitle>
             <DialogContent>
                 <TreeView
                     defaultCollapseIcon={<ExpandMoreIcon />}
