@@ -1,18 +1,12 @@
 import React, {useState} from 'react';
-import { makeStyles } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import {alpha, Button, Checkbox, FormControlLabel, Tooltip} from "@mui/material";
+import {Tooltip} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import DeleteIcon from '@mui/icons-material/Delete';
-import CreateIcon from '@mui/icons-material/Create';
 import Search from "./Search";
 import LayersIcon from '@mui/icons-material/Layers';
 import LayersClearIcon from '@mui/icons-material/LayersClear';
 import PeopleIcon from '@mui/icons-material/People';
-import {Link} from "react-router-dom";
-import {SettingsRounded} from "@mui/icons-material";
 import FilterType from "./FilterType";
 
 interface CustomTableToolbarProps {
@@ -40,28 +34,34 @@ function CustomTableToolbar(props:CustomTableToolbarProps) {
                 </Typography>
             <Search />
             <FilterType />
-            <IconButton
-                aria-label="settings"
-                onClick={onShowDialog}
-            >
-                <PeopleIcon color={"primary"}/>
-            </IconButton>
+            <Tooltip title={"Select Units"}>
+                <IconButton
+                    aria-label="settings"
+                    onClick={onShowDialog}
+                >
+                    <PeopleIcon color={"primary"}/>
+                </IconButton>
+            </Tooltip>
 
             {showLayers ? (
+                <Tooltip title={"Show subgroups (click to turn off)"}>
                     <IconButton
                         aria-label="settings"
                         onClick={() => setShowLayers(false)}
                     >
                         <LayersIcon color={"primary"}/>
                     </IconButton>
+                </Tooltip>
 
             ) : (
-                <IconButton
-                    aria-label="settings"
-                    onClick={() => setShowLayers(true)}
-                >
-                    <LayersClearIcon color={"primary"}/>
-                </IconButton>
+                <Tooltip title="Show subgroups (click to turn on)">
+                    <IconButton
+                        aria-label="settings"
+                        onClick={() => setShowLayers(true)}
+                    >
+                        <LayersClearIcon color={"primary"}/>
+                    </IconButton>
+                </Tooltip>
             )}
         </Toolbar>
     );

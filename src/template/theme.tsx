@@ -16,7 +16,7 @@ const theme = createTheme({
     spacing: 8,
     typography: {
         h2: {
-            fontSize: '3em',
+            fontSize: '2em',
             fontWeight: "bold",
         },
         fontFamily: [

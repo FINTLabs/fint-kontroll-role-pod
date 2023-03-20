@@ -11,7 +11,7 @@ export interface IUnitTree {
     totalItems: number;
     totalPages: number | any;
     currentPage: number;
-    units: IUnitItem[];
+    orgUnits: IUnitItem[];
 }
 
 export type UnitContextState = {

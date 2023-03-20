@@ -10,15 +10,15 @@ import TreeView from '@mui/lab/TreeView';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem from '@mui/lab/TreeItem';
-import data from "../common/testData";
-// import {UnitContext} from "../../context/unitContext";
+// import data from "../common/testData";
+import {UnitContext} from "../../context/unitContext";
 
 
 
 const DialogUnit = ({ open, onClose }) => {
     const [selected, setSelected] = useState([]);
 
-    // const {unitTree} = useContext(UnitContext);
+    const {unitTree} = useContext(UnitContext);
 
     const customDialogStyle = {
         width: '600px',
@@ -74,7 +74,7 @@ const DialogUnit = ({ open, onClose }) => {
             >
                 {Array.isArray(nodes.childrenRef)
                     ? nodes.childrenRef.map((nodeId) => {
-                        const node = data.orgUnits.find(
+                        const node = unitTree.orgUnits.find(
                             (n) => n.organisationUnitId === nodeId
                         );
                         if (node) {
@@ -100,7 +100,7 @@ const DialogUnit = ({ open, onClose }) => {
                 >
                     {/*{data.orgUnits.map((orgUnit) => renderTree(orgUnit))}*/}
                     {/*{renderTree(data[0])}*/}
-                    {data.orgUnits.map((node) => {
+                    {unitTree?.orgUnits?.map((node) => {
                         if (node.parentRef !== node.organisationUnitId) {
                             return null;
                         }

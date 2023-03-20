@@ -29,8 +29,7 @@ export const DataTable: any = () => {
     // Avoid a layout jump when reaching the last page with empty rows.
     //TODO fix this
     // const emptyRows =
-    //     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
+    //     currentPage > 0 ? Math.max(0, (1 + currentPage) * size - page.totalItems) : 0;
 
 
     const handleChangePage = (

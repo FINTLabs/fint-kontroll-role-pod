@@ -24,7 +24,7 @@ const UnitProvider = ({children}: Props) => {
         console.log(`Getting a the units stree:`);
         UnitRepository.getUnitTree()
             .then(response => {
-                // console.log("Returned members data: ", response.data);
+                console.log("Returned tree data: ", response.data);
                 setUnitTree(response.data);
             })
             .catch((err) => console.error(err))

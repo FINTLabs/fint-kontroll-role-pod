@@ -1,16 +1,14 @@
 import React, {useState} from 'react';
-import { makeStyles } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import {alpha, Tooltip} from "@mui/material";
+import {Tooltip} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import DeleteIcon from '@mui/icons-material/Delete';
-import CreateIcon from '@mui/icons-material/Create';
 import Search from "./Search";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import LayersIcon from "@mui/icons-material/Layers";
+import LayersClearIcon from "@mui/icons-material/LayersClear";
 
 function DataToolbar() {
+    const [showLayers, setShowLayers] = useState(true);
 
     return (
         <Toolbar
@@ -28,6 +26,26 @@ function DataToolbar() {
                     Members
                 </Typography>
             <Search />
+            {showLayers ? (
+                <Tooltip title={"Do not show subgroups"}>
+                    <IconButton
+                        aria-label="settings"
+                        onClick={() => setShowLayers(false)}
+                    >
+                        <LayersIcon color={"primary"}/>
+                    </IconButton>
+                </Tooltip>
+
+            ) : (
+                <Tooltip title="Show subgroups">
+                    <IconButton
+                        aria-label="settings"
+                        onClick={() => setShowLayers(true)}
+                    >
+                        <LayersClearIcon color={"primary"}/>
+                    </IconButton>
+                </Tooltip>
+            )}
         </Toolbar>
     );
 }

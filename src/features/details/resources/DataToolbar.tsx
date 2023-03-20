@@ -57,9 +57,9 @@ function DataToolbar(props:CustomTableToolbarProps) {
                     </IconButton>
                 </Tooltip>
             ) : (
-                <Tooltip title="Filter list">
-                    <IconButton>
-                        <CreateIcon onClick={onDeleteClick} />
+                <Tooltip title="Add New Resources">
+                    <IconButton  onClick={onDeleteClick}>
+                        <CreateIcon />
                     </IconButton>
                 </Tooltip>
             )}

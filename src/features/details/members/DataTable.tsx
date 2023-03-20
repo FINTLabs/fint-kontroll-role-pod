@@ -40,7 +40,7 @@ export const DataTable: any = () => {
         setCurrentPage(0);
     };
 
-    let handleSearch;
+
     return (
         <Box sx={{p: 1}}>
             <TableContainer sx={{minWidth: 1040}}>
