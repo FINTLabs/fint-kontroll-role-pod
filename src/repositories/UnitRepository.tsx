@@ -14,6 +14,13 @@ const getPage = () => {
     let url = `/api/orgunits/`;
 
 
+    // const headers = {
+    //     "Content-Type": "text/json",
+    // };
+    // return axios.get<IUnitTree>(url, {
+    //     headers: headers
+    // });
+
     return axios.get<IUnitTree>(url);
 
 }

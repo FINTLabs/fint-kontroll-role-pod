@@ -7,7 +7,7 @@ const getPage = (page: number, size: number, roleId: number, searchFor: string) 
 
     const sanitizedQueryString = searchFor.trim();
     if (sanitizedQueryString.length !== 0) {
-        url += `?$filter=firstName contains '${sanitizedQueryString}'`;
+        url += `?$filter=firstName contains '${sanitizedQueryString}' or lastName contains '${sanitizedQueryString}'`;
     }
 
     if (page) {

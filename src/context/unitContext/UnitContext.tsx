@@ -1,8 +1,7 @@
 import React, {createContext, ReactNode, useEffect, useState,} from "react";
-import MemberRepository from "../../repositories/MemberRepository";
 import {
     contextDefaultValues,
-    IUnitItem, IUnitTree,
+    IUnitTree,
     UnitContextState
 } from "./types";
 import UnitRepository from "../../repositories/UnitRepository";
@@ -15,13 +14,14 @@ type Props = {
     children: ReactNode[] | ReactNode;
 };
 
+//TODO: no need to use a context?  not sure where this will be used
 const UnitProvider = ({children}: Props) => {
 
     const [unitTree, setUnitTree] = useState<IUnitTree | null>(contextDefaultValues.unitTree);
 
 
     const getUnitTree = () => {
-        console.log(`Getting a the units stree:`);
+        console.warn(`Getting a the units tree:`);
         UnitRepository.getUnitTree()
             .then(response => {
                 console.log("Returned tree data: ", response.data);

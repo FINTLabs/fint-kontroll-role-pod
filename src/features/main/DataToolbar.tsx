@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {Tooltip} from "@mui/material";
@@ -8,6 +8,7 @@ import LayersIcon from '@mui/icons-material/Layers';
 import LayersClearIcon from '@mui/icons-material/LayersClear';
 import PeopleIcon from '@mui/icons-material/People';
 import FilterType from "./FilterType";
+import {RolesContext} from "../../context/roleContext";
 
 interface CustomTableToolbarProps {
     onShowDialog: (event: React.MouseEvent<unknown>) => void;
@@ -15,7 +16,8 @@ interface CustomTableToolbarProps {
 
 function CustomTableToolbar(props:CustomTableToolbarProps) {
     const { onShowDialog } = props;
-    const [showLayers, setShowLayers] = useState(true);
+    const { isAggregate, setIsAggregate } = useContext(RolesContext);
+    // const [showLayers, setShowLayers] = useState(true);
 
     return (
         <Toolbar
@@ -43,23 +45,23 @@ function CustomTableToolbar(props:CustomTableToolbarProps) {
                 </IconButton>
             </Tooltip>
 
-            {showLayers ? (
-                <Tooltip title={"Show subgroups (click to turn off)"}>
+            {isAggregate ? (
+                <Tooltip title={"aggregate"}>
                     <IconButton
                         aria-label="settings"
-                        onClick={() => setShowLayers(false)}
+                        onClick={() => setIsAggregate(false)}
                     >
-                        <LayersIcon color={"primary"}/>
+                        <LayersClearIcon color={"primary"}/>
                     </IconButton>
                 </Tooltip>
 
             ) : (
-                <Tooltip title="Show subgroups (click to turn on)">
+                <Tooltip title="all">
                     <IconButton
                         aria-label="settings"
-                        onClick={() => setShowLayers(true)}
+                        onClick={() => setIsAggregate(true)}
                     >
-                        <LayersClearIcon color={"primary"}/>
+                        <LayersIcon color={"primary"}/>
                     </IconButton>
                 </Tooltip>
             )}

@@ -23,6 +23,7 @@ const RolesProvider = ({children}: Props) => {
     const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
     const [size, setSize] = useState<number>(contextDefaultValues.size);
     const [searchValue, setSearchValue] = useState<string>(contextDefaultValues.searchValue);
+    const [isAggregate, setIsAggregate] = useState<boolean>(contextDefaultValues.isAggregate);
 
     // const getPage = () => {
     // //     const getPage = async () => {
@@ -49,7 +50,7 @@ const RolesProvider = ({children}: Props) => {
     useEffect(() => {
         const getPage = () => {
             //     const getPage = async () => {
-            RoleRepository.getRolePage(currentPage, size, roleType, searchValue)
+            RoleRepository.getRolePage(currentPage, size, roleType, searchValue, isAggregate)
                 .then(response => {
                     console.log("Returned Data: ", response.data);
                     setPage(response.data);
@@ -58,7 +59,7 @@ const RolesProvider = ({children}: Props) => {
 
         }
         getPage();
-    }, [currentPage, searchValue, roleType, size]);
+    }, [currentPage, searchValue, roleType, size, isAggregate]);
 
     useEffect(() => {
         const getRole = () => {
@@ -90,6 +91,8 @@ const RolesProvider = ({children}: Props) => {
                 setRoleType,
                 roleId,
                 setRoleId,
+                isAggregate,
+                setIsAggregate
             }}
         >
             {children}

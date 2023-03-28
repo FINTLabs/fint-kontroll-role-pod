@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {IRoleItem, IRolePage,} from "../context/roleContext/types";
+import {IMemberPage} from "../context/memberContext/types";
 
 const getRoles = () => {
     console.log("get all roles")
@@ -8,42 +9,54 @@ const getRoles = () => {
 
 
 const getRoleById = (id: number) => axios.get<IRoleItem>(`/api/role/${id}`);
+//
+// const getRolePage = (page: number, size: number, roleType: string, searchValue:string) => {
+//
+//     //TODO rewrite this to build 1 url and send that
+//
+//
+//     // Add this later, user type
+//     // if (roleType === "all") {
+//     //     return axios.get<IRolePage>(`/api/role?page=${page}&size=${size}`);
+//     //     // return axios.get<IRolePage>(`/api/role?page=0&size=${size}`);
+//     // }
+//
+//     // Add a search with type
+//     // console.log("with search value:", searchValue)
+//     const sanitizedQueryString = searchValue.trim();
+//     if (sanitizedQueryString.length === 0) {
+//         return axios.get<IRolePage>(`/api/role?&page=${page}&size=${size}`);
+//     }
+//
+//     // Return a full search and add type later
+//     return axios.get<IRolePage>(`/api/role?$filter=roleName contains '${sanitizedQueryString}'&page=${page}&size=${size}`);
+//
+//
+//
+// }
 
-const getRolePage = (page: number, size: number, roleType: string, searchValue:string) => {
+const getRolePage = (page: number, size: number, roleType: string, searchFor: string, isAggregated: boolean) => {
 
-    //TODO rewrite this to build 1 url and send that
+    let url = `/api/role/`;
 
-
-    // Add this later, user type
-    // if (roleType === "all") {
-    //     return axios.get<IRolePage>(`/api/role?page=${page}&size=${size}`);
-    //     // return axios.get<IRolePage>(`/api/role?page=0&size=${size}`);
-    // }
-
-    // Add a search with type
-    // console.log("with search value:", searchValue)
-    const sanitizedQueryString = searchValue.trim();
-    if (sanitizedQueryString.length === 0) {
-        return axios.get<IRolePage>(`/api/role?&page=${page}&size=${size}`);
+    const sanitizedQueryString = searchFor.trim();
+    if (sanitizedQueryString.length !== 0 || isAggregated) {
+        url += `?$filter=`;
+        if(isAggregated) url += `aggregatedRole eq '${isAggregated}'`;
+        if(sanitizedQueryString.length !== 0)  url += `${isAggregated ? ' and ' : ''}roleName contains '${sanitizedQueryString}'`;
     }
 
-    // Return a full search and add type later
-    return axios.get<IRolePage>(`/api/role?$filter=roleName contains '${sanitizedQueryString}'&page=${page}&size=${size}`);
+    if (page) {
+        url += `${sanitizedQueryString.length !== 0 || isAggregated ? '&' : '?'}page=${page}`;
+    }
 
+    if (size) {
+        url += `${sanitizedQueryString.length !== 0 || isAggregated || page ? '&' : '?'}size=${size}`;
+    }
 
+    return axios.get<IRolePage>(url);
 
 }
-
-// const searchRoleName = (firstName: string, page: number, size: number, userType: string) => {
-//     const sanitizedQueryString = firstName.trim();
-//     if (sanitizedQueryString.length === 0) {
-//         // return getRolePage(page, size, userType);
-//     }
-//     if (userType === "all") {
-//         return axios.get<IRolePage>(`/api/role?$filter=roleName contains '${sanitizedQueryString}'&page=${page}&size=${size}`);
-//     }
-//     return axios.get<IRolePage>(`/api/role?$filter=roleType eq '${userType}' and roleName contains '${sanitizedQueryString}'&page=${page}&size=${size}`);
-// }
 
 const RoleRepository = {
     getRoles,

@@ -39,7 +39,8 @@ export type RoleContextState = {
     setSearchValue: (searchValue: string) => void;
     roleId: number;
     setRoleId: (roleId: number) => void;
-
+    isAggregate: boolean;
+    setIsAggregate: (isAggregate: boolean) => void;
 };
 
 export const contextDefaultValues: RoleContextState = {
@@ -55,4 +56,6 @@ export const contextDefaultValues: RoleContextState = {
     setSearchValue(searchValue:string): void {},
     roleId: 0,
     setRoleId(roleId:number): void {},
+    isAggregate: false,
+    setIsAggregate(isAggregate:boolean): void {},
 };

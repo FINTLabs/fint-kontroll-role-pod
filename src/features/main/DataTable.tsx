@@ -24,13 +24,9 @@ export const DataTable: any = () => {
         setOpenDialog(false);
         console.log("selected");
     }
-    //TODO how do i get the totalSize from page
-
     // Avoid a layout jump when reaching the last page with empty rows.
-    //TODO fix this
     // const emptyRows =
-    //     currentPage > 0 ? Math.max(0, (1 + currentPage) * size - page.totalItems) : 0;
-
+    //     currentPage > 0 ? Math.max(0, (1 + currentPage) * size - (page ? page.totalItems : 0)) : 0;
 
     const handleChangePage = (
         event: React.MouseEvent<HTMLButtonElement> | null,
@@ -86,6 +82,11 @@ export const DataTable: any = () => {
                                 </TableCell>
                             </TableRow>
                         ))}
+                        {/*{emptyRows > 0 && (*/}
+                        {/*    <TableRow style={{ height: 73 * emptyRows }}>*/}
+                        {/*        <TableCell colSpan={4} />*/}
+                        {/*    </TableRow>*/}
+                        {/*)}*/}
                     </TableBody>
                     <TableFooter>
                         <TableRow>
@@ -111,31 +112,6 @@ export const DataTable: any = () => {
                     </TableFooter>
                 </Table>
             </TableContainer>
-            {/*<Box sx={{ display: "flex", justifyContent: "center"}}>*/}
-            {/*    <Button*/}
-            {/*        variant="text"*/}
-            {/*        color={"primary"}*/}
-            {/*        startIcon={<ArrowBackIos/>}*/}
-            {/*        onClick={previousPage}*/}
-            {/*        disabled={currentPage === 0}*/}
-            {/*        sx={{mr: 4, mt: 5}}*/}
-            {/*    >*/}
-            {/*        Forrige*/}
-            {/*    </Button>*/}
-            {/*    <Button*/}
-            {/*        variant="text"*/}
-            {/*        color={"primary"}*/}
-            {/*        endIcon={<ArrowForwardIos/>}*/}
-            {/*        onClick={nextPage}*/}
-            {/*        disabled={currentPage === page?.totalPages - 1}*/}
-            {/*        sx={{mt: 5}}*/}
-            {/*    >*/}
-            {/*        Neste*/}
-            {/*    </Button>*/}
-            {/*</Box>*/}
-            {/*<Typography align={"center"}>*/}
-            {/*    side {currentPage + 1} av {page?.totalPages}*/}
-            {/*</Typography>*/}
         </Box>
     );
 };
