@@ -12,7 +12,7 @@ import {useContext, useEffect, useState} from "react";
 import {ResourceContext} from "../../../context/resourceContext";
 import AddIcon from '@mui/icons-material/Add';
 import CreateIcon from '@mui/icons-material/Create';
-import BasicPopover from "../Popover";
+import BasicPopover from "./Popover";
 import DataToolbar from "./DataToolbar";
 
 export const DataTable: any = () => {

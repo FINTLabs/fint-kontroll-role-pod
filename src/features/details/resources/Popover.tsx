@@ -1,10 +1,8 @@
 import * as React from 'react';
 import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from "@mui/material/IconButton";
 import {Alert, AlertTitle, Paper} from "@mui/material";
-import CheckIcon from '@mui/icons-material/Check';
 
 export default function BasicPopover() {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
