@@ -68,9 +68,7 @@ export const DataTable: any = () => {
                                 key={role.id}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
                             >
-                                <TableCell align="left" component="th" scope="row">
-                                    {role.roleName}
-                                </TableCell>
+                                <TableCell align="left" scope="row">{role.roleName}</TableCell>
                                 <TableCell align="left">{role.organisationUnitName}</TableCell>
                                 <TableCell align="left">{role.roleType} </TableCell>
                                 <TableCell align="left">
@@ -91,6 +89,7 @@ export const DataTable: any = () => {
                     <TableFooter>
                         <TableRow>
                             <TablePagination
+                                id={"pagination"}
                                 rowsPerPageOptions={[5, 10, 25, 50]}
                                 colSpan={4}
                                 count={page ? page.totalItems : 0}

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {IMemberPage} from "../context/memberContext/types";
 
+//TODO rewrite with new endpoints
 const getPage = (page: number, size: number, roleId: number, searchFor: string) => {
 
     let url = `/api/member/role/${roleId}`;

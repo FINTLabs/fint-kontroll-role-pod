@@ -42,6 +42,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
     return (
         <Box sx={{ flexShrink: 0, ml: 2.5 }}>
             <IconButton
+                id={"firstPageButton"}
                 onClick={handleFirstPageButtonClick}
                 disabled={page === 0}
                 aria-label="first page"
@@ -49,6 +50,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
                 {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
             </IconButton>
             <IconButton
+                id={"previousPageButton"}
                 onClick={handleBackButtonClick}
                 disabled={page === 0}
                 aria-label="previous page"
@@ -56,6 +58,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
                 {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
             </IconButton>
             <IconButton
+                id={"nextPageButton"}
                 onClick={handleNextButtonClick}
                 disabled={page >= Math.ceil(count / rowsPerPage) - 1}
                 aria-label="next page"
@@ -63,6 +66,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
                 {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
             </IconButton>
             <IconButton
+                id={"lastPageButton"}
                 onClick={handleLastPageButtonClick}
                 disabled={page >= Math.ceil(count / rowsPerPage) - 1}
                 aria-label="last page"

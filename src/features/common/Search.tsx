@@ -53,7 +53,7 @@ export default function Search(props: SearchProps) {
                             }}
                             onClick={handleClick}
                         >
-                            <ClearIcon/>
+                            <ClearIcon id={"clearIcon"}/>
                         </InputAdornment>
                     )
                 }}

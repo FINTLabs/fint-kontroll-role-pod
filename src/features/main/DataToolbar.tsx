@@ -20,7 +20,7 @@ function CustomTableToolbar(props:CustomTableToolbarProps) {
     // const [showLayers, setShowLayers] = useState(true);
 
     return (
-        <Toolbar
+        <Toolbar id={'rolesToolbar'}
             sx={{
                 pl: { sm: 2 },
                 pr: { xs: 1, sm: 1 },
@@ -38,6 +38,7 @@ function CustomTableToolbar(props:CustomTableToolbarProps) {
             <FilterType />
             <Tooltip title={"Select Units"}>
                 <IconButton
+                    id={'selectUnitsIcon'}
                     aria-label="settings"
                     onClick={onShowDialog}
                 >
@@ -46,18 +47,20 @@ function CustomTableToolbar(props:CustomTableToolbarProps) {
             </Tooltip>
 
             {isAggregate ? (
-                <Tooltip title={"aggregate"}>
+                <Tooltip title={"Aggregated"}>
                     <IconButton
+                        id={'aggregatedFalse'}
                         aria-label="settings"
                         onClick={() => setIsAggregate(false)}
                     >
-                        <LayersClearIcon color={"primary"}/>
+                        <LayersClearIcon color={"primary"} />
                     </IconButton>
                 </Tooltip>
 
             ) : (
-                <Tooltip title="all">
+                <Tooltip title="Aggregated">
                     <IconButton
+                        id={'aggregatedTrue'}
                         aria-label="settings"
                         onClick={() => setIsAggregate(true)}
                     >

@@ -1,0 +1,48 @@
+{
+  "totalItems": 6,
+  "currentPage": 0,
+  "totalPages": 2,
+  "size": 5,
+  "roles": [
+    {
+      "id": 1,
+      "roleName": "SEARCH RESULTS:Ansatt - OKO System- og fellestjenester",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "35",
+      "organisationUnitName": "OKO System- og fellestjenester"
+    },
+    {
+      "id": 16,
+      "roleName": "SEARCH RESULTS:Ansatt - OKO Regnskapsseksjon",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "30",
+      "organisationUnitName": "OKO Regnskapsseksjon"
+    },
+    {
+      "id": 25,
+      "roleName": "SEARCH RESULTS:Ansatt - OKO Økonomiavdeling",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "26",
+      "organisationUnitName": "OKO Økonomiavdeling"
+    },
+    {
+      "id": 27,
+      "roleName": "SEARCH RESULTS:Ansatt - OKO Budsjett- og finansseksjon",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "27",
+      "organisationUnitName": "OKO Budsjett- og finansseksjon"
+    },
+    {
+      "id": 45,
+      "roleName": "SEARCH RESULTS:Ansatt - OKO Regnskapsseksjon - Aggregert",
+      "roleType": "ansatt",
+      "aggregatedRole": true,
+      "organisationUnitId": "30",
+      "organisationUnitName": "OKO Regnskapsseksjon"
+    }
+  ]
+}

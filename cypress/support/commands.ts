@@ -35,19 +35,33 @@
 //     }
 //   }
 // }
+import { Method } from "cypress/types/net-stubbing";
 
 declare global {
     namespace Cypress {
         interface Chainable {
             goToHome: typeof goToHome
+            interceptAndReturnFile(
+                method: string,
+                url: string,
+                fixturePath: string
+            ): Chainable<RouteOptions>;
         }
     }
 }
 
+Cypress.Commands.add(
+    "interceptAndReturnFile",
+    (method: Method, url: string, fixturePath: string) => {
+        cy.intercept(method, url, {
+            fixture: fixturePath,
+        });
+    }
+);
+
 export function goToHome() {
     return cy.visit('http://localhost:3000');
 }
-
 Cypress.Commands.add('goToHome', goToHome)
 
 

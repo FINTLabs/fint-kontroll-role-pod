@@ -1,0 +1,88 @@
+{
+  "size": 10,
+  "totalPages": 6,
+  "currentPage": 0,
+  "totalItems": 55,
+  "roles": [
+    {
+      "id": 1,
+      "roleName": "MORE LINESAnsatt - OKO System- og fellestjenester",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "35",
+      "organisationUnitName": "OKO System- og fellestjenester"
+    },
+    {
+      "id": 2,
+      "roleName": "MORE LINESAnsatt - DIGIT Lokasjonssupport sone Fylkeshus",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "1178",
+      "organisationUnitName": "DIGIT Lokasjonssupport sone Fylkeshus"
+    },
+    {
+      "id": 3,
+      "roleName": "MORE LINESAnsatt - INFRA Avdeling for mobilitet og samfunn",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "85",
+      "organisationUnitName": "INFRA Avdeling for mobilitet og samfunn"
+    },
+    {
+      "id": 4,
+      "roleName": "MORE LINESAnsatt - DIGIT Lokasjonssupport",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "50",
+      "organisationUnitName": "DIGIT Lokasjonssupport"
+    },
+    {
+      "id": 5,
+      "roleName": "MORE LINESAnsatt - VGMIDT Administrasjon",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "195",
+      "organisationUnitName": "VGMIDT Administrasjon"
+    },
+    {
+      "id": 6,
+      "roleName": "MORE LINESAnsatt - DIGIT Fagtjenester",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "47",
+      "organisationUnitName": "DIGIT Fagtjenester"
+    },
+    {
+      "id": 7,
+      "roleName": "MORE LINESAnsatt - VGMIDT Realfag",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "204",
+      "organisationUnitName": "VGMIDT Realfag"
+    },
+    {
+      "id": 8,
+      "roleName": "MORE LINESAnsatt - VGBADE Administrasjon",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "205",
+      "organisationUnitName": "VGBADE Administrasjon"
+    },
+    {
+      "id": 9,
+      "roleName": "MORE LINESAnsatt - DIGIT Arbeidsflate",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "1163",
+      "organisationUnitName": "DIGIT Arbeidsflate"
+    },
+    {
+      "id": 10,
+      "roleName": "MORE LINESAnsatt - Vår fylkeskommune",
+      "roleType": "ansatt",
+      "aggregatedRole": false,
+      "organisationUnitId": "1",
+      "organisationUnitName": "Vår fylkeskommune"
+    }
+  ]
+}

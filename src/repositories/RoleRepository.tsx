@@ -12,7 +12,7 @@ const getRoleById = (id: number) => axios.get<IRoleItem>(`/api/role/${id}`);
 //
 // const getRolePage = (page: number, size: number, roleType: string, searchValue:string) => {
 //
-//     //TODO rewrite this to build 1 url and send that
+//     //TODO rewrite with new endpoints
 //
 //
 //     // Add this later, user type

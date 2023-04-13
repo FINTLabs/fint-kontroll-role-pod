@@ -88,7 +88,7 @@ const DialogUnit = ({ open, onClose }) => {
     };
 
     return (
-        <Dialog open={open} onClose={handleClose} sx={{ '& .MuiPaper-root': customDialogStyle }}>
+        <Dialog open={open} onClose={handleClose} sx={{ '& .MuiPaper-root': customDialogStyle }} id={'unitsSelectDialog'}>
             <DialogTitle>Select items </DialogTitle>
             <DialogContent>
                 <TreeView
@@ -109,7 +109,7 @@ const DialogUnit = ({ open, onClose }) => {
                 </TreeView>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
+                <Button onClick={handleClose} id={'unitDialogCancel'}>Cancel</Button>
                 <Button onClick={handleSave}>Save</Button>
             </DialogActions>
         </Dialog>

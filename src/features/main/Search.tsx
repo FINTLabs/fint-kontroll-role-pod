@@ -27,7 +27,7 @@ export default function RoleSearch() {
             searchFunction={handleSearch}
             clearFunction={handleClear}
             inputValue={searchValue}
-            placeholder="Search group name"
+            placeholder="Søk gruppenavn"
             showClearIcon={searchValue === "" ? "none" : "flex"}
         />
     );
