@@ -66,7 +66,7 @@ describe('Search unit titles', () => {
   it('Check table (exists, has 5 rows)', () => {
     cy.get('#rolesDataTable')
         .should('be.visible')
-        .find('tbody tr')2
+        .find('tbody tr')
         .should('have.length', 5);
   });
 
