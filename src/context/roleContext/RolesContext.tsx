@@ -24,33 +24,15 @@ const RolesProvider = ({children}: Props) => {
     const [size, setSize] = useState<number>(contextDefaultValues.size);
     const [searchValue, setSearchValue] = useState<string>(contextDefaultValues.searchValue);
     const [isAggregate, setIsAggregate] = useState<boolean>(contextDefaultValues.isAggregate);
-
-    // const getPage = () => {
-    // //     const getPage = async () => {
-    //     RoleRepository.getRolePage(currentPage, size, roleType, searchValue)
-    //         .then(response => {
-    //             console.log("Returned Data: ", response.data);
-    //             setPage(response.data);
-    //         })
-    //         .catch((err) => console.error(err))
-    //
-    // }
-
-    // const getRole = () => {
-    //     //     const getPage = async () => {
-    //     RoleRepository.getRoleById(roleId)
-    //         .then(response => {
-    //             console.log("Returned Data: ", response.data);
-    //             setRole(response.data);
-    //         })
-    //         .catch((err) => console.error(err))
-    //
-    // }
+    const [orgunits, setOrgunits] = useState<string[] >(contextDefaultValues.orgunits);
 
     useEffect(() => {
         const getPage = () => {
-            //     const getPage = async () => {
-            RoleRepository.getRolePage(currentPage, size, roleType, searchValue, isAggregate)
+            //TODO remove before production
+            console.log(`Getting a new roles page with: currentPage: ${currentPage}, size: ${size}, roleType: ${roleType}, `);
+            console.log(`inputSearchValue: ${searchValue}, units: ${orgunits}, isAggregate: ${isAggregate}`);
+
+            RoleRepository.getRolePage(currentPage, size, roleType, searchValue, orgunits, isAggregate)
                 .then(response => {
                     console.log("Returned Data: ", response.data);
                     setPage(response.data);
@@ -59,7 +41,7 @@ const RolesProvider = ({children}: Props) => {
 
         }
         getPage();
-    }, [currentPage, searchValue, roleType, size, isAggregate]);
+    }, [currentPage, searchValue, roleType, size, isAggregate, orgunits]);
 
     useEffect(() => {
         const getRole = () => {
@@ -92,7 +74,9 @@ const RolesProvider = ({children}: Props) => {
                 roleId,
                 setRoleId,
                 isAggregate,
-                setIsAggregate
+                setIsAggregate,
+                orgunits,
+                setOrgunits,
             }}
         >
             {children}

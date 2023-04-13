@@ -35,8 +35,9 @@ const MemberProvider = ({children}: Props) => {
 
     useEffect(() => {
         const getPage = () => {
-            //TODO find out how to use debug in development but not prod
+            //TODO remove before production
             console.debug(`Getting a new member page with: currentPage: ${currentPage}, size: ${size}, roleId: ${roleId}, inputSearchValue: ${searchValue}`);
+
             MemberRepository.getMemberPageB(currentPage, size, roleId, searchValue)
                 .then(response => {
                     // console.log("Returned members data: ", response.data);

@@ -1,12 +1,10 @@
 export interface IRoleItem {
     "id": number;
-    "roleId": string;
-    "resourceId": string;
     "roleName": string;
     "roleType": string;
     "roleSubType": string;
     "aggregatedRole": boolean;
-    "roleSource": string;
+    "organisationUnitId": string;
     "organisationUnitName": string;
 }
 
@@ -41,6 +39,8 @@ export type RoleContextState = {
     setRoleId: (roleId: number) => void;
     isAggregate: boolean;
     setIsAggregate: (isAggregate: boolean) => void;
+    orgunits: string[];
+    setOrgunits: (orgunits: string[]) => void;
 };
 
 export const contextDefaultValues: RoleContextState = {
@@ -58,4 +58,6 @@ export const contextDefaultValues: RoleContextState = {
     setRoleId(roleId:number): void {},
     isAggregate: false,
     setIsAggregate(isAggregate:boolean): void {},
+    orgunits: [],
+    setOrgunits(orgunits:string[]): void{},
 };

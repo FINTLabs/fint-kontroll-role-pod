@@ -49,7 +49,7 @@ declare global {
 export function interceptAndReturnFile(method: Method, url: string, fixturePath: string) {
     cy.intercept(method, url, {
         fixture: fixturePath,
-    });
+    }).as(fixturePath);
 }
 Cypress.Commands.add('interceptAndReturnFile', interceptAndReturnFile)
 

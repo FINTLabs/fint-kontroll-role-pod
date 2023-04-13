@@ -1,4 +1,4 @@
-describe('Search unit titles', () => {
+describe('Check roles page with a backend', () => {
 
   beforeEach(() => {
 

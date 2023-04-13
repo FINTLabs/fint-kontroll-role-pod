@@ -6,10 +6,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
-import {ArrowBackIos, ArrowForwardIos, SettingsRounded} from "@mui/icons-material";
-import {Box, Button, TableFooter, TablePagination, Typography,} from "@mui/material";
+import {SettingsRounded} from "@mui/icons-material";
+import {Box, TableFooter, TablePagination,} from "@mui/material";
 import {Link} from "react-router-dom";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import {RolesContext} from "../../context/roleContext";
 import TablePaginationActions from "../common/TableFooter";
 import DataToolbar from "./DataToolbar";
@@ -17,14 +17,15 @@ import DialogUnit from "./DialogUnit";
 
 export const DataTable: any = () => {
 
-    const {page, roleType, currentPage, setCurrentPage, size, searchValue, setSize} = useContext(RolesContext);
+    const {page,  currentPage, setCurrentPage, size, setSize, setOrgunits} = useContext(RolesContext);
     const [openDialog, setOpenDialog] = useState(false);
 
-    const handleTypeSelect = () => {
+    const handleTypeSelect = (selected: string[]) => {
         setOpenDialog(false);
-        console.log("selected");
+        setOrgunits(selected);
     }
     // Avoid a layout jump when reaching the last page with empty rows.
+    //does the user want this?
     // const emptyRows =
     //     currentPage > 0 ? Math.max(0, (1 + currentPage) * size - (page ? page.totalItems : 0)) : 0;
 

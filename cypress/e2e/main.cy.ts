@@ -1,27 +1,28 @@
-describe('Search unit titles', () => {
+describe('Check the roles page with no backend', () => {
+  const searchText = 'TEST';
 
   beforeEach(() => {
     const baseUrl = "http://localhost:3000/api";
+    cy.interceptAndReturnFile("GET", `${baseUrl}/orgunits/`, "orgunits.json");
     cy.interceptAndReturnFile("GET", `${baseUrl}/role/?size=5`, "roles.json");
-    cy.interceptAndReturnFile("GET", `http://localhost:3000/api/orgunits/`, "orgunits.json");
-    cy.interceptAndReturnFile("GET", `${baseUrl}/role/?$filter=roleName%20contains%20%27TEST%27&size=5`, "rolesSearch.json");
+    cy.interceptAndReturnFile("GET", `${baseUrl}/role/?$filter=roleName%20contains%20%27${searchText}%27&size=5`, "rolesSearch.json");
     cy.interceptAndReturnFile("GET", `${baseUrl}/role/?$filter=aggregatedRole eq 'true'&size=5`, "rolesAggregated.json");
     cy.interceptAndReturnFile("GET", `${baseUrl}/role/?$filter=aggregatedRole%20eq%20%27true%27&size=10`, "rolesMoreLines.json");
   });
 
-  it('can search and clear input', () => {
-    const searchText = 'TEST';
-    cy.goToHome();
+  it('can type in search and clear input', () => {
 
+    cy.goToHome();
     cy.get('#search-role').should('exist')
-    cy.get('#search-role').should('have.attr', 'placeholder', 'Søk gruppenavn');
-    cy.get('#search-role').type('{backspace}'.repeat(searchText.length)).should('have.value', '');
-    cy.get('#clearIcon').should('not.be.visible');
-    cy.get('#search-role').type(searchText).should('have.value', searchText);
+    cy.get('#search-role').should('have.attr', 'placeholder', 'Søk gruppenavn')
+    cy.get('#search-role').should('have.value', '')
+    // cy.get('#search-role').type('{backspace}'.repeat(searchText.length)).should('have.value', '')
+    cy.get('#clearIcon').should('not.be.visible')
+    cy.get('#search-role').type(searchText).should('have.value', searchText)
     cy.wait(1000)
     cy.get('#search-role').should('be.visible')
     cy.get('#clearIcon').click();
-    cy.get('#search-role').should('have.value', '');
+    cy.get('#search-role').should('have.value', '')
   });
 
   it('should display filter type with default', () => {
@@ -32,8 +33,8 @@ describe('Search unit titles', () => {
 
   it('Check select type (options, clickable)', () => {
     cy.get('#filter-type-select').click()
-    cy.get('[data-value="students"]').click();
-    cy.get('#filter-type-select').should('have.text', 'Elev');
+    cy.get('[data-value="students"]').click()
+    cy.get('#filter-type-select').should('have.text', 'Elev')
   });
 
   it('Check Select Units (tooltip, dialog, dialog check)', () => {
@@ -43,7 +44,7 @@ describe('Search unit titles', () => {
     cy.get('#selectUnitsIcon').click()
     cy.get('#unitsSelectDialog').should('be.visible')
     cy.wait(500)
-    //TODO: check dialog check box
+    //TODO: check dialog has values, check off values, and return values
     cy.get('#unitDialogCancel').click();
     cy.get('.MuiTooltip-popper').invoke('hide')
     cy.get('.MuiTooltip-popper').should('not.be.visible')
