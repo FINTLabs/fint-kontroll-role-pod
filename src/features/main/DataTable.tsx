@@ -25,7 +25,7 @@ export const DataTable: any = () => {
         setOrgunits(selected);
     }
     // Avoid a layout jump when reaching the last page with empty rows.
-    //does the user want this?
+    // ----does the user want this?
     // const emptyRows =
     //     currentPage > 0 ? Math.max(0, (1 + currentPage) * size - (page ? page.totalItems : 0)) : 0;
 
@@ -48,7 +48,6 @@ export const DataTable: any = () => {
     return (
         <Box sx={{p: 1}}>
             <DialogUnit
-                // data={data}
                 onClose={handleTypeSelect}
                 open={openDialog}
             />
@@ -94,9 +93,7 @@ export const DataTable: any = () => {
                                 rowsPerPageOptions={[5, 10, 25, 50]}
                                 colSpan={4}
                                 count={page ? page.totalItems : 0}
-                                // rowsPerPage={rowsPerPage}
                                 rowsPerPage={size}
-                                // page={page}
                                 page={currentPage}
                                 SelectProps={{
                                     inputProps: {

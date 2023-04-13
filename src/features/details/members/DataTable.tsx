@@ -5,7 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import {Box, Button, TableFooter, TablePagination, Typography} from "@mui/material";
+import {Box, TableFooter, TablePagination} from "@mui/material";
 import {useParams} from "react-router-dom";
 import {useContext, useEffect} from "react";
 import {MemberContext} from "../../../context/memberContext";
@@ -22,7 +22,7 @@ export const DataTable: any = () => {
         setCurrentPage(0);
         setRoleId(paramRoleId);
         // getPage();
-    }, []);
+    });
 
     const handleChangePage = (
         event: React.MouseEvent<HTMLButtonElement> | null,
@@ -73,7 +73,6 @@ export const DataTable: any = () => {
                                 count={page ? page.totalItems : 0}
                                 // rowsPerPage={rowsPerPage}
                                 rowsPerPage={size}
-                                // page={page}
                                 page={currentPage}
                                 SelectProps={{
                                     inputProps: {

@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from "react";
-import {Box, Theme, Typography, Tabs, Tab} from "@mui/material";
+import {Box, Typography, Tabs, Tab} from "@mui/material";
 import {useParams} from "react-router-dom";
 import MemberContainer from "./members/Container";
 import ResourcesContainer from "./resources/Container";
@@ -14,7 +14,7 @@ function ContainerWithTabs() {
 
     useEffect(() => {
         setRoleId(paramRoleId);
-    }, []);
+    }, [paramRoleId, setRoleId]);
 
     const handleTabChange = (event: any, newValue: React.SetStateAction<number>) => {
         setSelectedTab(newValue);
@@ -40,7 +40,6 @@ function ContainerWithTabs() {
                         <ResourcesContainer />
                     </Box>
                 )}
-
             </Box>
         </Box>
     );

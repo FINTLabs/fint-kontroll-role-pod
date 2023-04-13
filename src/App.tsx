@@ -8,8 +8,6 @@ import MemberProvider from "./context/memberContext/MemberContext";
 import ResourceAddGrid from "./features/resources/ResourceAddGrid";
 import DetailsContainer from "./features/details/Container";
 import UnitProvider from "./context/unitContext";
-import BasicTable from "./features/common/TestTable"
-
 
 function App() {
     return (
@@ -21,7 +19,6 @@ function App() {
                         <Route path="/" element={<MainContainer/>}/>
                         <Route path="/info/:roleId" element={<DetailsContainer/>}/>
                         <Route path="/add/:roleId" element={<ResourceAddGrid/>}/>∂
-                        <Route path="/test/" element={<BasicTable/>}/>
                     </Routes>
                     </UnitProvider>
                 </MemberProvider>

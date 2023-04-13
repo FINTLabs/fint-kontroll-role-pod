@@ -22,17 +22,6 @@ const MemberProvider = ({children}: Props) => {
     const [searchValue, setSearchValue] = useState<string>(contextDefaultValues.searchValue);
     const [roleId, setRoleId] = useState<number>(contextDefaultValues.roleId);
 
-
-    // const getPage = () => {
-    //     console.log(`Getting a new page with: currentPage: ${currentPage}, size: ${size}, roleId: ${roleId}, inputSearchValue: ${searchValue}`);
-    //     MemberRepository.getMemberPageB(currentPage, size, roleId, searchValue)
-    //         .then(response => {
-    //             // console.log("Returned members data: ", response.data);
-    //             setPage(response.data);
-    //         })
-    //         .catch((err) => console.error(err))
-    // }
-
     useEffect(() => {
         const getPage = () => {
             //TODO remove before production

@@ -4,10 +4,8 @@ import {
     contextDefaultValues,
     IResourceItem, ResourceContextState,
 } from "./types";
-//Fake data
+//TODO: use real data
 import fakeResources from "../../repositories/resourceFakeData.json"
-import MemberRepository from "../../repositories/MemberRepository";
-
 
 export const ResourceContext = createContext<ResourceContextState>(
     contextDefaultValues
@@ -26,6 +24,7 @@ const ResourceProvider = ({children}: Props) => {
     // Returns some fake data
     const getResourcePage = () => {
         console.log("get resources page from context");
+        setRoleId(0);
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if (fakeResources.length > 0) {

@@ -2,7 +2,6 @@ import {useContext} from "react";
 import { MemberContext } from "../../../context/memberContext";
 import Search from "../../common/Search";
 
-// export default function MemberSearch(props: { roleId: number; }) {
 export default function MemberSearch() {
     const {searchValue, setSearchValue, setCurrentPage} = useContext(MemberContext);
 
