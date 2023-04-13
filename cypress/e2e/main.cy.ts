@@ -1,11 +1,9 @@
 describe('Search unit titles', () => {
 
   beforeEach(() => {
-    cy.goToHome();
-
     const baseUrl = "http://localhost:3000/api";
     cy.interceptAndReturnFile("GET", `${baseUrl}/role/?size=5`, "roles.json");
-    cy.interceptAndReturnFile("GET", `${baseUrl}/orgunits/`, "orgunits.json");
+    cy.interceptAndReturnFile("GET", `http://localhost:3000/api/orgunits/`, "orgunits.json");
     cy.interceptAndReturnFile("GET", `${baseUrl}/role/?$filter=roleName%20contains%20%27TEST%27&size=5`, "rolesSearch.json");
     cy.interceptAndReturnFile("GET", `${baseUrl}/role/?$filter=aggregatedRole eq 'true'&size=5`, "rolesAggregated.json");
     cy.interceptAndReturnFile("GET", `${baseUrl}/role/?$filter=aggregatedRole%20eq%20%27true%27&size=10`, "rolesMoreLines.json");
@@ -13,6 +11,7 @@ describe('Search unit titles', () => {
 
   it('can search and clear input', () => {
     const searchText = 'TEST';
+    cy.goToHome();
 
     cy.get('#search-role').should('exist')
     cy.get('#search-role').should('have.attr', 'placeholder', 'Søk gruppenavn');
