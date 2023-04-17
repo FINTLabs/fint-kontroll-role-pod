@@ -7,6 +7,7 @@ import {
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
+import style from "../../template/style";
 
 interface SearchProps {
     searchFunction: (value: string) => void;
@@ -33,6 +34,7 @@ export default function Search(props: SearchProps) {
     return (
         <FormControl style={{minWidth: 240}} sx={{mx: '2rem'}}>
             <TextField
+                // label={"search roles"}
                 id={"search-role"}
                 size="small"
                 onChange={handleSearch}
@@ -56,6 +58,9 @@ export default function Search(props: SearchProps) {
                             <ClearIcon id={"clearIcon"}/>
                         </InputAdornment>
                     )
+                }}
+                inputProps={{
+                    'aria-label': props.placeholder // Add an invisible label
                 }}
             />
         </FormControl>
