@@ -11,7 +11,6 @@ const getRoleById = (id: number) => axios.get<IRoleItem>(`/api/roles/${id}`);
 const getRolePage = (page: number, size: number, roleType: string, searchFor: string, organisationUnitId: string[], isAggregated: boolean) => {
 
     let baseUrl = `/api/roles/`;
-
     let queryParams = [];
 
     const sanitizedQueryString = searchFor.trim();

@@ -1,24 +1,25 @@
 import axios from 'axios';
 import {IMemberPage} from "../context/memberContext/types";
 
-//TODO rewrite with new endpoints
 const getPage = (page: number, size: number, roleId: number, searchFor: string) => {
 
-    let url = `/api/member/role/${roleId}`;
+    let baseUrl = `/api/member/role/${roleId}/`;
+    let queryParams = [];
 
     const sanitizedQueryString = searchFor.trim();
     if (sanitizedQueryString.length !== 0) {
-        url += `?$filter=firstName contains '${sanitizedQueryString}' or lastName contains '${sanitizedQueryString}'`;
+        queryParams.push(`search=${searchFor}`);
     }
 
     if (page) {
-        url += `${sanitizedQueryString ? '&' : '?'}page=${page}`;
+        queryParams.push(`page=${page}`);
     }
 
     if (size) {
-        url += `${sanitizedQueryString || page ? '&' : '?'}size=${size}`;
+        queryParams.push(`size=${size}`);
     }
 
+    const url = `${baseUrl}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
     return axios.get<IMemberPage>(url);
 
 }

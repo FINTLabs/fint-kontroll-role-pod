@@ -12,6 +12,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem from '@mui/lab/TreeItem';
 import {UnitContext} from "../../context/unitContext";
 
+//FILE HAS TO BE JAVASCRIPT
+// due to the way we build the unit tree
 
 const DialogUnit = ({ open, onClose }) => {
     const [selected, setSelected] = useState([]);
