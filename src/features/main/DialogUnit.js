@@ -46,6 +46,7 @@ const DialogUnit = ({ open, onClose }) => {
                 label={
                     <React.Fragment>
                         <Checkbox
+                            id={`node-${nodes.organisationUnitId}`}
                             checked={selected.indexOf(nodes.organisationUnitId) !== -1}
                             onClick={(event) => {
                                 event.stopPropagation();
@@ -91,7 +92,7 @@ const DialogUnit = ({ open, onClose }) => {
                 </TreeView>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClear} id={'unitDialogCancel'}>Clear All</Button>
+                <Button onClick={handleClear} id={'unitDialogClear'}>Clear All</Button>
                 <Button onClick={handleSave} id={'unitDialogSave'}>Save</Button>
             </DialogActions>
         </Dialog>

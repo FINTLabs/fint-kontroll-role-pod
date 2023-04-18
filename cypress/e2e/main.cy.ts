@@ -4,10 +4,13 @@ describe('Check the roles page with no backend', () => {
   beforeEach(() => {
     const baseUrl = "http://localhost:3000/api";
     cy.interceptAndReturnFile("GET", `${baseUrl}/orgunits/`, "orgunits.json");
-    cy.interceptAndReturnFile("GET", `${baseUrl}/role/?size=5`, "roles.json");
-    cy.interceptAndReturnFile("GET", `${baseUrl}/role/?$filter=roleName%20contains%20%27${searchText}%27&size=5`, "rolesSearch.json");
-    cy.interceptAndReturnFile("GET", `${baseUrl}/role/?$filter=aggregatedRole eq 'true'&size=5`, "rolesAggregated.json");
-    cy.interceptAndReturnFile("GET", `${baseUrl}/role/?$filter=aggregatedRole%20eq%20%27true%27&size=10`, "rolesMoreLines.json");
+    cy.interceptAndReturnFile("GET", `${baseUrl}/roles/?userType=all&size=5`, "roles.json");
+    //TODO: add a user type when that is ready
+    cy.interceptAndReturnFile("GET", `${baseUrl}/roles/?userType=students&size=5`, "roles.json");
+    cy.interceptAndReturnFile("GET", `${baseUrl}/roles/?search=${searchText}&userType=all&size=5`, "rolesSearch.json");
+    cy.interceptAndReturnFile("GET", `${baseUrl}/roles/?userType=students&aggroles=true&orgunits=1&size=5`, "rolesAggregated.json");
+    cy.interceptAndReturnFile("GET", `${baseUrl}/roles/?$filter=aggregatedRole%20eq%20%27true%27&size=10`, "rolesMoreLines.json");
+    cy.interceptAndReturnFile("GET", `${baseUrl}/roles/?userType=students&orgunits=5&size=5`, "rolesWithOrgUnitId.json");
   });
 
   it('can type in search and clear input', () => {
@@ -35,6 +38,7 @@ describe('Check the roles page with no backend', () => {
     cy.get('#filter-type-select').click()
     cy.get('[data-value="students"]').click()
     cy.get('#filter-type-select').should('have.text', 'Elev')
+    //TODO: Check that the list changes
   });
 
   it('Check Select Units (tooltip, dialog, dialog check)', () => {
@@ -44,8 +48,10 @@ describe('Check the roles page with no backend', () => {
     cy.get('#selectUnitsIcon').click()
     cy.get('#unitsSelectDialog').should('be.visible')
     cy.wait(500)
-    //TODO: check dialog has values, check off values, and return values
-    cy.get('#unitDialogCancel').click();
+    //TODO: check dialog CLEAR button
+    cy.get('.MuiTreeItem-root').first().click();
+    cy.get('#node-5').click()
+    cy.get('#unitDialogSave').click();
     cy.get('.MuiTooltip-popper').invoke('hide')
     cy.get('.MuiTooltip-popper').should('not.be.visible')
   })
