@@ -1,4 +1,4 @@
-describe('Check the roles page with no backend', () => {
+describe('Check the MAIN page with no backend', () => {
   const searchText = 'TEST';
 
   beforeEach(() => {
@@ -11,6 +11,8 @@ describe('Check the roles page with no backend', () => {
     cy.interceptAndReturnFile("GET", `${baseUrl}/roles/?userType=students&aggroles=true&orgunits=1&size=5`, "rolesAggregated.json");
     cy.interceptAndReturnFile("GET", `${baseUrl}/roles/?$filter=aggregatedRole%20eq%20%27true%27&size=10`, "rolesMoreLines.json");
     cy.interceptAndReturnFile("GET", `${baseUrl}/roles/?userType=students&orgunits=5&size=5`, "rolesWithOrgUnitId.json");
+    cy.interceptAndReturnFile("GET", `${baseUrl}/roles/?userType=students&aggroles=true&orgunits=5&size=10`, "rolesAggregated.json");
+
   });
 
   it('can type in search and clear input', () => {
@@ -48,12 +50,13 @@ describe('Check the roles page with no backend', () => {
     cy.get('#selectUnitsIcon').click()
     cy.get('#unitsSelectDialog').should('be.visible')
     cy.wait(500)
-    //TODO: check dialog CLEAR button
-    cy.get('.MuiTreeItem-root').first().click();
+    cy.get('.MuiTreeItem-root').first().click()
+    //TODO: test check instead of click
     cy.get('#node-5').click()
-    cy.get('#unitDialogSave').click();
+    cy.get('#unitDialogSave').click()
     cy.get('.MuiTooltip-popper').invoke('hide')
     cy.get('.MuiTooltip-popper').should('not.be.visible')
+    //TODO: check dialog CLEAR button
   })
 
 
@@ -83,5 +86,33 @@ describe('Check the roles page with no backend', () => {
     cy.get('.MuiTablePagination-select').should('exist').select('10')
   });
 
+})
+
+//TODO write tests for the DEATILS page
+describe('Check the DETAILS PAGE tab with no backend', () => {
+  const searchText = 'Dahl';
+
+  beforeEach(() => {
+    const baseUrl = "http://localhost:3000/api";
+    cy.interceptAndReturnFile("GET", `${baseUrl}/member/role/43/?size=5`, "members.json");
+  });
+
+  //todo check title, other details, two tabs exist
+  it('Click into a members page', () => {
+    // cy.goToHome();
+    cy.get('#role-43').click()
+  });
+
+  //todo
+  it('Members tab (exits, title, table, search)', () => {
+    // cy.goToHome();
+    cy.get('#tableTitle').should('have.text','Members')
+  });
+
+  //TODO
+  it('Resrouces tab (exits, title, table, search)', () => {
+    // cy.goToHome();
+    cy.get('.MuiTabs-flexContainer > [tabindex="-1"]').should('have.text','Resources')
+  });
 
 })
