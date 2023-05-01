@@ -1,8 +1,6 @@
-import React, {useState} from 'react';
-import { makeStyles } from '@mui/material/styles';
+import React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
 import {alpha, Tooltip} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -15,14 +13,14 @@ interface CustomTableToolbarProps {
     onDeleteClick: (event: React.MouseEvent<unknown>) => void;
 }
 
-function DataToolbar(props:CustomTableToolbarProps) {
-    const { numSelected, onDeleteClick} = props;
+function DataToolbar(props: CustomTableToolbarProps) {
+    const {numSelected, onDeleteClick} = props;
 
     return (
         <Toolbar
             sx={{
-                pl: { sm: 2 },
-                pr: { xs: 1, sm: 1 },
+                pl: {sm: 2},
+                pr: {xs: 1, sm: 1},
                 ...(numSelected > 0 && {
                     bgcolor: (theme) =>
                         alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
@@ -31,7 +29,7 @@ function DataToolbar(props:CustomTableToolbarProps) {
         >
             {numSelected > 0 ? (
                 <Typography
-                    sx={{ flex: '1 1 100%' }}
+                    sx={{flex: '1 1 100%'}}
                     color="inherit"
                     variant="subtitle1"
                     component="div"
@@ -40,7 +38,7 @@ function DataToolbar(props:CustomTableToolbarProps) {
                 </Typography>
             ) : (
                 <Typography
-                    sx={{ flex: '1 1 100%' }}
+                    sx={{flex: '1 1 100%'}}
                     variant="h6"
                     id="tableTitle"
                     component="div"
@@ -48,18 +46,18 @@ function DataToolbar(props:CustomTableToolbarProps) {
                     Resources
                 </Typography>
             )}
-            <Search />
-            <AddCircleOutlineIcon />
+            <Search/>
+            <AddCircleOutlineIcon/>
             {numSelected > 0 ? (
                 <Tooltip title="Delete">
                     <IconButton>
-                        <DeleteIcon />
+                        <DeleteIcon/>
                     </IconButton>
                 </Tooltip>
             ) : (
                 <Tooltip title="Add New Resources">
-                    <IconButton  onClick={onDeleteClick}>
-                        <CreateIcon />
+                    <IconButton onClick={onDeleteClick}>
+                        <CreateIcon/>
                     </IconButton>
                 </Tooltip>
             )}

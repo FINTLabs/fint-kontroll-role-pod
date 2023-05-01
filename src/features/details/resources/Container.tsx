@@ -1,14 +1,13 @@
-import {Box, Typography} from "@mui/material";
+import {Box} from "@mui/material";
 import {DataTable} from "./DataTable";
-import Search from "./Search";
 
 
 function Container() {
 
     return (
-        <Box >
+        <Box>
             <Box>
-                <DataTable />
+                <DataTable/>
             </Box>
         </Box>
     );

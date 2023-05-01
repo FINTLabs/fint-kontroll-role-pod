@@ -1,23 +1,17 @@
 import * as React from 'react';
+import {useState} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import IconButton from '@mui/material/IconButton';
-import {Box, Button, Checkbox, Typography} from "@mui/material";
-import {Link, useParams} from "react-router-dom";
-import {useContext, useEffect, useState} from "react";
-import {ResourceContext} from "../../../context/resourceContext";
-import AddIcon from '@mui/icons-material/Add';
-import CreateIcon from '@mui/icons-material/Create';
-import BasicPopover from "./Popover";
+import {Box, Checkbox} from "@mui/material";
 import DataToolbar from "./DataToolbar";
 
 export const DataTable: any = () => {
-    let roleId = String(useParams().roleId);
-    const {resources, getResourcePage,} = useContext(ResourceContext);
+    //let roleId = String(useParams().roleId);
+    //const {resources, getResourcePage,} = useContext(ResourceContext);
     const [showDelete, setShowDelete] = useState(false);
     const [selected, setSelected] = useState<number[]>([]);
 
@@ -29,48 +23,45 @@ export const DataTable: any = () => {
     // }, [roleId])
 
     const someFakeResources = [
-        { id: 1, name: 'Mount Everest' },
-        { id: 2, name: 'Grand Canyon' },
-        { id: 3, name: 'Niagara Falls' },
-        { id: 4, name: 'Yellowstone National Park' },
-        { id: 5, name: 'Great Barrier Reef' },
+        {id: 1, name: 'Mount Everest'},
+        {id: 2, name: 'Grand Canyon'},
+        {id: 3, name: 'Niagara Falls'},
+        {id: 4, name: 'Yellowstone National Park'},
+        {id: 5, name: 'Great Barrier Reef'},
     ];
 
 
+    // const ShowDeleteToggle = () => {
+    //
+    //     return showDelete ? (
+    //         <Button
+    //             component={Link}
+    //             to={`/add/row_id`}
+    //             variant="contained"
+    //             color="primary"
+    //             startIcon={<AddIcon/>}
+    //             onClick={() => setShowDelete(!showDelete)}>
+    //             Legg Til
+    //         </Button>
+    //     ) : (
+    //         <IconButton onClick={() => setShowDelete(!showDelete)}>
+    //             <CreateIcon/>
+    //         </IconButton>
+    //     );
+    // }
 
 
-    const ShowDeleteToggle = () => {
-
-        return showDelete ? (
-            <Button
-                component={Link}
-                to={`/add/row_id`}
-                variant="contained"
-                color="primary"
-                startIcon={<AddIcon />}
-                onClick={() => setShowDelete(!showDelete)}>
-                Legg Til
-            </Button>
-        ) : (
-            <IconButton onClick={() => setShowDelete(!showDelete)} >
-                <CreateIcon/>
-            </IconButton>
-        );
-    }
-
-
-    const handleClick = (event: React.MouseEvent<HTMLTableCellElement>, rowId:number) => {
+    const handleClick = (event: React.MouseEvent<HTMLTableCellElement>, rowId: number) => {
         setSelected([rowId]);
     }
 
 
-
-return (
+    return (
         <Box sx={{p: 1}}>
             <TableContainer sx={{minWidth: 1040}}>
-                <DataToolbar numSelected={selected.length} onDeleteClick={() => setShowDelete(!showDelete)} />
+                <DataToolbar numSelected={selected.length} onDeleteClick={() => setShowDelete(!showDelete)}/>
                 <Table aria-label="resources">
-                    <TableHead sx={{ th: { fontWeight: 'bold' } }}>
+                    <TableHead sx={{th: {fontWeight: 'bold'}}}>
                         <TableRow>
                             <TableCell align="left">Ressurser</TableCell>
                             <TableCell align="left">Tildelt av</TableCell>
@@ -89,7 +80,7 @@ return (
                                     {row?.name}
                                 </TableCell>
                                 <TableCell align="left"> xxx </TableCell>
-                                <TableCell 
+                                <TableCell
                                     padding="checkbox"
                                     // hover
                                     onClick={(event) => handleClick(event, row.id)}
@@ -98,17 +89,17 @@ return (
                                     tabIndex={-1}
                                     key={row.id}
                                     // selected={isItemSelected}
-                                
+
                                 >
                                     {showDelete && (
 
-                                            <Checkbox
-                                                color="primary"
-                                                checked={false}
-                                                // inputProps={{
-                                                //     'aria-labelledby': labelId,
-                                                // }}
-                                            />
+                                        <Checkbox
+                                            color="primary"
+                                            checked={false}
+                                            // inputProps={{
+                                            //     'aria-labelledby': labelId,
+                                            // }}
+                                        />
 
                                     )}
                                 </TableCell>

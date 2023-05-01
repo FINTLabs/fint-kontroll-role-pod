@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {Tooltip} from "@mui/material";
@@ -14,28 +14,28 @@ interface CustomTableToolbarProps {
     onShowDialog: (event: React.MouseEvent<unknown>) => void;
 }
 
-function CustomTableToolbar(props:CustomTableToolbarProps) {
-    const { onShowDialog } = props;
-    const { isAggregate, setIsAggregate } = useContext(RolesContext);
+function CustomTableToolbar(props: CustomTableToolbarProps) {
+    const {onShowDialog} = props;
+    const {isAggregate, setIsAggregate} = useContext(RolesContext);
     // const [showLayers, setShowLayers] = useState(true);
 
     return (
         <Toolbar id={'rolesToolbar'}
-            sx={{
-                pl: { sm: 2 },
-                pr: { xs: 1, sm: 1 },
-            }}
+                 sx={{
+                     pl: {sm: 2},
+                     pr: {xs: 1, sm: 1},
+                 }}
         >
-                <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    variant="h6"
-                    id="tableTitle"
-                    component="div"
-                >
-                    Grupper
-                </Typography>
-            <Search />
-            <FilterType />
+            <Typography
+                sx={{flex: '1 1 100%'}}
+                variant="h6"
+                id="tableTitle"
+                component="div"
+            >
+                Grupper
+            </Typography>
+            <Search/>
+            <FilterType/>
             <Tooltip title={"Select Units"}>
                 <IconButton
                     id={'selectUnitsIcon'}
@@ -53,7 +53,7 @@ function CustomTableToolbar(props:CustomTableToolbarProps) {
                         aria-label="settings"
                         onClick={() => setIsAggregate(false)}
                     >
-                        <LayersClearIcon color={"primary"} />
+                        <LayersClearIcon color={"primary"}/>
                     </IconButton>
                 </Tooltip>
 
