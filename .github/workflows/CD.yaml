@@ -22,9 +22,6 @@ jobs:
 
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
 
       - uses: actions/checkout@v2
@@ -63,6 +60,12 @@ jobs:
               --container-name "alpha/${{ github.event.repository.name }}" \
               --account-name stflaiscdn \
               --name main.js \
+              --overwrite
+            az storage blob upload \
+              --file "build/static/css/main.css" \
+              --container-name "alpha/${{ github.event.repository.name }}" \
+              --account-name stflaiscdn \
+              --name main.css \
               --overwrite
 
       - name: Log in to the Container registry
