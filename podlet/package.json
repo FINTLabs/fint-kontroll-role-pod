@@ -1,8 +1,11 @@
 {
-  "name": "podlet",
+  "name": "fint-kontroll-role-pod",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node podlet.js"
+  },
   "dependencies": {
     "@fintlabs/fint-podium-react-podlet": "^2.0.0",
     "@podium/podlet": "^4.4.69",
