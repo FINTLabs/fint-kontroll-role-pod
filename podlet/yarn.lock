@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@fintlabs/fint-podium-react-podlet@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@fintlabs/fint-podium-react-podlet/-/fint-podium-react-podlet-2.0.0.tgz#764afece9003257e42f80545f34014b465633c57"
-  integrity sha512-IX/ZjpioNzPTnj7aDuajaAXisX3/0IpvNk31mmZlTxEA8DxfbUyGGVizYZNppAL3p0RN2sITz256lxoU9ubiYw==
+"@fintlabs/fint-podium-react-podlet@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@fintlabs/fint-podium-react-podlet/-/fint-podium-react-podlet-3.0.0.tgz#dd53545bbf7b062fa6ff897df6465feaa28e9e05"
+  integrity sha512-V0H/Yz0xyoeklfbyMTScYh6pl2n/ibQptNs6EDh68R9equCaMKOeU93BIoaND+ABE1qsayFc6aqrEnj5Z0LeQA==
   dependencies:
     "@podium/podlet" "^4.4.69"
     "@types/express-prometheus-middleware" "^1.2.1"

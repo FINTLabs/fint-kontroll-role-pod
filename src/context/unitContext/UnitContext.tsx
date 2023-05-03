@@ -21,7 +21,6 @@ const UnitProvider = ({children}: Props) => {
 
 
     const getUnitTree = () => {
-        console.warn(`Getting a the units tree:`);
         UnitRepository.getUnitTree()
             .then(response => {
                 console.log("Returned tree data: ", response.data);
