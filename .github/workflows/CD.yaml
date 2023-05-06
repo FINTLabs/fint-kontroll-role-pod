@@ -22,9 +22,6 @@ jobs:
 
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
 
       - uses: actions/checkout@v2
@@ -58,47 +55,8 @@ jobs:
         with:
           azcliversion: 2.42.0
           inlineScript: |
-            # Alpha
-            az storage blob upload \
-              --file "build/static/js/main.js" \
-              --container-name "alpha/${{ github.event.repository.name }}" \
-              --account-name stflaiscdn \
-              --name main.js \
-              --overwrite
-            az storage blob upload \
-              --file "build/static/css/main.css" \
-              --container-name "alpha/${{ github.event.repository.name }}" \
-              --account-name stflaiscdn \
-              --name main.css \
-              --overwrite
-            
-            # Beta
-            az storage blob upload \
-              --file "build/static/js/main.js" \
-              --container-name "beta/${{ github.event.repository.name }}" \
-              --account-name stflaiscdn \
-              --name main.js \
-              --overwrite
-            az storage blob upload \
-              --file "build/static/css/main.css" \
-              --container-name "beta/${{ github.event.repository.name }}" \
-              --account-name stflaiscdn \
-              --name main.css \
-              --overwrite
-            
-            # Api
-            az storage blob upload \
-              --file "build/static/js/main.js" \
-              --container-name "api/${{ github.event.repository.name }}" \
-              --account-name stflaiscdn \
-              --name main.js \
-              --overwrite
-            az storage blob upload \
-              --file "build/static/css/main.css" \
-              --container-name "api/${{ github.event.repository.name }}" \
-              --account-name stflaiscdn \
-              --name main.css \
-              --overwrite
+            chmod +x $GITHUB_WORKSPACE/upload-assets.sh
+            $GITHUB_WORKSPACE/upload-assets.sh ${{ github.event.repository.name }}
 
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
