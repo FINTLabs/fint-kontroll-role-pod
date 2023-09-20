@@ -11,23 +11,23 @@ import UnitProvider from "./context/unitContext";
 import axios from "axios";
 
 function App() {
-    const [basePath, setBasePath] = useState("")
-
-    useEffect(() => {
-        axios.get('api/layout/configuration')
-            .then(value => {
-                setBasePath(value.data.basePath);
-            });
-    }, [])
+    // const [basePath, setBasePath] = useState("")
+    //
+    // useEffect(() => {
+    //     axios.get('api/layout/configuration')
+    //         .then(value => {
+    //             setBasePath(value.data.basePath);
+    //         });
+    // }, [])
     return (
         <ThemeProvider theme={theme}>
             <RolesProvider>
                 <MemberProvider>
                     <UnitProvider>
                     <Routes>
-                        <Route path={basePath} element={<MainContainer/>}/>
-                        <Route path={`${basePath}/info/:roleId`} element={<DetailsContainer/>}/>
-                        <Route path={`${basePath}/add/:roleId`} element={<ResourceAddGrid/>}/>∂
+                        <Route path={'/'} element={<MainContainer/>}/>
+                        <Route path={`/info/:roleId`} element={<DetailsContainer/>}/>
+                        <Route path={`/add/:roleId`} element={<ResourceAddGrid/>}/>∂
                     </Routes>
                     </UnitProvider>
                 </MemberProvider>
