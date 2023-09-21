@@ -2,8 +2,11 @@ import axios from 'axios';
 import {IUnitTree} from "../context/unitContext/types";
 
 const getTree = () => {
+    let baseUrl = axios.get('api/layout/configuration');
     let url = `/api/orgunits/`;
-    return axios.get<IUnitTree>(url);
+    let fullUrl = baseUrl + url;
+
+    return axios.get<IUnitTree>(fullUrl);
 }
 
 const UnitRepository = {
