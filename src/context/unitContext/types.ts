@@ -15,9 +15,11 @@ export interface IUnitTree {
 }
 
 export type UnitContextState = {
+    basePath: string;
     unitTree: IUnitTree | null;
 };
 
-export const contextDefaultValues: UnitContextState = {
+export const contextDefaultValues = {
+    basePath: '',
     unitTree: null,
 };
