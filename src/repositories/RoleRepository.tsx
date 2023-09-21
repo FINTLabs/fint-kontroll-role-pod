@@ -1,16 +1,27 @@
 import axios from 'axios';
-import {IRoleItem, IRolePage,} from "../context/roleContext/types";
+import { IRoleItem, IRolePage } from "../context/roleContext/types";
 
-const getRoles = () => {
-    console.log("get all roles")
-    return axios.get<IRoleItem[]>('/api/role');
+const getRoles = (basePath: string) => {
+    console.log("get all roles");
+    const url = `${basePath}/api/role`;
+    return axios.get<IRoleItem[]>(url);
 }
 
-const getRoleById = (id: number) => axios.get<IRoleItem>(`/api/roles/${id}`);
+const getRoleById = (basePath: string, id: number) => {
+    const url = `${basePath}/api/roles/${id}`;
+    return axios.get<IRoleItem>(url);
+}
 
-const getRolePage = (page: number, size: number, roleType: string, searchFor: string, organisationUnitId: string[], isAggregated: boolean) => {
-
-    let baseUrl = `/api/roles/`;
+const getRolePage = (
+    basePath: string,
+    page: number,
+    size: number,
+    roleType: string,
+    searchFor: string,
+    organisationUnitId: string[],
+    isAggregated: boolean
+) => {
+    let baseUrl = `${basePath}/api/roles`;
     let queryParams = [];
 
     const sanitizedQueryString = searchFor.trim();

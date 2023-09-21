@@ -1,4 +1,4 @@
-import React, {createContext, ReactNode, useEffect, useState,} from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 import RoleRepository from "../../repositories/RoleRepository";
 import {
     contextDefaultValues,
@@ -6,6 +6,7 @@ import {
     IRoleItem,
     RoleContextState,
 } from "./types";
+import axios from "axios";
 
 export const RolesContext = createContext<RoleContextState>(
     contextDefaultValues
@@ -15,48 +16,77 @@ type Props = {
     children: ReactNode[] | ReactNode;
 };
 
-const RolesProvider = ({children}: Props) => {
-    const [role, setRole] = useState<IRoleItem | null>(contextDefaultValues.role);
-    const [roleId, setRoleId] = useState<number>(contextDefaultValues.roleId);
-    const [page, setPage] = useState<IRolePage | null>(contextDefaultValues.page);
-    const [roleType, setRoleType] = useState<string>(contextDefaultValues.roleType)
-    const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
+const RolesProvider = ({ children }: Props) => {
+    const [role, setRole] = useState<IRoleItem | null>(
+        contextDefaultValues.role
+    );
+    const [roleId, setRoleId] = useState<number>(
+        contextDefaultValues.roleId
+    );
+    const [page, setPage] = useState<IRolePage | null>(
+        contextDefaultValues.page
+    );
+    const [roleType, setRoleType] = useState<string>(
+        contextDefaultValues.roleType
+    );
+    const [currentPage, setCurrentPage] = useState<number>(
+        contextDefaultValues.currentPage
+    );
     const [size, setSize] = useState<number>(contextDefaultValues.size);
-    const [searchValue, setSearchValue] = useState<string>(contextDefaultValues.searchValue);
-    const [isAggregate, setIsAggregate] = useState<boolean>(contextDefaultValues.isAggregate);
-    const [orgunits, setOrgunits] = useState<string[] >(contextDefaultValues.orgunits);
+    const [searchValue, setSearchValue] = useState<string>(
+        contextDefaultValues.searchValue
+    );
+    const [isAggregate, setIsAggregate] = useState<boolean>(
+        contextDefaultValues.isAggregate
+    );
+    const [orgunits, setOrgunits] = useState<string[]>(
+        contextDefaultValues.orgunits
+    );
+    const [basePath, setBasePath] = useState<string>(
+        contextDefaultValues.basePath
+    );
 
     useEffect(() => {
-        const getPage = () => {
-            //TODO remove before production
-            console.log(`Getting a new roles page with: currentPage: ${currentPage}, size: ${size}, roleType: ${roleType}, `);
-            console.log(`inputSearchValue: ${searchValue}, units: ${orgunits}, isAggregate: ${isAggregate}`);
+        const fetchData = async () => {
+            try {
+                // Fetch the basePath
+                const basePathResponse = await axios.get('api/layout/configuration');
+                const newBasePath = basePathResponse.data.basePath;
+                setBasePath(newBasePath);
+                console.log("basePath in context", newBasePath);
 
-            RoleRepository.getRolePage(currentPage, size, roleType, searchValue, orgunits, isAggregate)
-                .then(response => {
-                    console.log("Returned Data: ", response.data);
-                    setPage(response.data);
-                })
-                .catch((err) => console.error(err))
+                // Fetch other data using the basePath
+                const pageResponse = await RoleRepository.getRolePage(
+                    newBasePath,
+                    currentPage,
+                    size,
+                    roleType,
+                    searchValue,
+                    orgunits,
+                    isAggregate
+                );
+                const roleResponse = await RoleRepository.getRoleById(
+                    newBasePath,
+                    roleId
+                );
 
-        }
-        getPage();
-    }, [currentPage, searchValue, roleType, size, isAggregate, orgunits]);
-
-    useEffect(() => {
-        const getRole = () => {
-            if(roleId) {
-                //     const getPage = async () => {
-                RoleRepository.getRoleById(roleId)
-                    .then(response => {
-                        console.log("Returned Role: ", response.data);
-                        setRole(response.data);
-                    })
-                    .catch((err) => console.error(err))
+                setPage(pageResponse.data);
+                setRole(roleResponse.data);
+            } catch (error) {
+                console.error(error);
             }
-        }
-        getRole();
-    }, [roleId]);
+        };
+
+        fetchData();
+    }, [
+        currentPage,
+        searchValue,
+        roleType,
+        size,
+        isAggregate,
+        orgunits,
+        roleId,
+    ]);
 
     return (
         <RolesContext.Provider
@@ -77,6 +107,7 @@ const RolesProvider = ({children}: Props) => {
                 setIsAggregate,
                 orgunits,
                 setOrgunits,
+                basePath,
             }}
         >
             {children}
