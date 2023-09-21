@@ -8,9 +8,9 @@ export default function FilterType() {
     const {roleType, setRoleType} = useContext(RolesContext);
 
     const options = [
-        { value: "all", label: "Alle" },
-        { value: "students", label: "Elev" },
-        { value: "employees", label: "Ansatt" }
+        { value: "alle", label: "Alle" },
+        { value: "elev", label: "Elev" },
+        { value: "ansatt", label: "Ansatt" }
     ];
 
     function handleChange(event: SelectChangeEvent) {
