@@ -41,7 +41,6 @@ export type RoleContextState = {
     setIsAggregate: (isAggregate: boolean) => void;
     orgunits: number[];
     setOrgunits: (orgunits: number[]) => void;
-    basePath: string;
 };
 
 export const contextDefaultValues: RoleContextState = {
@@ -61,5 +60,4 @@ export const contextDefaultValues: RoleContextState = {
     setIsAggregate(): void {},
     orgunits: [],
     setOrgunits(): void{},
-    basePath: '',
 };

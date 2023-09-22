@@ -2,7 +2,7 @@ import axios from 'axios';
 import { IMemberPage } from './types';
 import {IRoleItem, IRolePage} from "./roleContext/types";
 
-const API_BASE_URL = '/api/layout/configuration';
+const API_BASE_URL = 'api/layout/configuration';
 
 export const fetchMemberData = async (
     page: number,

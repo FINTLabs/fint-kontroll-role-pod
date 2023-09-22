@@ -26,7 +26,6 @@ const RolesProvider = ({ children }: Props) => {
     const [searchValue, setSearchValue] = useState<string>(contextDefaultValues.searchValue);
     const [isAggregate, setIsAggregate] = useState<boolean>(contextDefaultValues.isAggregate);
     const [orgunits, setOrgunits] = useState<number[]>(contextDefaultValues.orgunits);
-    const [basePath] = useState<string>(contextDefaultValues.basePath);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -78,7 +77,6 @@ const RolesProvider = ({ children }: Props) => {
         setIsAggregate,
         orgunits,
         setOrgunits,
-        basePath,
     };
 
     return (
