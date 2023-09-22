@@ -7,6 +7,7 @@ import {
     IRoleItem,
     RoleContextState,
 } from "./types";
+import axios from "axios/index";
 
 export const RolesContext = createContext<RoleContextState>(
     contextDefaultValues
@@ -30,7 +31,11 @@ const RolesProvider = ({ children }: Props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const basePathResponse = await axios.get('api/layout/configuration');
+                const newBasePath = basePathResponse.data.basePath;
+
                 const pageResponse = await fetchRoleData(
+                    newBasePath,
                     currentPage,
                     size,
                     roleType,
