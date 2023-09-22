@@ -18,30 +18,39 @@ interface SearchProps {
 
 export default function Search(props: SearchProps) {
     const [showClearIcon, setShowClearIcon] = useState<string>(props.showClearIcon || "none");
+    const [showSearchIcon, setShowSearchIcon] = useState("");
 
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         props.searchFunction(event.target.value as string);
         setShowClearIcon(event.target.value === "" ? "none" : "flex");
+        setShowSearchIcon(event.target.value !== "" ? "none" : "flex");
     };
 
     const handleClick = (): void => {
-        console.log("clicked the clear icon...");
         setShowClearIcon("none");
+        setShowSearchIcon("");
         props.clearFunction();
     };
 
     return (
-        <FormControl style={{minWidth: 240}} sx={{mx: '2rem', my: '1rem'}}>
+        <FormControl style={{minWidth: 220}} sx={{mx: '2rem', my: '1rem'}}>
             <TextField
-                // label={"search roles"}
+                label="Søk"
                 id={"search-role"}
-                size="small"
                 onChange={handleSearch}
                 value={props.inputValue}
                 placeholder={props.placeholder}
+                InputLabelProps={{
+                    shrink: true,
+                }}
                 InputProps={{
                     startAdornment: (
-                        <InputAdornment position="start">
+                        <InputAdornment
+                            position="start"
+                            style={{
+                                display: showSearchIcon,
+                            }}
+                        >
                             <SearchIcon />
                         </InputAdornment>
                     ),
@@ -50,7 +59,7 @@ export default function Search(props: SearchProps) {
                             position="end"
                             style={{
                                 display: showClearIcon,
-                                width: '1.5rem' // set a fixed width
+                                cursor: 'pointer'
                             }}
                             onClick={handleClick}
                         >
