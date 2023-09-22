@@ -1,12 +1,12 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
-import RoleRepository from "../../repositories/RoleRepository";
+import {fetchRoleById, fetchRoleData} from '../api'; // Import the API function
+
 import {
     contextDefaultValues,
     IRolePage,
     IRoleItem,
     RoleContextState,
 } from "./types";
-import axios from "axios";
 
 export const RolesContext = createContext<RoleContextState>(
     contextDefaultValues
@@ -26,20 +26,12 @@ const RolesProvider = ({ children }: Props) => {
     const [searchValue, setSearchValue] = useState<string>(contextDefaultValues.searchValue);
     const [isAggregate, setIsAggregate] = useState<boolean>(contextDefaultValues.isAggregate);
     const [orgunits, setOrgunits] = useState<number[]>(contextDefaultValues.orgunits);
-    const [basePath, setBasePath] = useState<string>(contextDefaultValues.basePath);
+    const [basePath] = useState<string>(contextDefaultValues.basePath);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Fetch the basePath
-                const basePathResponse = await axios.get('api/layout/configuration');
-                const newBasePath = basePathResponse.data.basePath;
-                setBasePath(newBasePath);
-                console.log("basePath in context", newBasePath);
-
-                // Fetch other data using the basePath
-                const pageResponse = await RoleRepository.getRolePage(
-                    newBasePath,
+                const pageResponse = await fetchRoleData(
                     currentPage,
                     size,
                     roleType,
@@ -47,13 +39,12 @@ const RolesProvider = ({ children }: Props) => {
                     orgunits,
                     isAggregate
                 );
-                const roleResponse = await RoleRepository.getRoleById(
-                    newBasePath,
+                const roleResponse = await fetchRoleById(
                     roleId
                 );
 
-                setPage(pageResponse.data);
-                setRole(roleResponse.data);
+                setPage(pageResponse);
+                setRole(roleResponse);
             } catch (error) {
                 console.error(error);
             }
