@@ -98,7 +98,7 @@ export const fetchRoleData = async (
         if (size) {
             queryParams.push(`size=${size}`);
         }
-        const anyTest = `${testString === '/' ? '' : testString}/api/role/`;
+        const anyTest = `${testString === '/' ? '' : testString}/api/role`;
         const url = `${anyTest}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
 
         console.log("here is my new basepath url role data: ", url);

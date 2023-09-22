@@ -33,6 +33,7 @@ const RolesProvider = ({ children }: Props) => {
             try {
                 const basePathResponse = await axios.get('api/layout/configuration');
                 const testString = basePathResponse.data.basePath;
+                console.log("base path in role context", testString);
 
                 const pageResponse = await fetchRoleData(
                     testString,
