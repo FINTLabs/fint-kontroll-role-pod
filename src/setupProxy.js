@@ -9,13 +9,13 @@ module.exports = function(app) {
         })
     );
 
-    app.use(
-        '/api/member',
-        createProxyMiddleware({
-            target: 'http://localhost:8090',
-            changeOrigin: true,
-        })
-    );
+    // app.use(
+    //     '/api/member',
+    //     createProxyMiddleware({
+    //         target: 'http://localhost:8090',
+    //         changeOrigin: true,
+    //     })
+    // );
 
     app.use(
         '/api/orgunits',

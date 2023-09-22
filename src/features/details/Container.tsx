@@ -8,6 +8,7 @@ import {RolesContext} from "../../context/roleContext";
 
 
 function ContainerWithTabs() {
+    console.log("inside details container");
     let paramRoleId = Number(useParams().roleId);
     const {role, setRoleId} = useContext(RolesContext);
     const [selectedTab, setSelectedTab] = React.useState(0);
