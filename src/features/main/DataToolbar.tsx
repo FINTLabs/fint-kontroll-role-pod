@@ -1,14 +1,15 @@
 import React, {useContext} from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import {Tooltip} from "@mui/material";
+import {Button, Tooltip} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Search from "./Search";
 import LayersIcon from '@mui/icons-material/Layers';
 import LayersClearIcon from '@mui/icons-material/LayersClear';
-import PeopleIcon from '@mui/icons-material/People';
 import FilterType from "./FilterType";
 import {RolesContext} from "../../context/roleContext";
+import {Apartment} from "@mui/icons-material";
+import style from "../../template/style";
 
 interface CustomTableToolbarProps {
     onShowDialog: (event: React.MouseEvent<unknown>) => void;
@@ -36,14 +37,17 @@ function CustomTableToolbar(props: CustomTableToolbarProps) {
             </Typography>
             <Search/>
             <FilterType/>
-            <Tooltip title={"Select Units"}>
-                <IconButton
+            <Tooltip title={"Velg enhet"}>
+                <Button
                     id={'selectUnitsIcon'}
-                    aria-label="settings"
+                    variant="outlined"
+                    endIcon={<Apartment/>}
                     onClick={onShowDialog}
+                    sx={style.changeOrgButton}
+                    style={{ fontSize: '1em' }}
                 >
-                    <PeopleIcon color={"primary"}/>
-                </IconButton>
+                    Velg enhet
+                </Button>
             </Tooltip>
 
             {isAggregate ? (

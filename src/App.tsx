@@ -7,7 +7,7 @@ import RolesProvider from "./context/roleContext/RolesContext";
 import MemberProvider from "./context/memberContext/MemberContext";
 import ResourceAddGrid from "./features/resources/ResourceAddGrid";
 import DetailsContainer from "./features/details/Container";
-import UnitProvider from "./context/OrgUnitContext";
+import {OrgUnitsProvider} from "./context/OrgUnitContext";
 import axios from "axios";
 
 function App() {
@@ -23,13 +23,13 @@ function App() {
         <ThemeProvider theme={theme}>
             <RolesProvider>
                 <MemberProvider>
-                    <UnitProvider>
+                    <OrgUnitsProvider>
                     <Routes>
                         <Route path={basePath} element={<MainContainer/>}/>
                         <Route path={`${basePath}/info/:roleId`} element={<DetailsContainer/>}/>
                         <Route path={`${basePath}/add/:roleId`} element={<ResourceAddGrid/>}/>∂
                     </Routes>
-                    </UnitProvider>
+                    </OrgUnitsProvider>
                 </MemberProvider>
             </RolesProvider>
         </ThemeProvider>
