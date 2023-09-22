@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 import {fetchRoleById, fetchRoleData} from '../api'; // Import the API function
-import axios from "axios";
+
 import {
     contextDefaultValues,
     IRolePage,
@@ -31,12 +31,8 @@ const RolesProvider = ({ children }: Props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const basePathResponse = await axios.get('api/layout/configuration');
-                const testString = basePathResponse.data.basePath;
-                console.log("base path in role context", testString);
 
                 const pageResponse = await fetchRoleData(
-                    testString,
                     currentPage,
                     size,
                     roleType,
@@ -49,6 +45,7 @@ const RolesProvider = ({ children }: Props) => {
                 );
 
                 setPage(pageResponse);
+
                 setRole(roleResponse);
             } catch (error) {
                 console.error(error);
