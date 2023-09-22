@@ -1,9 +1,12 @@
 import axios from 'axios';
-import {IMemberPage} from "../context/memberContext/types";
+import { IMemberPage } from "../context/memberContext/types";
 
-const getPage = (page: number, size: number, roleId: number, searchFor: string) => {
+const getPage = async (page: number, size: number, roleId: number, searchFor: string) => {
+    // Fetch the basePath
+    const basePathResponse = await axios.get('api/layout/configuration');
+    const newBasePath = basePathResponse.data.basePath;
 
-    let baseUrl = `/api/role/${roleId}/members`;
+    let baseUrl = `${newBasePath}/api/role/${roleId}/members`; // Prepend basePath here
     let queryParams = [];
 
     const sanitizedQueryString = searchFor.trim();
@@ -21,7 +24,6 @@ const getPage = (page: number, size: number, roleId: number, searchFor: string) 
 
     const url = `${baseUrl}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
     return axios.get<IMemberPage>(url);
-
 }
 
 const MemberRepository = {
