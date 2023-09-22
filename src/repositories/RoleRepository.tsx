@@ -30,7 +30,7 @@ const getRolePage = (
     }
 
     if (roleType) {
-        queryParams.push(`userType=${roleType}`);
+        queryParams.push(`roletype=${roleType}`);
     }
 
     if (isAggregated) {
