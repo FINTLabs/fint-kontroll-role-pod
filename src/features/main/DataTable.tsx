@@ -62,7 +62,7 @@ export const DataTable: any = () => {
                         <TableRow>
                             <TableCell align="left">Navn</TableCell>
                             <TableCell align="left">Enhet</TableCell>
-                            <TableCell align="left" colSpan={2}>Brukertype</TableCell>
+                            <TableCell align="left" colSpan={2}>Brukertype {page?.roles?.length}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
