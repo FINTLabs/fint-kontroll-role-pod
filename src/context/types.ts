@@ -24,4 +24,22 @@ export const contextDefaultValues = {
     unitTree: null,
 };
 
+export interface IMemberPage {
+    totalItems: number;
+    totalPages: number | any;
+    currentPage: number;
+    size: number;
+    members: IMemberItem[];
+}
+
+export interface IMemberItem {
+    id: number;
+    resourceId: string;
+    firstName: string;
+    lastName: string;
+    userType: string;
+    userName?: null;
+    userId?: null;
+}
+
 

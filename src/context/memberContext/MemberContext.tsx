@@ -1,5 +1,6 @@
 import React, {createContext, ReactNode, useEffect, useState,} from "react";
-import MemberRepository from "../../repositories/MemberRepository";
+import { fetchMemberData } from '../api'; // Import the API function
+
 import {
     contextDefaultValues,
     IMemberPage,
@@ -27,10 +28,10 @@ const MemberProvider = ({children}: Props) => {
             //TODO remove before production
             console.debug(`Getting a new member page with: currentPage: ${currentPage}, size: ${size}, roleId: ${roleId}, inputSearchValue: ${searchValue}`);
 
-            MemberRepository.getMemberPageB(currentPage, size, roleId, searchValue)
+            fetchMemberData(currentPage, size, roleId, searchValue)
                 .then(response => {
                     // console.log("Returned members data: ", response.data);
-                    setPage(response.data);
+                    setPage(response);
                 })
                 .catch((err) => console.error(err))
         }
