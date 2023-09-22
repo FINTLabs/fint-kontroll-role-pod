@@ -1,13 +1,13 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 import {fetchRoleById, fetchRoleData} from '../api'; // Import the API function
-
+import axios from "axios";
 import {
     contextDefaultValues,
     IRolePage,
     IRoleItem,
     RoleContextState,
 } from "./types";
-import axios from "axios/index";
+
 
 export const RolesContext = createContext<RoleContextState>(
     contextDefaultValues

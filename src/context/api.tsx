@@ -71,8 +71,7 @@ export const fetchRoleData = async (
         const newBasePath = basePathResponse.data.basePath;
 
         let baseUrl = `${newBasePath}/api/role/`;
-        console.log(" url role data: ", baseUrl);
-
+        console.log("here is my new basepath url role data: ", baseUrl);
         let queryParams = [];
 
         const sanitizedQueryString = searchFor.trim();
