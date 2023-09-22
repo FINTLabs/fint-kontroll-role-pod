@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import {OrgUnit, OrgUnits} from './types';
 import axios from "axios";
 
-// Create a context
+// Context
 interface OrgUnitsContextType {
     orgUnitsData: OrgUnits | null;
     setOrgUnitsData: (data: OrgUnits | null) => void;
@@ -12,7 +12,6 @@ interface OrgUnitsContextType {
 
 const OrgUnitsContext = createContext<OrgUnitsContextType | undefined>(undefined);
 
-// Create a provider component to wrap your app
 export function OrgUnitsProvider({ children }: { children: React.ReactNode }) {
     const [orgUnitsData, setOrgUnitsData] = useState<OrgUnits | null>(null);
     //const [basePath, setBasePath] = useState<string>(contextDefaultValues.basePath);

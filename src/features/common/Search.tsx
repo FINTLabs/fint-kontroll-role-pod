@@ -31,7 +31,7 @@ export default function Search(props: SearchProps) {
     };
 
     return (
-        <FormControl style={{minWidth: 240}} sx={{mx: '2rem'}}>
+        <FormControl style={{minWidth: 240}} sx={{mx: '2rem', my: '1rem'}}>
             <TextField
                 // label={"search roles"}
                 id={"search-role"}
