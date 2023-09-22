@@ -30,7 +30,6 @@ export default function FilterType() {
                 value={roleType}
                 label="brukertype"
                 onChange={handleChange}
-                size="small"
             >
                 {options.map((option) => (
                     <MenuItem key={option.value} value={option.value}>

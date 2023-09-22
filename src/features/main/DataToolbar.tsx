@@ -1,13 +1,9 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {Button, Tooltip} from "@mui/material";
-import IconButton from "@mui/material/IconButton";
 import Search from "./Search";
-import LayersIcon from '@mui/icons-material/Layers';
-import LayersClearIcon from '@mui/icons-material/LayersClear';
 import FilterType from "./FilterType";
-import {RolesContext} from "../../context/roleContext";
 import {Apartment} from "@mui/icons-material";
 import style from "../../template/style";
 
@@ -17,8 +13,8 @@ interface CustomTableToolbarProps {
 
 function CustomTableToolbar(props: CustomTableToolbarProps) {
     const {onShowDialog} = props;
-    const {isAggregate, setIsAggregate} = useContext(RolesContext);
-    // const [showLayers, setShowLayers] = useState(true);
+    // const {isAggregate, setIsAggregate} = useContext(RolesContext);
+    // // const [showLayers, setShowLayers] = useState(true);
 
     return (
         <Toolbar id={'rolesToolbar'}
@@ -50,28 +46,28 @@ function CustomTableToolbar(props: CustomTableToolbarProps) {
                 </Button>
             </Tooltip>
 
-            {isAggregate ? (
-                <Tooltip title={"Aggregated"}>
-                    <IconButton
-                        id={'aggregatedFalse'}
-                        aria-label="settings"
-                        onClick={() => setIsAggregate(false)}
-                    >
-                        <LayersClearIcon color={"primary"}/>
-                    </IconButton>
-                </Tooltip>
+            {/*{isAggregate ? (*/}
+            {/*    <Tooltip title={"Aggregated"}>*/}
+            {/*        <IconButton*/}
+            {/*            id={'aggregatedFalse'}*/}
+            {/*            aria-label="settings"*/}
+            {/*            onClick={() => setIsAggregate(false)}*/}
+            {/*        >*/}
+            {/*            <LayersClearIcon color={"primary"}/>*/}
+            {/*        </IconButton>*/}
+            {/*    </Tooltip>*/}
 
-            ) : (
-                <Tooltip title="Aggregated">
-                    <IconButton
-                        id={'aggregatedTrue'}
-                        aria-label="settings"
-                        onClick={() => setIsAggregate(true)}
-                    >
-                        <LayersIcon color={"primary"}/>
-                    </IconButton>
-                </Tooltip>
-            )}
+            {/*) : (*/}
+            {/*    <Tooltip title="Aggregated">*/}
+            {/*        <IconButton*/}
+            {/*            id={'aggregatedTrue'}*/}
+            {/*            aria-label="settings"*/}
+            {/*            onClick={() => setIsAggregate(true)}*/}
+            {/*        >*/}
+            {/*            <LayersIcon color={"primary"}/>*/}
+            {/*        </IconButton>*/}
+            {/*    </Tooltip>*/}
+            {/*)}*/}
         </Toolbar>
     );
 }
