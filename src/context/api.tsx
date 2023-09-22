@@ -98,8 +98,9 @@ export const fetchRoleData = async (
         if (size) {
             queryParams.push(`size=${size}`);
         }
+        const anyTest = `${testString === '/' ? '' : testString}/api/role/`;
+        const url = `${anyTest}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
 
-        const url = `${testString}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
         console.log("here is my new basepath url role data: ", url);
         const response = await axios.get<IRolePage>(url);
         return response.data;
