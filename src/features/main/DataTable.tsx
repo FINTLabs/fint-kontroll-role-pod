@@ -76,7 +76,7 @@ export const DataTable: any = () => {
                                 <TableCell align="left">{role.roleType} </TableCell>
                                 <TableCell align="left">
                                     <IconButton aria-label="settings" id={`role-${role.id}`}
-                                                component={Link} to={`/info/${role.id}`}
+                                                component={Link} to={`/grupper/info/${role.id}`}
                                     >
                                         <SettingsRounded color={"primary"}/>
                                     </IconButton>
