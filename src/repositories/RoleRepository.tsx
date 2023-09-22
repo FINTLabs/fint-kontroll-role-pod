@@ -18,7 +18,7 @@ const getRolePage = (
     size: number,
     roleType: string,
     searchFor: string,
-    organisationUnitId: string[],
+    organisationUnitId: number[],
     isAggregated: boolean
 ) => {
     let baseUrl = `${basePath}/api/roles`;

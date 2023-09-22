@@ -3,7 +3,7 @@ import {IMemberPage} from "../context/memberContext/types";
 
 const getPage = (page: number, size: number, roleId: number, searchFor: string) => {
 
-    let baseUrl = `/api/member/role/${roleId}/`;
+    let baseUrl = `/api/role/${roleId}/members`;
     let queryParams = [];
 
     const sanitizedQueryString = searchFor.trim();

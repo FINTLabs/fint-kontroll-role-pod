@@ -7,7 +7,7 @@ import RolesProvider from "./context/roleContext/RolesContext";
 import MemberProvider from "./context/memberContext/MemberContext";
 import ResourceAddGrid from "./features/resources/ResourceAddGrid";
 import DetailsContainer from "./features/details/Container";
-import UnitProvider from "./context/unitContext";
+import UnitProvider from "./context/OrgUnitContext";
 import axios from "axios";
 
 function App() {

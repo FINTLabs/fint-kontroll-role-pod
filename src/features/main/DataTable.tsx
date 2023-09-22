@@ -14,15 +14,18 @@ import {RolesContext} from "../../context/roleContext";
 import TablePaginationActions from "../common/TableFooter";
 import DataToolbar from "./DataToolbar";
 import DialogUnit from "./DialogUnit";
+import { useOrgUnits } from '../../context/OrgUnitContext';
 
 export const DataTable: any = () => {
 
     const {page,  currentPage, setCurrentPage, size, setSize, setOrgunits} = useContext(RolesContext);
     const [openDialog, setOpenDialog] = useState(false);
+    const { selectedOrgUnits } = useOrgUnits();
 
-    const handleTypeSelect = (selected: string[]) => {
+    const handleTypeSelect = () => {
         setOpenDialog(false);
-        setOrgunits(selected);
+        const orgunitIds = selectedOrgUnits.map(orgunit => orgunit.id);
+        setOrgunits(orgunitIds);
     }
     // Avoid a layout jump when reaching the last page with empty rows.
     // ----does the user want this?

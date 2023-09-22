@@ -39,8 +39,8 @@ export type RoleContextState = {
     setRoleId: (roleId: number) => void;
     isAggregate: boolean;
     setIsAggregate: (isAggregate: boolean) => void;
-    orgunits: string[];
-    setOrgunits: (orgunits: string[]) => void;
+    orgunits: number[];
+    setOrgunits: (orgunits: number[]) => void;
     basePath: string;
 };
 
@@ -51,7 +51,7 @@ export const contextDefaultValues: RoleContextState = {
     setCurrentPage(): void {},
     size: 5,
     setSize(): void {},
-    roleType: "all",
+    roleType: "ALLTYPES",
     setRoleType(): void {},
     searchValue: "",
     setSearchValue(): void {},

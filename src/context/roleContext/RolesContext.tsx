@@ -25,7 +25,7 @@ const RolesProvider = ({ children }: Props) => {
     const [size, setSize] = useState<number>(contextDefaultValues.size);
     const [searchValue, setSearchValue] = useState<string>(contextDefaultValues.searchValue);
     const [isAggregate, setIsAggregate] = useState<boolean>(contextDefaultValues.isAggregate);
-    const [orgunits, setOrgunits] = useState<string[]>(contextDefaultValues.orgunits);
+    const [orgunits, setOrgunits] = useState<number[]>(contextDefaultValues.orgunits);
     const [basePath, setBasePath] = useState<string>(contextDefaultValues.basePath);
 
     useEffect(() => {
