@@ -2,7 +2,7 @@ import axios from 'axios';
 import { IMemberPage } from './types';
 import {IRoleItem, IRolePage} from "./roleContext/types";
 
-const API_BASE_URL = 'api/layout/configuration';
+const configUrl = 'api/layout/configuration';
 
 export const fetchMemberData = async (
     page: number,
@@ -11,7 +11,7 @@ export const fetchMemberData = async (
     searchFor: string
 ): Promise<IMemberPage> => {
     try {
-        const basePathResponse = await axios.get(API_BASE_URL);
+        const basePathResponse = await axios.get(configUrl);
         const newBasePath = basePathResponse.data.basePath;
         console.log("here is my new basepath url member page: ", newBasePath);
 
@@ -43,7 +43,7 @@ export const fetchMemberData = async (
 
 export const fetchRoleById = async (id: number) => {
     try {
-        const basePathResponse = await axios.get(API_BASE_URL);
+        const basePathResponse = await axios.get(configUrl);
         const newBasePath = basePathResponse.data.basePath;
 
         let baseUrl = `${newBasePath}/api/role/${id}`;
@@ -66,7 +66,7 @@ export const fetchRoleData = async (
     isAggregated: boolean
 ) : Promise<IRolePage> => {
     try {
-        const basePathResponse = await axios.get(API_BASE_URL);
+        const basePathResponse = await axios.get(configUrl);
         const newBasePath = basePathResponse.data.basePath;
         console.log("here is my new basepath url role data: ", newBasePath);
 
