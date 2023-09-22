@@ -25,9 +25,9 @@ function App() {
                 <MemberProvider>
                     <OrgUnitsProvider>
                     <Routes>
-                        <Route path={`${basePath}/ressurser-admin/`} element={<MainContainer/>}/>
-                        <Route path={`${basePath}/ressurser-admin/info/:roleId`} element={<DetailsContainer/>}/>
-                        <Route path={`${basePath}/ressurser-admin/add/:roleId`} element={<ResourceAddGrid/>}/>
+                        <Route path={`${basePath}/grupper/`} element={<MainContainer/>}/>
+                        <Route path={`${basePath}/grupper/info/:roleId`} element={<DetailsContainer/>}/>
+                        <Route path={`${basePath}/grupper/add/:roleId`} element={<ResourceAddGrid/>}/>
                     </Routes>
                     </OrgUnitsProvider>
                 </MemberProvider>
