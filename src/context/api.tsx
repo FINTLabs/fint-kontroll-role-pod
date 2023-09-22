@@ -13,6 +13,7 @@ export const fetchMemberData = async (
     try {
         const basePathResponse = await axios.get(API_BASE_URL);
         const newBasePath = basePathResponse.data.basePath;
+        console.log("here is my new basepath url member page: ", newBasePath);
 
         let baseUrl = `${newBasePath}/api/role/${roleId}/members`;
         let queryParams: string[] = [];
@@ -67,6 +68,7 @@ export const fetchRoleData = async (
     try {
         const basePathResponse = await axios.get(API_BASE_URL);
         const newBasePath = basePathResponse.data.basePath;
+        console.log("here is my new basepath url role data: ", newBasePath);
 
         let baseUrl = `${newBasePath}/api/role/`;
 
