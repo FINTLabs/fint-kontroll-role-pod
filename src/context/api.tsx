@@ -58,6 +58,7 @@ export const fetchRoleById = async (id: number) => {
 }
 
 export const fetchRoleData = async (
+    testString: string,
     page: number,
     size: number,
     roleType: string,
@@ -70,6 +71,7 @@ export const fetchRoleData = async (
         const newBasePath = basePathResponse.data.basePath;
 
         let baseUrl = `${newBasePath}/api/role/`;
+        console.log(" url role data: ", baseUrl);
 
         let queryParams = [];
 
@@ -98,7 +100,7 @@ export const fetchRoleData = async (
             queryParams.push(`size=${size}`);
         }
 
-        const url = `${baseUrl}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
+        const url = `${testString}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
         console.log("here is my new basepath url role data: ", url);
         const response = await axios.get<IRolePage>(url);
         return response.data;
