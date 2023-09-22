@@ -17,34 +17,16 @@ type Props = {
 };
 
 const RolesProvider = ({ children }: Props) => {
-    const [role, setRole] = useState<IRoleItem | null>(
-        contextDefaultValues.role
-    );
-    const [roleId, setRoleId] = useState<number>(
-        contextDefaultValues.roleId
-    );
-    const [page, setPage] = useState<IRolePage | null>(
-        contextDefaultValues.page
-    );
-    const [roleType, setRoleType] = useState<string>(
-        contextDefaultValues.roleType
-    );
-    const [currentPage, setCurrentPage] = useState<number>(
-        contextDefaultValues.currentPage
-    );
+    const [role, setRole] = useState<IRoleItem | null>(contextDefaultValues.role);
+    const [roleId, setRoleId] = useState<number>(contextDefaultValues.roleId);
+    const [page, setPage] = useState<IRolePage | null>(contextDefaultValues.page);
+    const [roleType, setRoleType] = useState<string>(contextDefaultValues.roleType);
+    const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
     const [size, setSize] = useState<number>(contextDefaultValues.size);
-    const [searchValue, setSearchValue] = useState<string>(
-        contextDefaultValues.searchValue
-    );
-    const [isAggregate, setIsAggregate] = useState<boolean>(
-        contextDefaultValues.isAggregate
-    );
-    const [orgunits, setOrgunits] = useState<string[]>(
-        contextDefaultValues.orgunits
-    );
-    const [basePath, setBasePath] = useState<string>(
-        contextDefaultValues.basePath
-    );
+    const [searchValue, setSearchValue] = useState<string>(contextDefaultValues.searchValue);
+    const [isAggregate, setIsAggregate] = useState<boolean>(contextDefaultValues.isAggregate);
+    const [orgunits, setOrgunits] = useState<string[]>(contextDefaultValues.orgunits);
+    const [basePath, setBasePath] = useState<string>(contextDefaultValues.basePath);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -88,28 +70,28 @@ const RolesProvider = ({ children }: Props) => {
         roleId,
     ]);
 
+    const contextValue: RoleContextState = {
+        page,
+        role,
+        size,
+        setSize,
+        searchValue,
+        setSearchValue,
+        currentPage,
+        setCurrentPage,
+        roleType,
+        setRoleType,
+        roleId,
+        setRoleId,
+        isAggregate,
+        setIsAggregate,
+        orgunits,
+        setOrgunits,
+        basePath,
+    };
+
     return (
-        <RolesContext.Provider
-            value={{
-                page,
-                role,
-                size,
-                setSize,
-                searchValue,
-                setSearchValue,
-                currentPage,
-                setCurrentPage,
-                roleType,
-                setRoleType,
-                roleId,
-                setRoleId,
-                isAggregate,
-                setIsAggregate,
-                orgunits,
-                setOrgunits,
-                basePath,
-            }}
-        >
+        <RolesContext.Provider value={contextValue}>
             {children}
         </RolesContext.Provider>
     );

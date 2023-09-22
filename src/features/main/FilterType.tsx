@@ -8,7 +8,7 @@ export default function FilterType() {
     const {roleType, setRoleType} = useContext(RolesContext);
 
     const options = [
-        { value: "alle", label: "Alle" },
+        { value: "ALLTYPES", label: "Alle" },
         { value: "elev", label: "Elev" },
         { value: "ansatt", label: "Ansatt" }
     ];
