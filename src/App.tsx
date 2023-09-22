@@ -25,9 +25,9 @@ function App() {
                 <MemberProvider>
                     <OrgUnitsProvider>
                     <Routes>
-                        <Route path={basePath} element={<MainContainer/>}/>
-                        <Route path={`${basePath}/info/:roleId`} element={<DetailsContainer/>}/>
-                        <Route path={`${basePath}/add/:roleId`} element={<ResourceAddGrid/>}/>∂
+                        <Route path={`${basePath}/role/`} element={<MainContainer/>}/>
+                        <Route path={`${basePath}/role/info/:roleId`} element={<DetailsContainer/>}/>
+                        <Route path={`${basePath}/role/add/:roleId`} element={<ResourceAddGrid/>}/>
                     </Routes>
                     </OrgUnitsProvider>
                 </MemberProvider>
