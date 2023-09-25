@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import {OrgUnit, OrgUnits} from './types';
-import axios from "axios";
+import {fetchUnitTreeData} from "./api";
 
 // Context
 interface OrgUnitsContextType {
@@ -14,23 +14,12 @@ const OrgUnitsContext = createContext<OrgUnitsContextType | undefined>(undefined
 
 export function OrgUnitsProvider({ children }: { children: React.ReactNode }) {
     const [orgUnitsData, setOrgUnitsData] = useState<OrgUnits | null>(null);
-    //const [basePath, setBasePath] = useState<string>(contextDefaultValues.basePath);
     const [selectedOrgUnits, setSelectedOrgUnits] = useState<OrgUnit[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Fetch the basePath
-                const basePathResponse = await axios.get('api/layout/configuration');
-                const newBasePath = basePathResponse.data.basePath;
-                //setBasePath(newBasePath);
-                console.log("basePath in context", newBasePath);
-
-                // Fetch the unitTree using the updated basePath
-                const unitTreeResponse = await axios.get<OrgUnits>(
-                    `${newBasePath}/api/orgunits/`
-                );
-                const newUnitTree = unitTreeResponse.data;
+                const newUnitTree = await fetchUnitTreeData();
                 console.log("Returned tree data: ", newUnitTree);
                 setOrgUnitsData(newUnitTree);
             } catch (error) {

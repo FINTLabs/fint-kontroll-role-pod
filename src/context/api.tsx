@@ -1,8 +1,25 @@
 import axios from 'axios';
-import { IMemberPage } from './types';
+import {IMemberPage, OrgUnits} from './types';
 import {IRoleItem, IRolePage} from "./roleContext/types";
 
 const configUrl = 'api/layout/configuration';
+
+export const fetchUnitTreeData = async () : Promise <OrgUnits> => {
+    try {
+        const basePathResponse = await axios.get('api/layout/configuration');
+        const newBasePath = basePathResponse.data.basePath;
+        console.log("basePath in fetch unit data", newBasePath);
+        let baseUrl = `${newBasePath}/api/orgunits`;
+
+        const response = await axios.get<OrgUnits>(baseUrl);
+        return response.data;
+    } catch (error) {
+        console.error('API Error:', error);
+        throw error;
+    }
+
+}
+
 
 export const fetchMemberData = async (
     page: number,
