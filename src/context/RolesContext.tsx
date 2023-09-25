@@ -49,14 +49,21 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
                 );
                 const roleResponse = await fetchRoleById(roleId);
 
-                setPage(pageResponse);
-                setRole(roleResponse);
+                return { pageResponse, roleResponse };
             } catch (error) {
                 console.error(error);
+                throw error;
             }
         };
 
-        fetchData();
+        fetchData()
+            .then(({ pageResponse, roleResponse }) => {
+                setPage(pageResponse);
+                setRole(roleResponse);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }, [
         currentPage,
         searchValue,
@@ -66,6 +73,7 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
         orgunits,
         roleId,
     ]);
+
 
     const contextValue: RolesContextType = {
         page,

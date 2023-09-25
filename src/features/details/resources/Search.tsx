@@ -1,10 +1,9 @@
-import {useContext} from "react";
-import {MemberContext} from "../../../context/memberContext";
+import {useMembers} from "../../../context/MemberContext";
 import Search from "../../common/Search";
 
 // export default function MemberSearch(props: { roleId: number; }) {
 export default function MemberSearch() {
-    const {searchValue} = useContext(MemberContext);
+    const {searchValue} = useMembers();
 
     const handleSearch = () => {
         console.log("Handle resources search")

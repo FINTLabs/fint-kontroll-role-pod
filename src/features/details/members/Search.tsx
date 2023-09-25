@@ -1,9 +1,8 @@
-import {useContext} from "react";
-import { MemberContext } from "../../../context/memberContext";
+import {useMembers} from "../../../context/MemberContext";
 import Search from "../../common/Search";
 
 export default function MemberSearch() {
-    const {searchValue, setSearchValue, setCurrentPage} = useContext(MemberContext);
+    const {searchValue, setSearchValue, setCurrentPage} = useMembers();
 
     const handleSearch = (value: string) => {
         setCurrentPage(0);

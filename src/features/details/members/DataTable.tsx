@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useEffect} from "react";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,23 +8,23 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import {Box, TableFooter, TablePagination} from "@mui/material";
 import {useParams} from "react-router-dom";
-import {useContext, useEffect} from "react";
-import {MemberContext} from "../../../context/memberContext";
+//import {MemberContext} from "/../../../context/MemberContext";
 import TablePaginationActions from "../../common/TableFooter";
 import DataToolbar from "./DataToolbar";
+import {useMembers} from "../../../context/MemberContext";
+
+
 
 export const DataTable: any = () => {
 
     let paramRoleId = Number(useParams().roleId);
-    const {page, currentPage, setCurrentPage, setSearchValue, setRoleId, size, setSize} = useContext(MemberContext);
+    const {page, currentPage, setCurrentPage, setSearchValue, setRoleId, size, setSize} = useMembers();
 
     useEffect(() => {
         console.log("inside member data table use effect");
-
         setSearchValue("");
         setCurrentPage(0);
         setRoleId(paramRoleId);
-        // getPage();
     });
 
     const handleChangePage = (
