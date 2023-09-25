@@ -22,8 +22,8 @@ module.exports = function(app) {
     app.use(
         '/api/layout/configuration',
         createProxyMiddleware({
-            target: 'http://localhost:8080/beta/fintlabs-no',
-            // target: 'http://localhost:8080',
+            // target: 'http://localhost:8080/',
+            target: 'http://localhost:8080',
             changeOrigin: true,
         })
     );
