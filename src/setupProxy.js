@@ -10,20 +10,11 @@ module.exports = function(app) {
         })
     );
 
-    // app.use(
-    //     '/api/member',
-    //     createProxyMiddleware({
-    //         target: 'http://localhost:8090',
-    //         changeOrigin: true,
-    //         // You can also add console.log here if needed
-    //     })
-    // );
-
     app.use(
         '/api/orgunits',
         createProxyMiddleware({
-            target: 'http://localhost:8081/beta/fintlabs-no',
-            // target: 'http://localhost:8081',
+            // target: 'http://localhost:8081/beta/fintlabs-no',
+            target: 'http://localhost:8081',
             changeOrigin: true,
         })
     );
