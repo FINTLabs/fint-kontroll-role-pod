@@ -27,4 +27,13 @@ module.exports = function(app) {
             changeOrigin: true,
         })
     );
+
+    app.use(
+        '/info/api/layout/configuration',
+        createProxyMiddleware({
+            // target: 'http://localhost:8080/beta/fintlabs-no',
+            target: 'http://localhost:8080',
+            changeOrigin: true,
+        })
+    );
 };
