@@ -45,6 +45,7 @@ export const fetchRoleById = async (id: number) => {
     try {
         const basePathResponse = await axios.get(configUrl);
         const newBasePath = basePathResponse.data.basePath;
+        console.log("base path from config in fetch role by id: ", newBasePath);
 
         let baseUrl = `${newBasePath}/api/roles/${id}`;
 
