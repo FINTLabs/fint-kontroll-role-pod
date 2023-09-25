@@ -29,7 +29,7 @@ module.exports = function(app) {
     );
 
     app.use(
-        '/info/api/layout/configuration',
+        '/grupper/info/api/layout/configuration',
         createProxyMiddleware({
             // target: 'http://localhost:8080/beta/fintlabs-no',
             target: 'http://localhost:8080',
