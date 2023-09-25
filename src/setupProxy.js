@@ -20,7 +20,7 @@ module.exports = function(app) {
     );
 
     app.use(
-        '/beta/fintlabs-no/grupper/info/api/layout/configuration',
+        '/api/layout/configuration',
         createProxyMiddleware({
         // target: 'http://localhost:8080/beta/fintlabs-no',
             target: 'http://localhost:8080',
@@ -28,12 +28,12 @@ module.exports = function(app) {
         })
     );
 
-    app.use(
-        '/grupper/info/api/layout/configuration',
-        createProxyMiddleware({
-            // target: 'http://localhost:8080/beta/fintlabs-no',
-            target: 'http://localhost:8080',
-            changeOrigin: true,
-        })
-    );
+    // app.use(
+    //     '/grupper/info/api/layout/configuration',
+    //     createProxyMiddleware({
+    //         // target: 'http://localhost:8080/beta/fintlabs-no',
+    //         target: 'http://localhost:8080',
+    //         changeOrigin: true,
+    //     })
+    // );
 };

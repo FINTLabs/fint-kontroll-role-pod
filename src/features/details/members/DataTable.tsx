@@ -7,24 +7,23 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import {Box, TableFooter, TablePagination} from "@mui/material";
-import {useParams} from "react-router-dom";
-//import {MemberContext} from "/../../../context/MemberContext";
+//import {useParams} from "react-router-dom";
 import TablePaginationActions from "../../common/TableFooter";
 import DataToolbar from "./DataToolbar";
 import {useMembers} from "../../../context/MemberContext";
 
-
-
 export const DataTable: any = () => {
 
-    let paramRoleId = Number(useParams().roleId);
+    //let paramRoleId = Number(useParams().roleId);
     const {page, currentPage, setCurrentPage, setSearchValue, setRoleId, size, setSize} = useMembers();
 
     useEffect(() => {
         console.log("inside member data table use effect");
+
         setSearchValue("");
         setCurrentPage(0);
-        setRoleId(paramRoleId);
+        setRoleId(1);
+        // getPage();
     });
 
     const handleChangePage = (
