@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
+import axios from "axios";
 import theme from './template/theme';
 import {ThemeProvider} from "@mui/material/styles";
 import {Routes, Route} from 'react-router-dom';
 import MainContainer from './features/main/Container';
-import RolesProvider from "./context/roleContext/RolesContext";
 import MemberProvider from "./context/memberContext/MemberContext";
 import ResourceAddGrid from "./features/resources/ResourceAddGrid";
 import DetailsContainer from "./features/details/Container";
 import {OrgUnitsProvider} from "./context/OrgUnitContext";
-import axios from "axios";
+import {RolesProvider} from "./context/RolesContext";
+
 
 function App() {
     const [basePath, setBasePath] = useState("")

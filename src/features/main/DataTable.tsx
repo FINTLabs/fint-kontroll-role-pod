@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from "react";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,16 +10,15 @@ import IconButton from '@mui/material/IconButton';
 import {SettingsRounded} from "@mui/icons-material";
 import {Box, TableFooter, TablePagination,} from "@mui/material";
 import {Link} from "react-router-dom";
-import {useContext, useState} from "react";
-import {RolesContext} from "../../context/roleContext";
 import TablePaginationActions from "../common/TableFooter";
 import DataToolbar from "./DataToolbar";
 import DialogUnit from "./DialogUnit";
 import { useOrgUnits } from '../../context/OrgUnitContext';
+import {useRoles} from "../../context/RolesContext";
 
 export const DataTable: any = () => {
 
-    const {page,  currentPage, setCurrentPage, size, setSize, setOrgunits} = useContext(RolesContext);
+    const {page,  currentPage, setCurrentPage, size, setSize, setOrgunits} = useRoles();
     const [openDialog, setOpenDialog] = useState(false);
     const { selectedOrgUnits } = useOrgUnits();
 
@@ -62,7 +62,7 @@ export const DataTable: any = () => {
                         <TableRow>
                             <TableCell align="left">Navn</TableCell>
                             <TableCell align="left">Enhet</TableCell>
-                            <TableCell align="left" colSpan={2}>Brukertype {page?.roles?.length}</TableCell>
+                            <TableCell align="left" colSpan={2}>Brukertype</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

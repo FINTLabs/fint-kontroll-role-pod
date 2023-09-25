@@ -13,7 +13,7 @@ export const fetchMemberData = async (
     try {
         const basePathResponse = await axios.get(configUrl);
         const newBasePath = basePathResponse.data.basePath;
-        console.log("here is my new basepath url member page: ", newBasePath);
+        console.log("base path from config in fetch members: ", newBasePath);
 
         let baseUrl = `${newBasePath}/api/role/${roleId}/members`;
         let queryParams: string[] = [];

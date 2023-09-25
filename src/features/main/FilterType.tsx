@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
-import {useContext} from "react";
-import {RolesContext} from "../../context/roleContext";
+import {useRoles} from "../../context/RolesContext";
+
 
 export default function FilterType() {
 
-    const {roleType, setRoleType} = useContext(RolesContext);
+    const {roleType, setRoleType} = useRoles();
 
     const options = [
         { value: "ALLTYPES", label: "Alle" },

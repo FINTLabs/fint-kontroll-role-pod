@@ -1,16 +1,15 @@
-import React, {useContext, useEffect} from "react";
+import React, {useEffect} from "react";
 import {Box, Typography, Tabs, Tab} from "@mui/material";
 import {useParams} from "react-router-dom";
 import MemberContainer from "./members/Container";
 import ResourcesContainer from "./resources/Container";
 import style from "../../template/style"
-import {RolesContext} from "../../context/roleContext";
-
+import {useRoles} from "../../context/RolesContext";
 
 function ContainerWithTabs() {
     console.log("inside details container");
     let paramRoleId = Number(useParams().roleId);
-    const {role, setRoleId} = useContext(RolesContext);
+    const {role, setRoleId} = useRoles();
     const [selectedTab, setSelectedTab] = React.useState(0);
 
     useEffect(() => {

@@ -1,9 +1,8 @@
-import { useContext} from "react";
 import Search from "../common/Search";
-import { RolesContext } from "../../context/roleContext";
+import {useRoles} from "../../context/RolesContext";
 
 export default function RoleSearch() {
-    const { searchValue, setSearchValue, setCurrentPage } = useContext(RolesContext);
+    const { searchValue, setSearchValue, setCurrentPage } = useRoles();
 
 
     const handleSearch = (value: string) => {
