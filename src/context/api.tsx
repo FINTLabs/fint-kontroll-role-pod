@@ -15,7 +15,7 @@ export const fetchMemberData = async (
         const newBasePath = basePathResponse.data.basePath;
         console.log("base path from config in fetch members: ", newBasePath);
 
-        let baseUrl = `${newBasePath}/api/role/${roleId}/members`;
+        let baseUrl = `${newBasePath}/api/roles/${roleId}/members`;
         let queryParams: string[] = [];
 
         const sanitizedQueryString = searchFor.trim();
