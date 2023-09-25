@@ -28,6 +28,7 @@ export const fetchMemberData = async (
     searchFor: string
 ): Promise<IMemberPage> => {
     try {
+        console.log("inside fetchmember data and trying to get a config from: ", configUrl);
         const basePathResponse = await axios.get(configUrl);
         const newBasePath = basePathResponse.data.basePath;
         console.log("base path from config in fetch members: ", newBasePath);
