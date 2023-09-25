@@ -26,7 +26,7 @@ const MemberProvider = ({children}: Props) => {
     useEffect(() => {
         const getPage = () => {
             //TODO remove before production
-            console.debug(`Getting a new member page with: currentPage: ${currentPage}, size: ${size}, roleId: ${roleId}, inputSearchValue: ${searchValue}`);
+            console.log(`Getting a new member page with: currentPage: ${currentPage}, size: ${size}, roleId: ${roleId}, inputSearchValue: ${searchValue}`);
 
             fetchMemberData(currentPage, size, roleId, searchValue)
                 .then(response => {
@@ -35,6 +35,7 @@ const MemberProvider = ({children}: Props) => {
                 })
                 .catch((err) => console.error(err))
         }
+        console.log("member provider roleid:", roleId);
 
         if(roleId !== 0) getPage();
     }, [roleId, currentPage, searchValue, size]);
