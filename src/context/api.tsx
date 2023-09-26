@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {IMemberPage, OrgUnits} from './types';
 import {IRoleItem, IRolePage} from "./roleContext/types";
-import {useBasePath} from "../useBasePath";
 
 const configUrl = 'api/layout/configuration';
 
@@ -78,6 +77,7 @@ export const fetchRoleById = async (id: number) => {
 }
 
 export const fetchRoleData = async (
+    basePath: string,
     page: number,
     size: number,
     roleType: string,
@@ -86,7 +86,7 @@ export const fetchRoleData = async (
     isAggregated: boolean
 ) : Promise<IRolePage> => {
     try {
-        let baseUrl = `${useBasePath}/api/roles/`;
+        let baseUrl = `${basePath}api/roles/`;
 
         let queryParams = [];
 

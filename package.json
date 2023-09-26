@@ -33,7 +33,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "port-forward-org": "kubectl -n fintlabs-no port-forward services/fint-kontroll-orgunit-catalog 8060:8080",
+    "port-forward-role": "kubectl -n fintlabs-no port-forward services/fint-kontroll-role-catalog 8061:8080"
   },
   "eslintConfig": {
     "extends": [

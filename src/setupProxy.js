@@ -2,38 +2,31 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {
     app.use(
-        '/api/roles',
-        createProxyMiddleware({
-            // target: 'http://localhost:8090/beta/fintlabs-no',
+        createProxyMiddleware( '/api/roles',{
+            // target: 'http://localhost:8061/beta/fintlabs-no',
             target: 'http://localhost:8090',
             changeOrigin: true,
         })
     );
 
     app.use(
-        '/api/orgunits',
-        createProxyMiddleware({
-            // target: 'http://localhost:8081/beta/fintlabs-no',
+        createProxyMiddleware('/api/orgunits', {
+            // target: 'http://localhost:8060/beta/fintlabs-no',
             target: 'http://localhost:8081',
             changeOrigin: true,
+            //pathRewrite: {"^/api5": ""},
+            headers: {
+                Connection: "keep-alive"
+            }
         })
     );
 
     app.use(
-        '/api/layout/configuration',
-        createProxyMiddleware({
+        createProxyMiddleware('/api/layout/configuration',{
         // target: 'http://localhost:8080/beta/fintlabs-no',
             target: 'http://localhost:8080',
             changeOrigin: true,
         })
     );
 
-    // app.use(
-    //     '/grupper/info/api/layout/configuration',
-    //     createProxyMiddleware({
-    //         // target: 'http://localhost:8080/beta/fintlabs-no',
-    //         target: 'http://localhost:8080',
-    //         changeOrigin: true,
-    //     })
-    // );
 };

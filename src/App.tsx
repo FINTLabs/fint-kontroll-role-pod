@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
+import React from 'react';
 import theme from './template/theme';
 import {ThemeProvider} from "@mui/material/styles";
 import {Routes, Route} from 'react-router-dom';
@@ -9,17 +8,12 @@ import ResourceAddGrid from "./features/resources/ResourceAddGrid";
 import DetailsContainer from "./features/details/Container";
 import {OrgUnitsProvider} from "./context/OrgUnitContext";
 import {RolesProvider} from "./context/RolesContext";
+import {useBasePath} from "./context/useBasePath";
 
 
 function App() {
-    const [basePath, setBasePath] = useState("")
+    const basePath = useBasePath();
 
-    useEffect(() => {
-        axios.get('api/layout/configuration')
-            .then(value => {
-                setBasePath(value.data.basePath);
-            });
-    }, [])
     return (
         <ThemeProvider theme={theme}>
             <RolesProvider>

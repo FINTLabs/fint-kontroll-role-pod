@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export function useBasePath() {
-    const [basePath, setBasePath] = useState('');
+    const [basePath, setBasePath] = useState('/');
 
     useEffect(() => {
         const configUrl = '/api/layout/configuration';
@@ -14,8 +14,8 @@ export function useBasePath() {
                 setBasePath(newBasePath);
             })
             .catch((error) => {
-                console.error('API Error:', error);
-                throw error;
+                console.error('API Local?:', error);
+                // throw error;
             });
     }, []);
 
