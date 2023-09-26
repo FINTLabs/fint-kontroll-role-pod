@@ -40,7 +40,7 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
     const [basePath, setBasePath] = useState('');
 
     useEffect(() => {
-        const configUrl = '/api/layout/configuration';
+        const configUrl = 'api/layout/configuration';
 
         axios
             .get(configUrl)
