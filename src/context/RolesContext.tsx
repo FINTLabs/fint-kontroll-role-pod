@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from "axios";
 import { fetchRoleData } from './api';
 import {
     contextDefaultValues,
@@ -37,22 +36,22 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
         contextDefaultValues.orgunits
     );
 
-    const [basePath, setBasePath] = useState('');
+    const [basePath] = useState('');
 
-    useEffect(() => {
-        const configUrl = 'api/layout/configuration';
-
-        axios
-            .get(configUrl)
-            .then((response) => {
-                const newBasePath = response.data.basePath;
-                setBasePath(newBasePath);
-            })
-            .catch((error) => {
-                console.error('RoleContext error getting Configurator', error);
-                // throw error;
-            });
-    }, []);
+    // useEffect(() => {
+    //     const configUrl = 'api/layout/configuration';
+    //
+    //     axios
+    //         .get(configUrl)
+    //         .then((response) => {
+    //             const newBasePath = response.data.basePath;
+    //             setBasePath(newBasePath);
+    //         })
+    //         .catch((error) => {
+    //             console.error('RoleContext error getting Configurator', error);
+    //             // throw error;
+    //         });
+    // }, []);
 
     useEffect(() => {
         const fetchData = async () => {
