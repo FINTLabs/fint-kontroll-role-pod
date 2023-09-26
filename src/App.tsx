@@ -12,7 +12,7 @@ import { getBasePath } from './context/basePathUtils';
 
 
 function App() {
-    const [basePath, setBasePath] = useState('');
+    const [basePath, setBasePath] = useState('/');
 
     useEffect(() => {
         // Call the getBasePath function to fetch the basePath
@@ -31,9 +31,9 @@ function App() {
                 <MembersProvider>
                     <OrgUnitsProvider>
                     <Routes>
-                        <Route path={`${basePath}/grupper/`} element={<MainContainer/>}/>
-                        <Route path={`${basePath}/grupper/info/:roleId`} element={<DetailsContainer/>}/>
-                        <Route path={`${basePath}/grupper/add/:roleId`} element={<ResourceAddGrid/>}/>
+                        <Route path={`${basePath}grupper/`} element={<MainContainer/>}/>
+                        <Route path={`${basePath}grupper/info/:roleId`} element={<DetailsContainer/>}/>
+                        <Route path={`${basePath}grupper/add/:roleId`} element={<ResourceAddGrid/>}/>
                     </Routes>
                     </OrgUnitsProvider>
                 </MembersProvider>

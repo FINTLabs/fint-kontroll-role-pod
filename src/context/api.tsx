@@ -86,7 +86,7 @@ export const fetchRoleData = async (
     isAggregated: boolean
 ) : Promise<IRolePage> => {
     try {
-        let baseUrl = `${basePath}api/roles/`;
+        let baseUrl = `${basePath}/api/roles/`;
 
         let queryParams = [];
 

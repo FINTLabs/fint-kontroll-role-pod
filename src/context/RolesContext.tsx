@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from "axios";
-import { fetchRoleById, fetchRoleData } from './api';
+import { fetchRoleData } from './api';
 import {
     contextDefaultValues,
     IRolePage,
@@ -13,9 +13,9 @@ interface RolesContextType extends RoleContextState {}
 const RolesContext = createContext<RolesContextType | undefined>(undefined);
 
 export function RolesProvider({ children }: { children: React.ReactNode }) {
-    const [role, setRole] = useState<IRoleItem | null>(
+    const [role] = useState<IRoleItem | null>(
         contextDefaultValues.role
-    );
+    )
     const [roleId, setRoleId] = useState<number>(contextDefaultValues.roleId);
     const [page, setPage] = useState<IRolePage | null>(
         contextDefaultValues.page
@@ -37,7 +37,7 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
         contextDefaultValues.orgunits
     );
 
-    const [basePath, setBasePath] = useState('/');
+    const [basePath, setBasePath] = useState('');
 
     useEffect(() => {
         const configUrl = '/api/layout/configuration';
@@ -49,7 +49,7 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
                 setBasePath(newBasePath);
             })
             .catch((error) => {
-                console.error('API Local?:', error);
+                console.error('RoleContext error getting Configurator', error);
                 // throw error;
             });
     }, []);
@@ -57,6 +57,7 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
+            console.log("trying to fetch data with base: ", basePath);
 
                 const pageResponse = await fetchRoleData(
                     basePath,
@@ -67,9 +68,9 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
                     orgunits,
                     isAggregate
                 );
-                const roleResponse = await fetchRoleById(roleId);
+                // const roleResponse = await fetchRoleById(roleId);
 
-                return { pageResponse, roleResponse };
+                return { pageResponse };
             } catch (error) {
                 console.error(error);
                 throw error;
@@ -77,9 +78,8 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
         };
 
         fetchData()
-            .then(({ pageResponse, roleResponse }) => {
+            .then(({ pageResponse }) => {
                 setPage(pageResponse);
-                setRole(roleResponse);
             })
             .catch((error) => {
                 console.error(error);
