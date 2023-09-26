@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {IMemberPage, OrgUnits} from './types';
 import {IRoleItem, IRolePage} from "./roleContext/types";
+import {useBasePath} from "../useBasePath";
 
 const configUrl = 'api/layout/configuration';
 
@@ -85,9 +86,7 @@ export const fetchRoleData = async (
     isAggregated: boolean
 ) : Promise<IRolePage> => {
     try {
-        const basePathResponse = await axios.get(configUrl);
-        const newBasePath = basePathResponse.data.basePath;
-        let baseUrl = `${newBasePath}/api/roles/`;
+        let baseUrl = `${useBasePath}/api/roles/`;
 
         let queryParams = [];
 
