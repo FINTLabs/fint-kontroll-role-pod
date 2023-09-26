@@ -20,13 +20,13 @@ module.exports = function(app) {
             }
         })
     );
-
-    app.use(
-        createProxyMiddleware('/api/layout/configuration',{
-        // target: 'http://localhost:8080/beta/fintlabs-no',
-            target: 'http://localhost:8080',
-            changeOrigin: true,
-        })
-    );
+    //
+    // app.use(
+    //     createProxyMiddleware('/api/layout/configuration',{
+    //     // target: 'http://localhost:8080/beta/fintlabs-no',
+    //         target: 'http://localhost:8080',
+    //         changeOrigin: true,
+    //     })
+    // );
 
 };
