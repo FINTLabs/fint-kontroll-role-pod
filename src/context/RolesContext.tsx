@@ -6,7 +6,7 @@ import {
     IRoleItem,
     RoleContextState,
 } from './roleContext/types';
-import { useBasePath } from './useBasePath'; // Import your useBasePath hook
+import { getBasePath } from './basePathUtils'; // Import the getBasePath function
 
 interface RolesContextType extends RoleContextState {}
 
@@ -36,13 +36,16 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
     const [orgunits, setOrgunits] = useState<number[]>(
         contextDefaultValues.orgunits
     );
-    const basePath = useBasePath();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                // Fetch the basePath using the getBasePath function
+                const basePathValue = await getBasePath();
+
+                // Use the basePath obtained from getBasePath in the fetchRoleData function
                 const pageResponse = await fetchRoleData(
-                    basePath,
+                    basePathValue, // Pass basePath here
                     currentPage,
                     size,
                     roleType,
@@ -75,9 +78,7 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
         isAggregate,
         orgunits,
         roleId,
-        basePath,
     ]);
-
 
     const contextValue: RolesContextType = {
         page,
