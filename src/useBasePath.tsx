@@ -5,20 +5,18 @@ export function useBasePath() {
     const [basePath, setBasePath] = useState('');
 
     useEffect(() => {
-        const configUrl = 'api/layout/configuration';
+        const configUrl = '/api/layout/configuration';
 
-        const fetchBasePath = async () => {
-            try {
-                const basePathResponse = await axios.get(configUrl);
-                const newBasePath = basePathResponse.data.basePath;
+        axios
+            .get(configUrl)
+            .then((response) => {
+                const newBasePath = response.data.basePath;
                 setBasePath(newBasePath);
-            } catch (error) {
+            })
+            .catch((error) => {
                 console.error('API Error:', error);
                 throw error;
-            }
-        };
-
-        fetchBasePath();
+            });
     }, []);
 
     return basePath;
