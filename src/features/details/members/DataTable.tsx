@@ -7,14 +7,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import {Box, TableFooter, TablePagination} from "@mui/material";
-//import {useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import TablePaginationActions from "../../common/TableFooter";
 import DataToolbar from "./DataToolbar";
 import {useMembers} from "../../../context/MemberContext";
 
 export const DataTable: any = () => {
 
-    //let paramRoleId = Number(useParams().roleId);
+    let paramRoleId = Number(useParams().roleId);
     const {page, currentPage, setCurrentPage, setSearchValue, setRoleId, size, setSize} = useMembers();
 
     useEffect(() => {
@@ -22,7 +22,7 @@ export const DataTable: any = () => {
 
         setSearchValue("");
         setCurrentPage(0);
-        setRoleId(1);
+        setRoleId(paramRoleId);
         // getPage();
     });
 
