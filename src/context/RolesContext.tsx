@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from "axios";
 import { fetchRoleById, fetchRoleData } from './api';
 import {
     contextDefaultValues,
@@ -6,7 +7,6 @@ import {
     IRoleItem,
     RoleContextState,
 } from './roleContext/types';
-import { getBasePath } from './basePathUtils'; // Import the getBasePath function
 
 interface RolesContextType extends RoleContextState {}
 
@@ -37,15 +37,29 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
         contextDefaultValues.orgunits
     );
 
+    const [basePath, setBasePath] = useState('/');
+
+    useEffect(() => {
+        const configUrl = '/api/layout/configuration';
+
+        axios
+            .get(configUrl)
+            .then((response) => {
+                const newBasePath = response.data.basePath;
+                setBasePath(newBasePath);
+            })
+            .catch((error) => {
+                console.error('API Local?:', error);
+                // throw error;
+            });
+    }, []);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Fetch the basePath using the getBasePath function
-                const basePathValue = await getBasePath();
 
-                // Use the basePath obtained from getBasePath in the fetchRoleData function
                 const pageResponse = await fetchRoleData(
-                    basePathValue, // Pass basePath here
+                    basePath,
                     currentPage,
                     size,
                     roleType,
@@ -78,6 +92,7 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
         isAggregate,
         orgunits,
         roleId,
+        basePath
     ]);
 
     const contextValue: RolesContextType = {
