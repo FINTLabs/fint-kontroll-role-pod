@@ -160,7 +160,7 @@ function UnitSelectDialog({ open, onClose }: DialogUnitProps) {
                 <div>
                     <FormControlLabel
                         control={<Switch />}
-                        label="Aggregated"
+                        label="Ta med underenheter"
                         checked={aggregated}
                         onChange={handleAggregationToggle}
                         id="aggregatedCheckbox"

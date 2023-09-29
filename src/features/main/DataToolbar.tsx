@@ -25,7 +25,7 @@ function CustomTableToolbar(props: CustomTableToolbarProps) {
         >
             <Typography
                 sx={{flex: '1 1 100%'}}
-                variant="h6"
+                variant="h1"
                 id="tableTitle"
                 component="div"
             >
