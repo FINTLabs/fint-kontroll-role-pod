@@ -2,7 +2,7 @@ import axios from 'axios';
 import {IMemberPage, OrgUnits} from './types';
 import {IRolePage} from "./roleContext/types";
 
-const configUrl = '/api/layout/configuration';
+const configUrl = 'api/layout/configuration';
 
 export const fetchUnitTreeData = async (): Promise<OrgUnits> => {
     try {
