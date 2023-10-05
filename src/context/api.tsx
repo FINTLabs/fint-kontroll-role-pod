@@ -1,21 +1,22 @@
 import axios from 'axios';
 import {IMemberPage, OrgUnits} from './types';
-import {IRoleItem, IRolePage} from "./roleContext/types";
+import {IRolePage} from "./roleContext/types";
 
-const configUrl = 'api/layout/configuration';
+const configUrl = '/api/layout/configuration';
 
 export const fetchUnitTreeData = async (): Promise<OrgUnits> => {
     try {
-        let newBasePath = '/';
+        let newBasePath = '';
         try {
             const basePathResponse = await axios.get(configUrl);
             newBasePath = basePathResponse.data.basePath;
             console.log("basePath in fetch unit data", newBasePath);
         } catch (basePathError) {
-            console.error('Error getting base path:', basePathError);
+            console.log('Error getting base path:', basePathError);
         }
 
-        let baseUrl = `${newBasePath === '/' ? '' : newBasePath}/api/orgunits`;
+        let baseUrl = `${newBasePath}/api/orgunits`;
+        console.log("fetch a unittree from: ", baseUrl);
 
         const response = await axios.get<OrgUnits>(baseUrl);
         return response.data;
@@ -34,8 +35,7 @@ export const fetchMemberData = async (
     searchFor: string
 ): Promise<IMemberPage> => {
     try {
-        console.log("inside fetchmember data and trying to get a config from: ", configUrl);
-        let newBasePath = '/';
+        let newBasePath = '';
         try {
             const basePathResponse = await axios.get(configUrl);
             newBasePath = basePathResponse.data.basePath;
@@ -43,9 +43,10 @@ export const fetchMemberData = async (
         } catch (basePathError) {
             console.error('Error getting base path for members:', basePathError);
         }
-        console.log("base path from config in fetch members: ", newBasePath);
 
-        let baseUrl = `${newBasePath === '/' ? '' : newBasePath}/api/roles/${roleId}/members/`;
+        let baseUrl = `${newBasePath}/api/roles/${roleId}/members/`;
+        console.log("fetch members with: ", baseUrl);
+
         let queryParams: string[] = [];
 
         const sanitizedQueryString = searchFor.trim();
@@ -71,22 +72,22 @@ export const fetchMemberData = async (
     }
 };
 
-export const fetchRoleById = async (id: number) => {
-    try {
-        const basePathResponse = await axios.get(configUrl);
-        const newBasePath = basePathResponse.data.basePath;
-        console.log("base path from config in fetch role by id: ", newBasePath);
-
-        let baseUrl = `${newBasePath}/api/roles/${id}`;
-
-        const response = await axios.get<IRoleItem>(baseUrl);
-        return response.data;
-
-    } catch (error) {
-        console.error('API Error:', error);
-        throw error;
-    }
-}
+// export const fetchRoleById = async (id: number) => {
+//     try {
+//         const basePathResponse = await axios.get(configUrl);
+//         const newBasePath = basePathResponse.data.basePath;
+//
+//         let baseUrl = `${newBasePath}/api/roles/${id}`;
+//         console.log("base path from config in fetch role by id: ", newBasePath);
+//
+//         const response = await axios.get<IRoleItem>(baseUrl);
+//         return response.data;
+//
+//     } catch (error) {
+//         console.error('API Error:', error);
+//         throw error;
+//     }
+// }
 
 export const fetchRoleData = async (
     basePath: string,
@@ -98,19 +99,17 @@ export const fetchRoleData = async (
     isAggregated: boolean
 ) : Promise<IRolePage> => {
     try {
-        // let baseUrl = `${basePath}/api/roles/`;
-
-        let newBasePath = '/';
+        let newBasePath = '';
         try {
             const basePathResponse = await axios.get(configUrl);
             newBasePath = basePathResponse.data.basePath;
             console.log("basePath in fetch role data", newBasePath);
         } catch (basePathError) {
-            console.error('Error getting base path:', basePathError);
+            console.log('Error getting base path:', basePathError);
         }
 
-        console.log("basePath in fetch role data", newBasePath);
-        let baseUrl = `${newBasePath === '/' ? '' : newBasePath}/api/roles`;
+        let baseUrl = `${newBasePath}/api/roles`;
+        console.log("fetch role data with:", newBasePath);
 
         let queryParams = [];
 
@@ -140,9 +139,8 @@ export const fetchRoleData = async (
         }
 
         const url = `${baseUrl}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
-
-        console.log("here is my new basepath url role data: ", url);
         const response = await axios.get<IRolePage>(url);
+
         return response.data;
     } catch (error) {
         console.error('API Error:', error);
