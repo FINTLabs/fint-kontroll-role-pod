@@ -28,6 +28,9 @@ function App() {
         getBasePath()
     }, [])
 
+    if (!basePath) {
+        return <div>Loading...</div>;
+    }
     return (
         <ThemeProvider theme={theme}>
             <RolesProvider basePath={basePath}>
