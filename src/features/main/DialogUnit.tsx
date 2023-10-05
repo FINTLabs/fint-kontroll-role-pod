@@ -14,7 +14,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { TreeView } from '@mui/x-tree-view/TreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
 import { useOrgUnits } from "../../context/OrgUnitContext";
-import { OrgUnit } from "../../context/types";
+import { IOrgUnit } from "../../context/types";
 
 interface DialogUnitProps {
     open: boolean;
@@ -37,19 +37,16 @@ function UnitSelectDialog({ open, onClose }: DialogUnitProps) {
         onClose();
     };
 
-    const toggleOrgUnit = (orgUnit: OrgUnit) => {
+    const toggleOrgUnit = (orgUnit: IOrgUnit) => {
         const isSelected = selectedOrgUnits.some(unit => unit.organisationUnitId === orgUnit.organisationUnitId);
         let newSelected;
 
         if (isSelected) {
-            // If the orgUnit is already selected, remove it
             newSelected = selectedOrgUnits.filter(unit => unit.organisationUnitId !== orgUnit.organisationUnitId);
         } else {
-            // If the orgUnit is not selected, add it (if it doesn't already exist)
             if (!selectedOrgUnits.some(unit => unit.organisationUnitId === orgUnit.organisationUnitId)) {
                 newSelected = [...selectedOrgUnits, orgUnit];
             } else {
-                // It's already in the selectedOrgUnits array, no need to do anything
                 newSelected = selectedOrgUnits;
             }
         }
@@ -61,7 +58,7 @@ function UnitSelectDialog({ open, onClose }: DialogUnitProps) {
         setAggregated(!aggregated);
     };
 
-    const handleCheckboxClick = (orgUnit: OrgUnit) => {
+    const handleCheckboxClick = (orgUnit: IOrgUnit) => {
 
         if (aggregated) {
             toggleOrgUnitAndChildren(orgUnit);
@@ -70,11 +67,10 @@ function UnitSelectDialog({ open, onClose }: DialogUnitProps) {
         }
     };
 
-    const toggleOrgUnitAndChildren = (orgUnit: OrgUnit) => {
+    const toggleOrgUnitAndChildren = (orgUnit: IOrgUnit) => {
         const isSelected = selectedOrgUnits.some(unit => unit.organisationUnitId === orgUnit.organisationUnitId);
         let newSelected = [...selectedOrgUnits];
 
-        // Toggle the selectedOrgUnit
         if (isSelected) {
             newSelected = selectedOrgUnits.filter(unit => unit.organisationUnitId !== orgUnit.organisationUnitId);
         } else {
@@ -83,7 +79,6 @@ function UnitSelectDialog({ open, onClose }: DialogUnitProps) {
             }
         }
 
-        // Toggle the children
         const childrenOrgUnits = findChildrenOrgUnits(orgUnit);
         for (const childOrgUnit of childrenOrgUnits) {
             if (isSelected) {
@@ -98,10 +93,10 @@ function UnitSelectDialog({ open, onClose }: DialogUnitProps) {
         setSelectedOrgUnits(newSelected);
     };
 
-    const findChildrenOrgUnits = (orgUnit: OrgUnit): OrgUnit[] => {
-        const childrenOrgUnits: OrgUnit[] = [];
+    const findChildrenOrgUnits = (orgUnit: IOrgUnit): IOrgUnit[] => {
+        const childrenOrgUnits: IOrgUnit[] = [];
 
-        const findChildren = (node: OrgUnit) => {
+        const findChildren = (node: IOrgUnit) => {
             if (Array.isArray(node.childrenRef)) {
                 for (const nodeId of node.childrenRef) {
                     const childNode = orgUnitsData?.orgUnits.find((n) => n.organisationUnitId === nodeId);
@@ -117,7 +112,7 @@ function UnitSelectDialog({ open, onClose }: DialogUnitProps) {
         return childrenOrgUnits;
     };
 
-    const renderTree = (nodes: OrgUnit) => {
+    const renderTree = (nodes: IOrgUnit) => {
         return (
             <TreeItem
                 key={nodes.organisationUnitId}

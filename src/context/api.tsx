@@ -1,13 +1,13 @@
 import axios, { AxiosResponse } from 'axios';
-import { IMemberPage, OrgUnits } from './types';
+import { IMemberPage, IOrgUnits } from './types';
 import { IRolePage } from "./roleContext/types";
 
-export const fetchUnitTreeData = async (basePath: string): Promise<OrgUnits> => {
+export const fetchUnitTreeData = async (basePath: string): Promise<IOrgUnits> => {
     try {
         const baseUrl = `${basePath}/api/orgunits`;
         console.log("fetch unit tree from: ", baseUrl);
 
-        const response: AxiosResponse<OrgUnits> = await axios.get(baseUrl);
+        const response: AxiosResponse<IOrgUnits> = await axios.get(baseUrl);
         return response.data;
     } catch (error) {
         console.error('API Error:', error);
@@ -57,7 +57,7 @@ export const fetchRoleData = async (
     size: number,
     roleType: string,
     searchFor: string,
-    organisationUnitId: number[],
+    organisationUnitId: string[],
     isAggregated: boolean
 ): Promise<IRolePage> => {
     try {

@@ -1,4 +1,4 @@
-export interface OrgUnit {
+export interface IOrgUnit {
     id: number;
     name: string;
     organisationUnitId: string;
@@ -7,17 +7,12 @@ export interface OrgUnit {
     childrenRef: string[];
 }
 
-export interface OrgUnits {
+export interface IOrgUnits {
     totalItems: number;
-    orgUnits: OrgUnit[];
+    orgUnits: IOrgUnit[];
     totalPages: number;
     currentPage: number;
 }
-
-export type UnitContextState = {
-    basePath: string;
-    unitTree: OrgUnits | null;
-};
 
 export interface IMemberPage {
     totalItems: number;

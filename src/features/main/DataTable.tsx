@@ -24,7 +24,7 @@ export const DataTable: any = () => {
 
     const handleTypeSelect = () => {
         setOpenDialog(false);
-        const orgunitIds = selectedOrgUnits.map(orgunit => orgunit.id);
+        const orgunitIds = selectedOrgUnits.map(orgunit => orgunit.organisationUnitId);
         setOrgunits(orgunitIds);
     }
     // Avoid a layout jump when reaching the last page with empty rows.

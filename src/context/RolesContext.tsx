@@ -32,7 +32,7 @@ export function RolesProvider({ children, basePath }: { children: React.ReactNod
     const [isAggregate, setIsAggregate] = useState<boolean>(
         contextDefaultValues.isAggregate
     );
-    const [orgunits, setOrgunits] = useState<number[]>(
+    const [orgunits, setOrgunits] = useState<string[]>(
         contextDefaultValues.orgunits
     );
 
