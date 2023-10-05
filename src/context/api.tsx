@@ -11,7 +11,7 @@ export const fetchUnitTreeData = async (): Promise<OrgUnits> => {
             const basePathResponse = await axios.get(configUrl);
             newBasePath = basePathResponse.data.basePath;
         } catch (basePathError) {
-            console.error('Error getting config:', basePathError, configUrl);
+            console.log('Error getting config:', basePathError, configUrl);
         }
 
         let baseUrl = `${newBasePath}/api/orgunits`;
@@ -39,7 +39,7 @@ export const fetchMemberData = async (
             const basePathResponse = await axios.get(configUrl);
             newBasePath = basePathResponse.data.basePath;
         } catch (basePathError) {
-            console.error('Error getting config:', basePathError, configUrl);
+            console.log('Error getting config:', basePathError, configUrl);
         }
 
         let baseUrl = `${newBasePath}/api/roles/${roleId}/members/`;
@@ -101,7 +101,7 @@ export const fetchRoleData = async (
             const basePathResponse = await axios.get(configUrl);
             newBasePath = basePathResponse.data.basePath;
         } catch (basePathError) {
-            console.error('Error getting config:', basePathError, configUrl);
+            console.log('Error getting config:', basePathError, configUrl);
         }
 
         let baseUrl = `${newBasePath}/api/roles`;
