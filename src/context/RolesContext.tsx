@@ -36,8 +36,6 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
         contextDefaultValues.orgunits
     );
 
-    const [basePath] = useState('');
-
     // useEffect(() => {
     //     const configUrl = 'api/layout/configuration';
     //
@@ -56,10 +54,7 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-            console.log("trying to fetch data with base: ", basePath);
-
                 const pageResponse = await fetchRoleData(
-                    basePath,
                     currentPage,
                     size,
                     roleType,
@@ -90,8 +85,7 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
         size,
         isAggregate,
         orgunits,
-        roleId,
-        basePath
+        roleId
     ]);
 
     const contextValue: RolesContextType = {
