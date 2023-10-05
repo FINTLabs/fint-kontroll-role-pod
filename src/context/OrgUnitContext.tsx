@@ -12,14 +12,15 @@ interface OrgUnitsContextType {
 
 const OrgUnitsContext = createContext<OrgUnitsContextType | undefined>(undefined);
 
-export function OrgUnitsProvider({ children }: { children: React.ReactNode }) {
+export function OrgUnitsProvider({ children, basePath }: { children: React.ReactNode, basePath: string }) {
     const [orgUnitsData, setOrgUnitsData] = useState<OrgUnits | null>(null);
     const [selectedOrgUnits, setSelectedOrgUnits] = useState<OrgUnit[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const newUnitTree = await fetchUnitTreeData();
+                // Use the basePath for the API call
+                const newUnitTree = await fetchUnitTreeData(basePath);
                 console.log("Returned tree data: ", newUnitTree);
                 setOrgUnitsData(newUnitTree);
             } catch (error) {
@@ -28,7 +29,7 @@ export function OrgUnitsProvider({ children }: { children: React.ReactNode }) {
         };
 
         fetchData();
-    }, []);
+    }, [basePath]); // Include basePath in the dependency array
 
     return (
         <OrgUnitsContext.Provider
@@ -38,6 +39,7 @@ export function OrgUnitsProvider({ children }: { children: React.ReactNode }) {
         </OrgUnitsContext.Provider>
     );
 }
+
 
 // Create a custom hook to access the context
 export function useOrgUnits() {

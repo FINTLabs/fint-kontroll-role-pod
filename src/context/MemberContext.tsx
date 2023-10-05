@@ -6,11 +6,12 @@ import {
     MemberContextState,
 } from './memberContext/types';
 
+// Context
 interface MembersContextType extends MemberContextState {}
 
 const MembersContext = createContext<MembersContextType | undefined>(undefined);
 
-export function MembersProvider({ children }: { children: React.ReactNode }) {
+export function MembersProvider({ children, basePath }: { children: React.ReactNode, basePath: string }) {
     const [page, setPage] = useState<IMemberPage | null>(contextDefaultValues.page);
     const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
     const [size, setSize] = useState<number>(contextDefaultValues.size);
@@ -25,7 +26,7 @@ export function MembersProvider({ children }: { children: React.ReactNode }) {
                     `Getting a new member page with: currentPage: ${currentPage}, size: ${size}, roleId: ${roleId}, inputSearchValue: ${searchValue}`
                 );
 
-                const response = await fetchMemberData(currentPage, size, roleId, searchValue);
+                const response = await fetchMemberData(basePath, currentPage, size, roleId, searchValue);
                 setPage(response);
             } catch (error) {
                 console.error(error);
@@ -36,7 +37,7 @@ export function MembersProvider({ children }: { children: React.ReactNode }) {
         if (roleId !== 0) {
             getPage();
         }
-    }, [currentPage, searchValue, size, roleId]);
+    }, [currentPage, searchValue, size, roleId, basePath]);
 
     // Define the context value
     const contextValue: MembersContextType = {

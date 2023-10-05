@@ -11,7 +11,7 @@ interface RolesContextType extends RoleContextState {}
 
 const RolesContext = createContext<RolesContextType | undefined>(undefined);
 
-export function RolesProvider({ children }: { children: React.ReactNode }) {
+export function RolesProvider({ children, basePath }: { children: React.ReactNode, basePath: string }) {
     const [role] = useState<IRoleItem | null>(
         contextDefaultValues.role
     )
@@ -55,6 +55,7 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
         const fetchData = async () => {
             try {
                 const pageResponse = await fetchRoleData(
+                    basePath,
                     currentPage,
                     size,
                     roleType,
@@ -85,7 +86,8 @@ export function RolesProvider({ children }: { children: React.ReactNode }) {
         size,
         isAggregate,
         orgunits,
-        roleId
+        roleId,
+        basePath
     ]);
 
     const contextValue: RolesContextType = {

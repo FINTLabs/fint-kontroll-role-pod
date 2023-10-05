@@ -19,11 +19,6 @@ export type UnitContextState = {
     unitTree: OrgUnits | null;
 };
 
-export const contextDefaultValues = {
-    basePath: '',
-    unitTree: null,
-};
-
 export interface IMemberPage {
     totalItems: number;
     totalPages: number | any;
@@ -41,5 +36,17 @@ export interface IMemberItem {
     userName?: null;
     userId?: null;
 }
+
+export type MemberContextState = {
+    page: IMemberPage | null;
+    size: number;
+    setSize: (size: number) => void;
+    currentPage: number;
+    setCurrentPage: (currentPage: number) => void;
+    searchValue: string;
+    setSearchValue: (searchValue: string) => void;
+    roleId: number;
+    setRoleId: (roleId: number) => void;
+};
 
 

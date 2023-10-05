@@ -30,14 +30,14 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
-            <RolesProvider>
-                <MembersProvider>
-                    <OrgUnitsProvider>
-                    <Routes>
-                        <Route path={`${basePath}/grupper/`} element={<MainContainer/>}/>
-                        <Route path={`${basePath}/grupper/info/:roleId`} element={<DetailsContainer/>}/>
-                        <Route path={`${basePath}/grupper/add/:roleId`} element={<ResourceAddGrid/>}/>
-                    </Routes>
+            <RolesProvider basePath={basePath}>
+                <MembersProvider basePath={basePath}>
+                    <OrgUnitsProvider basePath={basePath}>
+                        <Routes>
+                            <Route path={`${basePath}/grupper/`} element={<MainContainer/>}/>
+                            <Route path={`${basePath}/grupper/info/:roleId`} element={<DetailsContainer/>}/>
+                            <Route path={`${basePath}/grupper/add/:roleId`} element={<ResourceAddGrid/>}/>
+                        </Routes>
                     </OrgUnitsProvider>
                 </MembersProvider>
             </RolesProvider>

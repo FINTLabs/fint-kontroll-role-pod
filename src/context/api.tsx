@@ -1,23 +1,13 @@
-import axios from 'axios';
-import {IMemberPage, OrgUnits} from './types';
-import {IRolePage} from "./roleContext/types";
+import axios, { AxiosResponse } from 'axios';
+import { IMemberPage, OrgUnits } from './types';
+import { IRolePage } from "./roleContext/types";
 
-const configUrl = 'api/layout/configuration';
-
-export const fetchUnitTreeData = async (): Promise<OrgUnits> => {
+export const fetchUnitTreeData = async (basePath: string): Promise<OrgUnits> => {
     try {
-        let newBasePath = '';
-        try {
-            const basePathResponse = await axios.get(configUrl);
-            newBasePath = basePathResponse.data.basePath;
-        } catch (basePathError) {
-            console.log('Error getting config:', basePathError, configUrl);
-        }
+        const baseUrl = `${basePath}/api/orgunits`;
+        console.log("fetch unit tree from: ", baseUrl);
 
-        let baseUrl = `${newBasePath === '/' ? '' : newBasePath}/api/orgunits`;
-        console.log("fetch a unittree from: ", baseUrl);
-
-        const response = await axios.get<OrgUnits>(baseUrl);
+        const response: AxiosResponse<OrgUnits> = await axios.get(baseUrl);
         return response.data;
     } catch (error) {
         console.error('API Error:', error);
@@ -25,24 +15,15 @@ export const fetchUnitTreeData = async (): Promise<OrgUnits> => {
     }
 };
 
-
-
 export const fetchMemberData = async (
+    basePath: string,
     page: number,
     size: number,
     roleId: number,
     searchFor: string
 ): Promise<IMemberPage> => {
     try {
-        let newBasePath = '';
-        try {
-            const basePathResponse = await axios.get(configUrl);
-            newBasePath = basePathResponse.data.basePath;
-        } catch (basePathError) {
-            console.log('Error getting config:', basePathError, configUrl);
-        }
-
-        let baseUrl = `${newBasePath === '/' ? '' : newBasePath}/api/roles/${roleId}/members/`;
+        const baseUrl = `${basePath}/api/roles/${roleId}/members/`;
         console.log("fetch members with: ", baseUrl);
 
         let queryParams: string[] = [];
@@ -62,7 +43,7 @@ export const fetchMemberData = async (
 
         const url = `${baseUrl}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
 
-        const response = await axios.get<IMemberPage>(url);
+        const response: AxiosResponse<IMemberPage> = await axios.get(url);
         return response.data;
     } catch (error) {
         console.error('API Error:', error);
@@ -70,41 +51,17 @@ export const fetchMemberData = async (
     }
 };
 
-// export const fetchRoleById = async (id: number) => {
-//     try {
-//         const basePathResponse = await axios.get(configUrl);
-//         const newBasePath = basePathResponse.data.basePath;
-//
-//         let baseUrl = `${newBasePath}/api/roles/${id}`;
-//         console.log("base path from config in fetch role by id: ", newBasePath);
-//
-//         const response = await axios.get<IRoleItem>(baseUrl);
-//         return response.data;
-//
-//     } catch (error) {
-//         console.error('API Error:', error);
-//         throw error;
-//     }
-// }
-
 export const fetchRoleData = async (
+    basePath: string,
     page: number,
     size: number,
     roleType: string,
     searchFor: string,
     organisationUnitId: number[],
     isAggregated: boolean
-) : Promise<IRolePage> => {
+): Promise<IRolePage> => {
     try {
-        let newBasePath = '';
-        try {
-            const basePathResponse = await axios.get(configUrl);
-            newBasePath = basePathResponse.data.basePath;
-        } catch (basePathError) {
-            console.log('Error getting config:', basePathError, configUrl);
-        }
-
-        let baseUrl = `${newBasePath === '/' ? '' : newBasePath}/api/roles`;
+        const baseUrl = `${basePath}/api/roles`;
         console.log("fetch role data with:", baseUrl);
 
         let queryParams = [];
@@ -135,11 +92,11 @@ export const fetchRoleData = async (
         }
 
         const url = `${baseUrl}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
-        const response = await axios.get<IRolePage>(url);
+        const response: AxiosResponse<IRolePage> = await axios.get(url);
 
         return response.data;
     } catch (error) {
         console.error('API Error:', error);
         throw error;
     }
-}
+};
