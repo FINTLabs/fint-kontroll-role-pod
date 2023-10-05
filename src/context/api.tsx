@@ -14,7 +14,7 @@ export const fetchUnitTreeData = async (): Promise<OrgUnits> => {
             console.log('Error getting config:', basePathError, configUrl);
         }
 
-        let baseUrl = `${newBasePath}/api/orgunits`;
+        let baseUrl = `${newBasePath === '/' ? '' : newBasePath}/api/orgunits`;
         console.log("fetch a unittree from: ", baseUrl);
 
         const response = await axios.get<OrgUnits>(baseUrl);
@@ -42,7 +42,7 @@ export const fetchMemberData = async (
             console.log('Error getting config:', basePathError, configUrl);
         }
 
-        let baseUrl = `${newBasePath}/api/roles/${roleId}/members/`;
+        let baseUrl = `${newBasePath === '/' ? '' : newBasePath}/api/roles/${roleId}/members/`;
         console.log("fetch members with: ", baseUrl);
 
         let queryParams: string[] = [];
@@ -104,8 +104,8 @@ export const fetchRoleData = async (
             console.log('Error getting config:', basePathError, configUrl);
         }
 
-        let baseUrl = `${newBasePath}/api/roles`;
-        console.log("fetch role data with:", newBasePath);
+        let baseUrl = `${newBasePath === '/' ? '' : newBasePath}/api/roles`;
+        console.log("fetch role data with:", baseUrl);
 
         let queryParams = [];
 
