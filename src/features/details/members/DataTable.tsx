@@ -69,7 +69,7 @@ export const DataTable: any = () => {
                                 <TableCell align="left"> {row?.userType} </TableCell>
                                 <TableCell align="left">
                                     <IconButton aria-label="settings" id={`role-123`}
-                                                component={Link} to={`brukere/info/1487`}
+                                                component={Link} to={`/beta/fintlabs-no/brukere/info/1487`}
                                     >
                                         <SettingsRounded color={"primary"}/>
                                     </IconButton>
