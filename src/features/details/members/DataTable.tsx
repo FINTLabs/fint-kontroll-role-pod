@@ -7,12 +7,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import {Box, TableFooter, TablePagination} from "@mui/material";
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import TablePaginationActions from "../../common/TableFooter";
 import DataToolbar from "./DataToolbar";
 import {useMembers} from "../../../context/MemberContext";
-import IconButton from "@mui/material/IconButton";
-import {SettingsRounded} from "@mui/icons-material";
 
 export const DataTable: any = () => {
 
@@ -54,7 +52,6 @@ export const DataTable: any = () => {
                         <TableRow>
                             <TableCell align="left">Name </TableCell>
                             <TableCell align="left">User Type</TableCell>
-                            <TableCell align="left">test</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -67,13 +64,6 @@ export const DataTable: any = () => {
                                     {row?.firstName} {row?.lastName}
                                 </TableCell>
                                 <TableCell align="left"> {row?.userType} </TableCell>
-                                <TableCell align="left">
-                                    <IconButton aria-label="settings" id={`role-123`}
-                                                component={Link} to={`/beta/fintlabs-no/brukere/info/1487`}
-                                    >
-                                        <SettingsRounded color={"primary"}/>
-                                    </IconButton>
-                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

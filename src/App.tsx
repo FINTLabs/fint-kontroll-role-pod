@@ -25,14 +25,18 @@ function App() {
                     console.error(err);
                 })
         }
-        getBasePath()
+        if (process.env.NODE_ENV === 'production') {
+            getBasePath();
+        }
     }, [])
 
-    if (!basePath) {
+    if (process.env.NODE_ENV === 'production' && !basePath) {
         return <div>Loading...</div>;
     }
     return (
         <ThemeProvider theme={theme}>
+
+
             <RolesProvider basePath={basePath}>
                 <MembersProvider basePath={basePath}>
                     <OrgUnitsProvider basePath={basePath}>

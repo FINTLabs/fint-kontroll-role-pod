@@ -1,10 +1,21 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { fetchMemberData } from './api';
 import {
-    contextDefaultValues,
     IMemberPage,
     MemberContextState,
-} from './memberContext/types';
+} from './types';
+
+const contextDefaultValues: MemberContextState = {
+    page: null,
+    currentPage: 0,
+    size: 5,
+    searchValue:"",
+    roleId:0,
+    setSearchValue: () => {},
+    setCurrentPage(): void {},
+    setSize(): void {},
+    setRoleId(): void {},
+};
 
 // Context
 interface MembersContextType extends MemberContextState {}

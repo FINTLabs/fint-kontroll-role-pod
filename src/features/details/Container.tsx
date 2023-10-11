@@ -1,19 +1,30 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Box, Typography, Tabs, Tab} from "@mui/material";
 import {useParams} from "react-router-dom";
 import MemberContainer from "./members/Container";
 import ResourcesContainer from "./resources/Container";
 import style from "../../template/style"
-import {useRoles} from "../../context/RolesContext";
+import {fetchRoleDetails} from "../../context/api";
+import {IRoleItem} from "../../context/types";
 
 function ContainerWithTabs() {
     let paramRoleId = Number(useParams().roleId);
-    const {role, setRoleId} = useRoles();
     const [selectedTab, setSelectedTab] = React.useState(0);
+    const [roleDetails, setRoleDetails] = useState<IRoleItem | null>(null);
 
     useEffect(() => {
-        setRoleId(paramRoleId);
-    }, [paramRoleId, setRoleId]);
+        const loadData = async () => {
+            try {
+                const data = await fetchRoleDetails(paramRoleId);
+                setRoleDetails(data);
+
+            } catch (error) {
+                console.error('Error fetching role details:', error);
+            }
+        };
+
+        loadData();
+    }, [paramRoleId]);
 
     const handleTabChange = (event: any, newValue: React.SetStateAction<number>) => {
         setSelectedTab(newValue);
@@ -22,7 +33,7 @@ function ContainerWithTabs() {
     return (
         <Box sx={style.content}>
             <Typography variant="h2" sx={{fontWeight: 'regular', fontSize: 'h5.fontSize', marginBottom: '1rem'}}>
-                {role?.roleName}
+                {roleDetails?.roleName}
             </Typography>
             <Box sx={style.content}>
                 <Tabs value={selectedTab} onChange={handleTabChange}>

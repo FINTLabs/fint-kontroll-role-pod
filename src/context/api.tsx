@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from 'axios';
 import { IMemberPage, IOrgUnits } from './types';
-import { IRolePage } from "./roleContext/types";
+import {IRoleItem, IRolePage} from "./types";
 
 export const fetchUnitTreeData = async (basePath: string): Promise<IOrgUnits> => {
     try {
-        const baseUrl = `${basePath}/api/orgunits`;
-        console.log("fetch unit tree from: ", baseUrl);
+        const baseUrl = `/api/orgunits`;
+        console.log("fetch unit tree from: ", basePath);
 
         const response: AxiosResponse<IOrgUnits> = await axios.get(baseUrl);
         return response.data;
@@ -23,7 +23,7 @@ export const fetchMemberData = async (
     searchFor: string
 ): Promise<IMemberPage> => {
     try {
-        const baseUrl = `${basePath}/api/roles/${roleId}/members/`;
+        const baseUrl = `/api/roles/${roleId}/members/`;
         console.log("fetch members with: ", baseUrl);
 
         let queryParams: string[] = [];
@@ -51,7 +51,7 @@ export const fetchMemberData = async (
     }
 };
 
-export const fetchRoleData = async (
+export const fetchRolePage = async (
     basePath: string,
     page: number,
     size: number,
@@ -61,7 +61,7 @@ export const fetchRoleData = async (
     isAggregated: boolean
 ): Promise<IRolePage> => {
     try {
-        const baseUrl = `${basePath}/api/roles`;
+        const baseUrl = `/api/roles`;
         console.log("fetch role data with:", baseUrl);
 
         let queryParams = [];
@@ -95,6 +95,20 @@ export const fetchRoleData = async (
         const response: AxiosResponse<IRolePage> = await axios.get(url);
 
         return response.data;
+    } catch (error) {
+        console.error('API Error:', error);
+        throw error;
+    }
+};
+
+export const fetchRoleDetails = async (
+    id: number,
+): Promise<IRoleItem> => {
+    try {
+        const baseUrl = `/api/roles/${id}`;
+        const response: AxiosResponse<IRoleItem> = await axios.get(baseUrl);
+        return response.data;
+
     } catch (error) {
         console.error('API Error:', error);
         throw error;
