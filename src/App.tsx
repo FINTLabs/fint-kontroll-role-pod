@@ -35,8 +35,6 @@ function App() {
     }
     return (
         <ThemeProvider theme={theme}>
-
-
             <RolesProvider basePath={basePath}>
                 <MembersProvider basePath={basePath}>
                     <OrgUnitsProvider basePath={basePath}>

@@ -37,6 +37,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {
     let rolesTarget, orgunitsTarget;
+    let basePath = '';
 
     if (process.env.NODE_ENV === 'production') {
         rolesTarget = 'http://localhost:8090';
@@ -45,6 +46,14 @@ module.exports = function(app) {
         rolesTarget = 'http://localhost:8090/beta/fintlabs-no';
         orgunitsTarget = 'http://localhost:8081/beta/fintlabs-no';
     }
+
+    app.get('/api/layout/configuration', (req, res) => {
+        // Simulate your API call and update the basePath
+        // For example, you can use Axios to make a real API call here
+        basePath = res.data.basePath;
+        console.log("setting a basepath?", basePath);
+        // res.json({ basePath });
+    });
 
     app.use(
         createProxyMiddleware('/api/roles', {
