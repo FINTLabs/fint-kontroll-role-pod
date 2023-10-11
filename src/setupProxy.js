@@ -48,15 +48,13 @@ module.exports = function(app) {
     }
 
     app.get('/api/layout/configuration', (req, res) => {
-        // Simulate your API call and update the basePath
-        // For example, you can use Axios to make a real API call here
         basePath = res.data.basePath;
         console.log("setting a basepath?", basePath);
         // res.json({ basePath });
     });
 
     app.use(
-        createProxyMiddleware('/api/roles', {
+        createProxyMiddleware('/api/roles' + basePath, {
             target: rolesTarget,
             changeOrigin: true,
             headers: {
@@ -66,7 +64,7 @@ module.exports = function(app) {
     );
 
     app.use(
-        createProxyMiddleware('/api/orgunits', {
+        createProxyMiddleware('/api/orgunits' + basePath, {
             target: orgunitsTarget,
             changeOrigin: true,
             headers: {
