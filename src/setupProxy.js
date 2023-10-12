@@ -46,7 +46,8 @@ module.exports = function(app) {
         rolesTarget = 'http://localhost:8090/beta/fintlabs-no';
         orgunitsTarget = 'http://localhost:8081/beta/fintlabs-no';
     }
-
+console.log("roles target", rolesTarget);
+    
     app.get('/api/layout/configuration', (req, res) => {
         basePath = res.data.basePath;
         console.log("setting a basepath?", basePath);
@@ -55,7 +56,7 @@ module.exports = function(app) {
 
     app.use(
         createProxyMiddleware('/api/roles', {
-            target: rolesTarget,
+            target: 'http://localhost:8090',
             changeOrigin: true,
             headers: {
                 Connection: 'keep-alive',

@@ -40,6 +40,7 @@ export function RolesProvider({ children, basePath }: { children: React.ReactNod
 
     useEffect(() => {
         const fetchData = async () => {
+            console.log("role container basepath: ", basePath);
             try {
                 const pageResponse = await fetchRolePage(
                     basePath,

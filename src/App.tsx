@@ -24,7 +24,6 @@ function App() {
                     console.error(err);
                 })
         }
-        console.log("node env: ", process.env.NODE_ENV);
 
         if (process.env.NODE_ENV === 'production') {
             getBasePath();
