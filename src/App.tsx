@@ -7,6 +7,7 @@ import MainContainer from './features/main/Container';
 import ResourceAddGrid from "./features/resources/ResourceAddGrid";
 import DetailsContainer from "./features/details/Container";
 import {OrgUnitsProvider} from "./context/OrgUnitContext";
+import {BasePathProvider} from "./context/BasePathContext";
 
 function App() {
     const [basePath, setBasePath] = useState('');
@@ -23,6 +24,8 @@ function App() {
                     console.error(err);
                 })
         }
+        console.log("node env: ", process.env.NODE_ENV);
+
         if (process.env.NODE_ENV === 'production') {
             getBasePath();
         }
@@ -31,9 +34,11 @@ function App() {
     if (process.env.NODE_ENV === 'production' && !basePath) {
         return <div>Loading...</div>;
     }
+
     return (
         <ThemeProvider theme={theme}>
                 {/*<MembersProvider basePath={basePath}>*/}
+            <BasePathProvider>
                     <OrgUnitsProvider basePath={basePath}>
                         <Routes>
                             <Route path={`${basePath}/grupper/`} element={<MainContainer/>}/>
@@ -41,6 +46,7 @@ function App() {
                             <Route path={`${basePath}/grupper/add/:roleId`} element={<ResourceAddGrid/>}/>
                         </Routes>
                     </OrgUnitsProvider>
+            </BasePathProvider>
                 {/*</MembersProvider>*/}
         </ThemeProvider>
     );
