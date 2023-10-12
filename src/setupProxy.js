@@ -34,7 +34,7 @@
 //
 // };
 const { createProxyMiddleware } = require('http-proxy-middleware');
-const axios = require('axios'); // You need to import Axios or another HTTP library for making API requests.
+const axios = require('axios');
 
 module.exports = function (app) {
     let rolesTarget, orgunitsTarget;
