@@ -34,27 +34,31 @@
 //
 // };
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const axios = require('axios'); // You need to import Axios or another HTTP library for making API requests.
 
-module.exports = function(app) {
+module.exports = function (app) {
     let rolesTarget, orgunitsTarget;
     let basePath = '';
 
     if (process.env.NODE_ENV === 'production') {
-        rolesTarget = 'http://localhost:8090';
-        orgunitsTarget = 'http://localhost:8081';
+        axios.get('api/layout/configuration')
+            .then(response => {
+                basePath = response.data.basePath;
+                console.log("Setting a basepath:", basePath);
+
+                rolesTarget = `http://localhost:8090${basePath}`;
+                orgunitsTarget = `http://localhost:8081${basePath}`;
+            })
+            .catch(error => {
+                console.error('Failed to get basePath:', error);
+            });
     } else {
         rolesTarget = 'http://localhost:8090/beta/fintlabs-no';
         orgunitsTarget = 'http://localhost:8081/beta/fintlabs-no';
     }
 
-    app.get('/api/layout/configuration', (req, res) => {
-        basePath = res.data.basePath;
-        console.log("setting a basepath?", basePath);
-        // res.json({ basePath });
-    });
-
     app.use(
-        createProxyMiddleware('/api/roles' + basePath, {
+        createProxyMiddleware('/api/roles', {
             target: rolesTarget,
             changeOrigin: true,
             headers: {
@@ -64,7 +68,7 @@ module.exports = function(app) {
     );
 
     app.use(
-        createProxyMiddleware('/api/orgunits' + basePath, {
+        createProxyMiddleware('/api/orgunits', {
             target: orgunitsTarget,
             changeOrigin: true,
             headers: {
@@ -73,3 +77,4 @@ module.exports = function(app) {
         })
     );
 };
+
