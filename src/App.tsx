@@ -4,11 +4,9 @@ import theme from './template/theme';
 import {ThemeProvider} from "@mui/material/styles";
 import {Routes, Route} from 'react-router-dom';
 import MainContainer from './features/main/Container';
-import {MembersProvider} from "./context/MemberContext";
 import ResourceAddGrid from "./features/resources/ResourceAddGrid";
 import DetailsContainer from "./features/details/Container";
 import {OrgUnitsProvider} from "./context/OrgUnitContext";
-import {RolesProvider} from "./context/RolesContext";
 
 function App() {
     const [basePath, setBasePath] = useState('');
@@ -35,8 +33,7 @@ function App() {
     }
     return (
         <ThemeProvider theme={theme}>
-            <RolesProvider basePath={basePath}>
-                <MembersProvider basePath={basePath}>
+                {/*<MembersProvider basePath={basePath}>*/}
                     <OrgUnitsProvider basePath={basePath}>
                         <Routes>
                             <Route path={`${basePath}/grupper/`} element={<MainContainer/>}/>
@@ -44,8 +41,7 @@ function App() {
                             <Route path={`${basePath}/grupper/add/:roleId`} element={<ResourceAddGrid/>}/>
                         </Routes>
                     </OrgUnitsProvider>
-                </MembersProvider>
-            </RolesProvider>
+                {/*</MembersProvider>*/}
         </ThemeProvider>
     );
 }

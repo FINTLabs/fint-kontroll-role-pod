@@ -34,28 +34,24 @@
 //
 // };
 const { createProxyMiddleware } = require('http-proxy-middleware');
-const axios = require('axios');
 
-module.exports = function (app) {
+module.exports = function(app) {
     let rolesTarget, orgunitsTarget;
     let basePath = '';
 
     if (process.env.NODE_ENV === 'production') {
-        axios.get('api/layout/configuration')
-            .then(response => {
-                basePath = response.data.basePath;
-                console.log("Setting a basepath:", basePath);
-
-                rolesTarget = `http://localhost:8090${basePath}`;
-                orgunitsTarget = `http://localhost:8081${basePath}`;
-            })
-            .catch(error => {
-                console.error('Failed to get basePath:', error);
-            });
+        rolesTarget = 'http://localhost:8090';
+        orgunitsTarget = 'http://localhost:8081';
     } else {
         rolesTarget = 'http://localhost:8090/beta/fintlabs-no';
         orgunitsTarget = 'http://localhost:8081/beta/fintlabs-no';
     }
+
+    app.get('/api/layout/configuration', (req, res) => {
+        basePath = res.data.basePath;
+        console.log("setting a basepath?", basePath);
+        // res.json({ basePath });
+    });
 
     app.use(
         createProxyMiddleware('/api/roles', {
@@ -77,4 +73,3 @@ module.exports = function (app) {
         })
     );
 };
-

@@ -3,9 +3,12 @@ import {
 } from "@mui/material";
 import {DataTable} from "./DataTable";
 import style from "../../template/style"
+import {RolesProvider} from "../../context/RolesContext";
+import { useBasePath } from '../../context/BasePathContext'; // Import your context file
 
 
 function Container() {
+    const basePath = useBasePath() || '';
 
     return (
         <Box sx={style.content}>
@@ -17,7 +20,12 @@ function Container() {
 
                 </Box>
                 <Box>
-                    <DataTable/>
+                    <RolesProvider basePath={basePath}>
+                        <div className="App">
+                            <DataTable />
+                            {/* Other components */}
+                        </div>
+                    </RolesProvider>
                 </Box>
 
         </Box>
