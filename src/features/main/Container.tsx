@@ -9,7 +9,7 @@ import { useBasePath } from '../../context/BasePathContext'; // Import your cont
 
 function Container() {
     const basePath = useBasePath() || '';
-
+console.log("basepath in main container: ", basePath);
     return (
         <Box sx={style.content}>
 
