@@ -47,7 +47,7 @@ module.exports = function(app) {
         orgunitsTarget = 'http://localhost:8081/beta/fintlabs-no';
     }
 console.log("roles target", rolesTarget);
-    
+
     app.get('/api/layout/configuration', (req, res) => {
         basePath = res.data.basePath;
         console.log("setting a basepath?", basePath);
