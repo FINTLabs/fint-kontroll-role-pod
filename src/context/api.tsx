@@ -4,7 +4,7 @@ import {IRoleItem, IRolePage} from "./types";
 
 export const fetchUnitTreeData = async (basePath: string): Promise<IOrgUnits> => {
     try {
-        const baseUrl = `/api/orgunits`;
+        const baseUrl = `${basePath}/api/orgunits`;
         console.log("fetch unit tree from: ", basePath);
 
         const response: AxiosResponse<IOrgUnits> = await axios.get(baseUrl);
@@ -23,7 +23,8 @@ export const fetchMemberData = async (
     searchFor: string
 ): Promise<IMemberPage> => {
     try {
-        const baseUrl = `/api/roles/${roleId}/members/`;
+
+        const baseUrl = `${basePath}/api/roles/${roleId}/members/`;
         console.log("fetch members with: ", baseUrl);
 
         let queryParams: string[] = [];
@@ -61,7 +62,7 @@ export const fetchRolePage = async (
     isAggregated: boolean
 ): Promise<IRolePage> => {
     try {
-        const baseUrl = `/api/roles`;
+        const baseUrl = `${basePath}/api/roles`;
         console.log("fetch role data with:", baseUrl);
 
         let queryParams = [];

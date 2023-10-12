@@ -56,7 +56,7 @@ console.log("roles target", rolesTarget);
 
     app.use(
         createProxyMiddleware('/api/roles', {
-            target: 'http://localhost:8090',
+            target: rolesTarget,
             changeOrigin: true,
             headers: {
                 Connection: 'keep-alive',
