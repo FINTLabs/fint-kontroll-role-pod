@@ -4,7 +4,8 @@ import {
 import {DataTable} from "./DataTable";
 import style from "../../template/style"
 import {RolesProvider} from "../../context/RolesContext";
-import { useBasePath } from '../../context/BasePathContext'; // Import your context file
+import { useBasePath } from '../../context/BasePathContext';
+import {OrgUnitsProvider} from "../../context/OrgUnitContext"; // Import your context file
 
 
 function Container() {
@@ -20,12 +21,14 @@ console.log("basepath in main container: ", basePath);
 
                 </Box>
                 <Box>
+                    <OrgUnitsProvider basePath={basePath}>
                     <RolesProvider basePath={basePath}>
                         <div className="App">
                             <DataTable />
                             {/* Other components */}
                         </div>
                     </RolesProvider>
+                    </OrgUnitsProvider>
                 </Box>
 
         </Box>
