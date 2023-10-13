@@ -7,13 +7,17 @@ import { useBasePath } from '../../../context/BasePathContext';
 function Container() {
     const basePath = useBasePath() || '';
 
+    if (process.env.NODE_ENV === 'production' && basePath === '') {
+        return <div>Loading...</div>;
+    }
+
     return (
         <Box>
-            <Box>
-                <MembersProvider basePath={basePath}>
-                    <DataTable />
-                </MembersProvider>
-            </Box>
+                <Box>
+                    <MembersProvider basePath={basePath}>
+                        <DataTable />
+                    </MembersProvider>
+                </Box>
         </Box>
     );
 }
