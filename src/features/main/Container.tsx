@@ -25,7 +25,6 @@ console.log("basepath in main container: ", basePath);
                     <RolesProvider basePath={basePath}>
                         <div className="App">
                             <DataTable />
-                            {/* Other components */}
                         </div>
                     </RolesProvider>
                     </OrgUnitsProvider>
