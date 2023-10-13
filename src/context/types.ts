@@ -24,15 +24,6 @@ export interface IRoleItem {
     "organisationUnitName": string;
 }
 
-// // How will resources look ?? Do we need this
-// export interface IResourceItem {
-//     id: number;
-//     "icon": string;
-//     "name": string;
-//     "description": string;
-//     "active": boolean;
-// }
-
 export interface IRolePage {
     totalItems: number;
     totalPages: number | any;
@@ -88,3 +79,12 @@ export type MemberContextState = {
     setRoleId: (roleId: number) => void;
 };
 
+
+// // How will resources look ?? Do we need this
+// export interface IResourceItem {
+//     id: number;
+//     "icon": string;
+//     "name": string;
+//     "description": string;
+//     "active": boolean;
+// }

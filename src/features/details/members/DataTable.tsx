@@ -15,10 +15,10 @@ import {useMembers} from "../../../context/MemberContext";
 export const DataTable: any = () => {
 
     let paramRoleId = Number(useParams().roleId);
-    const {page, currentPage, setCurrentPage, setSearchValue, setRoleId, size, setSize} = useMembers();
+    const {page, currentPage, setCurrentPage, setRoleId, size, setSize} = useMembers();
 
     useEffect(() => {
-        setSearchValue("");
+        //setSearchValue("");
         setCurrentPage(0);
         setRoleId(paramRoleId);
     });

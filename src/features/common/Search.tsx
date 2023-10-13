@@ -13,7 +13,7 @@ interface SearchProps {
     clearFunction: () => void;
     inputValue: string;
     placeholder: string;
-    showClearIcon?: string; // make the prop optional
+    showClearIcon?: string;
 }
 
 export default function Search(props: SearchProps) {
