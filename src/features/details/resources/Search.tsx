@@ -1,9 +1,8 @@
-import {useMembers} from "../../../context/MemberContext";
 import Search from "../../common/Search";
 
 // export default function MemberSearch(props: { roleId: number; }) {
-export default function MemberSearch() {
-    const {searchValue} = useMembers();
+export default function ResourceSearch() {
+    // const {searchValue} = useMembers();
 
     const handleSearch = () => {
         console.log("Handle resources search")
@@ -17,7 +16,7 @@ export default function MemberSearch() {
         <Search
             searchFunction={handleSearch}
             clearFunction={handleClear}
-            inputValue={searchValue}
+            inputValue={''}
             placeholder="Search resources"
             // showClearIcon={ (searchValue === "" ? "none" : "flex")}
         />

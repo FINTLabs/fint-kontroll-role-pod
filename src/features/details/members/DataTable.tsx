@@ -18,12 +18,9 @@ export const DataTable: any = () => {
     const {page, currentPage, setCurrentPage, setSearchValue, setRoleId, size, setSize} = useMembers();
 
     useEffect(() => {
-        console.log("inside member data table use effect");
-
         setSearchValue("");
         setCurrentPage(0);
         setRoleId(paramRoleId);
-        // getPage();
     });
 
     const handleChangePage = (
