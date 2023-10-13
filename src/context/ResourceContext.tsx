@@ -1,12 +1,13 @@
 import React, {createContext, ReactNode, useState,} from "react";
+import { IResourceItem, ResourceContextState,} from "./types";
+import fakeResources from "../repositories/resourceFakeData.json"
 
-import {
-    contextDefaultValues,
-    IResourceItem, ResourceContextState,
-} from "./types";
-//TODO: use real data
-import fakeResources from "../../repositories/resourceFakeData.json"
-
+const contextDefaultValues: ResourceContextState = {
+    resources: [],
+    roleId: 0,
+    getResourcePage: () => {
+    },
+}
 export const ResourceContext = createContext<ResourceContextState>(
     contextDefaultValues
 );
@@ -16,7 +17,6 @@ type Props = {
 };
 
 const ResourceProvider = ({children}: Props) => {
-    // const [page, setPage] = useState<IMemberPage | null>(contextDefaultValues.page);
     const [resources, setResources] = useState<IResourceItem[]>(contextDefaultValues.resources);
     const [roleId, setRoleId] = useState<number>(contextDefaultValues.roleId);
 

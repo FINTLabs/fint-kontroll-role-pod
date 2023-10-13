@@ -79,12 +79,16 @@ export type MemberContextState = {
     setRoleId: (roleId: number) => void;
 };
 
+export interface IResourceItem {
+    id: number;
+    "icon": string;
+    "name": string;
+    "description": string;
+    "active": boolean;
+}
 
-// // How will resources look ?? Do we need this
-// export interface IResourceItem {
-//     id: number;
-//     "icon": string;
-//     "name": string;
-//     "description": string;
-//     "active": boolean;
-// }
+export type ResourceContextState = {
+    resources: IResourceItem[];
+    roleId : number;
+    getResourcePage: () => void;
+};

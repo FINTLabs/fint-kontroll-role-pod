@@ -43,7 +43,7 @@ export function MembersProvider({ children, basePath }: { children: React.ReactN
                 console.error(error);
             }
         };
-console.log("inside member context with id:", roleId);
+
         if (roleId !== 0) {
             getPage();
         }
