@@ -55,7 +55,7 @@ Cypress.Commands.add('interceptAndReturnFile', interceptAndReturnFile)
 
 
 export function goToHome() {
-    return cy.visit('http://localhost:3000');
+    return cy.visit('http://localhost:3000/grupper');
 }
 Cypress.Commands.add('goToHome', goToHome)
 

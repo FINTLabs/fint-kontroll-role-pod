@@ -3,7 +3,7 @@
   "roles": [
     {
       "id": 1,
-      "roleName": "Ansatt - OKO System- og fellestjenester",
+      "roleName": "ORG UNIT FILTER Ansatt - OKO System- og fellestjenester",
       "roleType": "ansatt",
       "roleSubType": "ansatt",
       "aggregatedRole": false,
@@ -12,7 +12,7 @@
     },
     {
       "id": 2,
-      "roleName": "Ansatt - DIGIT Lokasjonssupport sone Fylkeshus",
+      "roleName": "ORG UNIT FILTER Ansatt - DIGIT Lokasjonssupport sone Fylkeshus",
       "roleType": "ansatt",
       "roleSubType": "ansatt",
       "aggregatedRole": false,
@@ -21,7 +21,7 @@
     },
     {
       "id": 3,
-      "roleName": "Ansatt - INFRA Avdeling for mobilitet og samfunn",
+      "roleName": "ORG UNIT FILTER Ansatt - INFRA Avdeling for mobilitet og samfunn",
       "roleType": "ansatt",
       "roleSubType": "ansatt",
       "aggregatedRole": false,
@@ -30,7 +30,7 @@
     },
     {
       "id": 4,
-      "roleName": "Ansatt - DIGIT Lokasjonssupport",
+      "roleName": "ORG UNIT FILTER Ansatt - DIGIT Lokasjonssupport",
       "roleType": "ansatt",
       "roleSubType": "ansatt",
       "aggregatedRole": false,
@@ -39,7 +39,7 @@
     },
     {
       "id": 5,
-      "roleName": "Ansatt - VGMIDT Administrasjon",
+      "roleName": "ORG UNIT FILTER Ansatt - VGMIDT Administrasjon",
       "roleType": "ansatt",
       "roleSubType": "ansatt",
       "aggregatedRole": false,

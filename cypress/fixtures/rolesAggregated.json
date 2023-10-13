@@ -5,43 +5,11 @@
   "roles": [
     {
       "id": 39,
-      "roleName": "Ansatt - KOMP Område sørvest - Aggregert",
+      "roleName": "AFTER SEVERAL ORGUNITS",
       "roleType": "ansatt",
       "aggregatedRole": true,
       "organisationUnitId": "153",
       "organisationUnitName": "KOMP Område sørvest"
-    },
-    {
-      "id": 40,
-      "roleName": "Ansatt - DIGIT Teknologiseksjon - Aggregert",
-      "roleType": "ansatt",
-      "aggregatedRole": true,
-      "organisationUnitId": "38",
-      "organisationUnitName": "DIGIT Teknologiseksjon"
-    },
-    {
-      "id": 41,
-      "roleName": "Ansatt - KOMP Kompetanseutvikling - Aggregert",
-      "roleType": "ansatt",
-      "aggregatedRole": true,
-      "organisationUnitId": "151",
-      "organisationUnitName": "KOMP Kompetanseutvikling"
-    },
-    {
-      "id": 42,
-      "roleName": "Ansatt - Vår fylkeskommune - Aggregert",
-      "roleType": "ansatt",
-      "aggregatedRole": true,
-      "organisationUnitId": "1",
-      "organisationUnitName": "Vår fylkeskommune"
-    },
-    {
-      "id": 43,
-      "roleName": "Ansatt - INFRA Samferdsel - Aggregert",
-      "roleType": "ansatt",
-      "aggregatedRole": true,
-      "organisationUnitId": "8",
-      "organisationUnitName": "INFRA Samferdsel"
     }
   ],
   "totalItems": 17
