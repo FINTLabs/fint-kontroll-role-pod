@@ -17,7 +17,6 @@ const contextDefaultValues: MemberContextState = {
     setRoleId(): void {},
 };
 
-// Context
 interface MembersContextType extends MemberContextState {}
 
 const MembersContext = createContext<MembersContextType | undefined>(undefined);
@@ -44,6 +43,7 @@ export function MembersProvider({ children, basePath }: { children: React.ReactN
             }
         };
 
+        //TODO: Check for production and basepath ??
         if (roleId !== 0) {
             getPage();
         }

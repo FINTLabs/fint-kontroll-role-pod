@@ -1,6 +1,8 @@
 describe("Page accessibility tests", () => {
     beforeEach(() => {
-        cy.visit('/');
+        cy.setupApiIntercepts();
+
+        cy.visit('/grupper');
         cy.injectAxe();
     });
 

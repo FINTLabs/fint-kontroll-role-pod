@@ -51,7 +51,6 @@ export function RolesProvider({ children, basePath }: { children: React.ReactNod
                     orgunits,
                     isAggregate
                 );
-                // const roleResponse = await fetchRoleById(roleId);
 
                 return { pageResponse };
             } catch (error) {

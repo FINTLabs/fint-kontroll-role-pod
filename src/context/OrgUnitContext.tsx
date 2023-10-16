@@ -6,8 +6,8 @@ import {fetchUnitTreeData} from "./api";
 interface OrgUnitsContextType {
     orgUnitsData: IOrgUnits | null;
     setOrgUnitsData: (data: IOrgUnits | null) => void;
-    selectedOrgUnits: IOrgUnit[]; // Store selected orgUnits in an array
-    setSelectedOrgUnits: (orgUnits: IOrgUnit[]) => void; // Function to set selected orgUnits
+    selectedOrgUnits: IOrgUnit[];
+    setSelectedOrgUnits: (orgUnits: IOrgUnit[]) => void;
 }
 
 const OrgUnitsContext = createContext<OrgUnitsContextType | undefined>(undefined);
@@ -19,7 +19,6 @@ export function OrgUnitsProvider({ children, basePath }: { children: React.React
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Use the basePath for the API call
                 const newUnitTree = await fetchUnitTreeData(basePath);
                 console.log("Returned tree data: ", newUnitTree);
                 setOrgUnitsData(newUnitTree);
@@ -41,7 +40,6 @@ export function OrgUnitsProvider({ children, basePath }: { children: React.React
 }
 
 
-// Create a custom hook to access the context
 export function useOrgUnits() {
     const context = useContext(OrgUnitsContext);
     if (!context) {
