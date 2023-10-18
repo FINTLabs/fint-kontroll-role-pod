@@ -49,6 +49,7 @@ export const DataTable: any = () => {
                         <TableRow>
                             <TableCell align="left">Name </TableCell>
                             <TableCell align="left">User Type</TableCell>
+
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -61,6 +62,7 @@ export const DataTable: any = () => {
                                     {row?.firstName} {row?.lastName}
                                 </TableCell>
                                 <TableCell align="left"> {row?.userType} </TableCell>
+
                             </TableRow>
                         ))}
                     </TableBody>

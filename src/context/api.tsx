@@ -103,7 +103,7 @@ export const fetchRolePage = async (
 };
 
 export const fetchRoleDetails = async (
-    id: number,
+    id: string,
 ): Promise<IRoleItem> => {
     try {
         const baseUrl = `/api/roles/${id}`;

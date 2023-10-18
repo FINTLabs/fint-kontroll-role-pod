@@ -1,21 +1,27 @@
 import React, {useEffect, useState} from "react";
 import {Box, Typography, Tabs, Tab} from "@mui/material";
-import {useParams} from "react-router-dom";
+// import {useParams} from "react-router-dom";
 import MemberContainer from "./members/Container";
 import ResourcesContainer from "./resources/Container";
 import style from "../../template/style"
 import {fetchRoleDetails} from "../../context/api";
 import {IRoleItem} from "../../context/types";
 
-function ContainerWithTabs() {
-    let paramRoleId = Number(useParams().roleId);
+interface DetailsContainerProps {
+    roleId: string ;
+}
+
+function ContainerWithTabs(props: DetailsContainerProps) {
+    // let paramRoleId = Number(useParams().roleId);
+    const { roleId } = props;
+
     const [selectedTab, setSelectedTab] = React.useState(0);
     const [roleDetails, setRoleDetails] = useState<IRoleItem | null>(null);
 
     useEffect(() => {
         const loadData = async () => {
             try {
-                const data = await fetchRoleDetails(paramRoleId);
+                const data = await fetchRoleDetails(roleId);
                 setRoleDetails(data);
 
             } catch (error) {
@@ -24,7 +30,7 @@ function ContainerWithTabs() {
         };
 
         loadData();
-    }, [paramRoleId]);
+    }, [roleId]);
 
     const handleTabChange = (event: any, newValue: React.SetStateAction<number>) => {
         setSelectedTab(newValue);
