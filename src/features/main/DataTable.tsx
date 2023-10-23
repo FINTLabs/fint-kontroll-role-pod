@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import {SettingsRounded} from "@mui/icons-material";
 import {Box, TableFooter, TablePagination,} from "@mui/material";
+import {Link} from "react-router-dom";
 import TablePaginationActions from "../common/TableFooter";
 import DataToolbar from "./DataToolbar";
 import DialogUnit from "./DialogUnit";
@@ -74,20 +75,10 @@ export const DataTable: any = () => {
                                 <TableCell align="left">{role.organisationUnitName}</TableCell>
                                 <TableCell align="left">{role.roleType} </TableCell>
                                 <TableCell align="left">
-                                    {/*<IconButton aria-label="settings" id={`role-${role.id}`}*/}
-                                    {/*            component={Link} to={`?id=${role.id}`}*/}
-                                    {/*>*/}
-                                    {/*    <SettingsRounded color={"primary"}/>*/}
-                                    {/*</IconButton>*/}
-                                    <IconButton
-                                        aria-label="settings"
-                                        id={`role-${role.id}`}
-                                        onClick={() => {
-                                            // Navigate to the new URL with query parameters and trigger a page refresh
-                                            window.location.assign(`?id=${role.id}`);
-                                        }}
+                                    <IconButton aria-label="settings" id={`role-${role.id}`}
+                                                component={Link} to={`info/${role.id}`}
                                     >
-                                        <SettingsRounded color={"primary"} />
+                                        <SettingsRounded color={"primary"}/>
                                     </IconButton>
                                 </TableCell>
                             </TableRow>

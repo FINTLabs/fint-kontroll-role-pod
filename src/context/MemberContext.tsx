@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { fetchMemberData } from './api';
+import {fetchMemberPage} from './api';
 import {
     IMemberPage,
     MemberContextState,
@@ -36,7 +36,7 @@ export function MembersProvider({ children, basePath }: { children: React.ReactN
                     `Getting a new member page with: currentPage: ${currentPage}, size: ${size}, roleId: ${roleId}, inputSearchValue: ${searchValue}`
                 );
 
-                const response = await fetchMemberData(basePath, currentPage, size, roleId, searchValue);
+                const response = await fetchMemberPage(basePath, currentPage, size, roleId, searchValue);
                 setPage(response);
             } catch (error) {
                 console.error(error);

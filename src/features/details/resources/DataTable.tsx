@@ -1,111 +1,91 @@
 import * as React from 'react';
-import {useState} from 'react';
+import {useEffect} from "react";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import {Box, Checkbox} from "@mui/material";
-import DataToolbar from "./DataToolbar";
+import {Box, TableFooter, TablePagination} from "@mui/material";
+import {useParams} from "react-router-dom";
+import TablePaginationActions from "../../common/TableFooter";
+import {useResource} from "../../../context/ResourceContext";
 
 export const DataTable: any = () => {
-    //let roleId = String(useParams().roleId);
-    //const {resources, getResourcePage,} = useContext(ResourceContext);
-    const [showDelete, setShowDelete] = useState(false);
-    const [selected, setSelected] = useState<number[]>([]);
 
-    // const [confirmDelete, setConfirmDelete] = useState(false);
-    // const [showConfirmation, setShowConfirmation] = useState(false);
+    let paramRoleId = Number(useParams().roleId);
+    const {page, currentPage, setCurrentPage, setRoleId, size, setSize} = useResource();
 
-    // useEffect(() => {
-    //     getResourcePage();
-    // }, [roleId])
+    useEffect(() => {
+        //setSearchValue("");
+        setCurrentPage(0);
+        setRoleId(paramRoleId);
+    });
 
-    const someFakeResources = [
-        {id: 1, name: 'Mount Everest'},
-        {id: 2, name: 'Grand Canyon'},
-        {id: 3, name: 'Niagara Falls'},
-        {id: 4, name: 'Yellowstone National Park'},
-        {id: 5, name: 'Great Barrier Reef'},
-    ];
+    const handleChangePage = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => {
+        console.log("new page:", newPage)
+        setCurrentPage(newPage)
+    };
 
-
-    // const ShowDeleteToggle = () => {
-    //
-    //     return showDelete ? (
-    //         <Button
-    //             component={Link}
-    //             to={`/add/row_id`}
-    //             variant="contained"
-    //             color="primary"
-    //             startIcon={<AddIcon/>}
-    //             onClick={() => setShowDelete(!showDelete)}>
-    //             Legg Til
-    //         </Button>
-    //     ) : (
-    //         <IconButton onClick={() => setShowDelete(!showDelete)}>
-    //             <CreateIcon/>
-    //         </IconButton>
-    //     );
-    // }
-
-
-    const handleClick = (event: React.MouseEvent<HTMLTableCellElement>, rowId: number) => {
-        setSelected([rowId]);
-    }
+    const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        // setRowsPerPage(parseInt(event.target.value, 10));
+        setSize(parseInt(event.target.value, 10));
+        setCurrentPage(0);
+    };
 
 
     return (
         <Box sx={{p: 1}}>
             <TableContainer sx={{minWidth: 1040}}>
-                <DataToolbar numSelected={selected.length} onDeleteClick={() => setShowDelete(!showDelete)}/>
-                <Table aria-label="resources">
-                    <TableHead sx={{th: {fontWeight: 'bold'}}}>
-                        <TableRow>
-                            <TableCell align="left">Ressurser</TableCell>
-                            <TableCell align="left">Tildelt av</TableCell>
-                            <TableCell style={{width: '200px'}}>
 
-                            </TableCell>
+                <Table aria-label="Members">
+                    <TableHead sx={{ th: { fontWeight: 'bold' } }}>
+                        <TableRow>
+                            <TableCell align="left">Name </TableCell>
+                            <TableCell align="left">User Type</TableCell>
+
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {someFakeResources?.map((row) => (
+                        {page?.assignments?.map((row) => (
                             <TableRow
                                 key={row.id}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
                             >
                                 <TableCell align="left" component="th" scope="row">
-                                    {row?.name}
+                                    {row?.resourceName}
                                 </TableCell>
-                                <TableCell align="left"> xxx </TableCell>
-                                <TableCell
-                                    padding="checkbox"
-                                    // hover
-                                    onClick={(event) => handleClick(event, row.id)}
-                                    role="checkbox"
-                                    // aria-checked={isItemSelected}
-                                    tabIndex={-1}
-                                    key={row.id}
-                                    // selected={isItemSelected}
+                                <TableCell align="left"> {row?.userType} </TableCell>
 
-                                >
-                                    {showDelete && (
-
-                                        <Checkbox
-                                            color="primary"
-                                            checked={false}
-                                            // inputProps={{
-                                            //     'aria-labelledby': labelId,
-                                            // }}
-                                        />
-
-                                    )}
-                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                rowsPerPageOptions={[5, 10, 25, 50]}
+                                colSpan={4}
+                                count={page ? page.totalItems : 0}
+                                // rowsPerPage={rowsPerPage}
+                                rowsPerPage={size}
+                                page={currentPage}
+                                SelectProps={{
+                                    inputProps: {
+                                        'aria-label': 'rows per page',
+                                    },
+                                    native: true,
+                                }}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                                ActionsComponent={TablePaginationActions}
+                            />
+                        </TableRow>
+                    </TableFooter>
                 </Table>
             </TableContainer>
         </Box>

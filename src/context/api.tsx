@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { IMemberPage, IOrgUnits } from './types';
+import {IMemberPage, IOrgUnits, IResourcePage} from './types';
 import {IRoleItem, IRolePage} from "./types";
 
 export const fetchUnitTreeData = async (basePath: string): Promise<IOrgUnits> => {
@@ -15,7 +15,7 @@ export const fetchUnitTreeData = async (basePath: string): Promise<IOrgUnits> =>
     }
 };
 
-export const fetchMemberData = async (
+export const fetchMemberPage = async (
     basePath: string,
     page: number,
     size: number,
@@ -103,13 +103,50 @@ export const fetchRolePage = async (
 };
 
 export const fetchRoleDetails = async (
-    id: string,
+    id: number,
 ): Promise<IRoleItem> => {
     try {
         const baseUrl = `/api/roles/${id}`;
         const response: AxiosResponse<IRoleItem> = await axios.get(baseUrl);
         return response.data;
 
+    } catch (error) {
+        console.error('API Error:', error);
+        throw error;
+    }
+};
+
+export const fetchResourcePage = async (
+    basePath: string,
+    page: number,
+    size: number,
+    roleId: number,
+    searchFor: string
+): Promise<IResourcePage> => {
+    try {
+        ///assignments/role/12/resources
+        const baseUrl = `${basePath}/api/assignments/role/${roleId}/resources`;
+        console.log("fetch members with: ", baseUrl);
+
+        let queryParams: string[] = [];
+
+        const sanitizedQueryString = searchFor.trim();
+        if (sanitizedQueryString.length !== 0) {
+            queryParams.push(`search=${searchFor}`);
+        }
+
+        if (page) {
+            queryParams.push(`page=${page}`);
+        }
+
+        if (size) {
+            queryParams.push(`size=${size}`);
+        }
+
+        const url = `${baseUrl}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
+
+        const response: AxiosResponse<IResourcePage> = await axios.get(url);
+        return response.data;
     } catch (error) {
         console.error('API Error:', error);
         throw error;
