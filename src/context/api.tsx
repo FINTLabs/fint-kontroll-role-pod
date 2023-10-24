@@ -103,10 +103,11 @@ export const fetchRolePage = async (
 };
 
 export const fetchRoleDetails = async (
+    basePath: string,
     id: number,
 ): Promise<IRoleItem> => {
     try {
-        const baseUrl = `/api/roles/${id}`;
+        const baseUrl = `${basePath}/api/roles/${id}`;
         const response: AxiosResponse<IRoleItem> = await axios.get(baseUrl);
         return response.data;
 

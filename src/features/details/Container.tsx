@@ -6,16 +6,18 @@ import ResourcesContainer from "./resources/Container";
 import style from "../../template/style"
 import {fetchRoleDetails} from "../../context/api";
 import {IRoleItem} from "../../context/types";
+import {useBasePath} from "../../context/BasePathContext";
 
 function ContainerWithTabs() {
     let paramRoleId = Number(useParams().roleId);
     const [selectedTab, setSelectedTab] = React.useState(0);
     const [roleDetails, setRoleDetails] = useState<IRoleItem | null>(null);
+    const basePath = useBasePath() || '';
 
     useEffect(() => {
         const loadData = async () => {
             try {
-                const data = await fetchRoleDetails(paramRoleId);
+                const data = await fetchRoleDetails(basePath, paramRoleId);
                 setRoleDetails(data);
 
             } catch (error) {
@@ -24,7 +26,7 @@ function ContainerWithTabs() {
         };
 
         loadData();
-    }, [paramRoleId]);
+    }, [paramRoleId, basePath]);
 
     const handleTabChange = (event: any, newValue: React.SetStateAction<number>) => {
         setSelectedTab(newValue);
