@@ -21,6 +21,7 @@ const contextDefaultValues: RoleContextState = {
     setIsAggregate(): void {},
     orgunits: [],
     setOrgunits(): void{},
+    error: null,
 };
 
 interface RolesContextType extends RoleContextState {}
@@ -37,6 +38,8 @@ export function RolesProvider({ children, basePath }: { children: React.ReactNod
     const [searchValue, setSearchValue] = useState<string>(contextDefaultValues.searchValue);
     const [isAggregate, setIsAggregate] = useState<boolean>(contextDefaultValues.isAggregate);
     const [orgunits, setOrgunits] = useState<string[]>(contextDefaultValues.orgunits);
+    const [error, setError] = useState<string | null>(null);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -65,6 +68,7 @@ export function RolesProvider({ children, basePath }: { children: React.ReactNod
             })
             .catch((error) => {
                 console.error(error);
+                setError((error as Error).message);
             });
     }, [
         currentPage,
@@ -93,6 +97,7 @@ export function RolesProvider({ children, basePath }: { children: React.ReactNod
         setIsAggregate,
         orgunits,
         setOrgunits,
+        error,
     };
 
     return (
