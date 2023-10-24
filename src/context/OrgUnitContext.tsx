@@ -1,20 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import {IOrgUnit, IOrgUnits} from './types';
+import {IOrgUnit, IOrgUnits, OrgUnitsContextType} from './types';
 import {fetchUnitTreeData} from "./api";
-
-// Context
-interface OrgUnitsContextType {
-    orgUnitsData: IOrgUnits | null;
-    setOrgUnitsData: (data: IOrgUnits | null) => void;
-    selectedOrgUnits: IOrgUnit[];
-    setSelectedOrgUnits: (orgUnits: IOrgUnit[]) => void;
-}
 
 const OrgUnitsContext = createContext<OrgUnitsContextType | undefined>(undefined);
 
 export function OrgUnitsProvider({ children, basePath }: { children: React.ReactNode, basePath: string }) {
     const [orgUnitsData, setOrgUnitsData] = useState<IOrgUnits | null>(null);
     const [selectedOrgUnits, setSelectedOrgUnits] = useState<IOrgUnit[]>([]);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,15 +17,22 @@ export function OrgUnitsProvider({ children, basePath }: { children: React.React
                 setOrgUnitsData(newUnitTree);
             } catch (error) {
                 console.error(error);
+                setError((error as Error).message);
             }
         };
 
         fetchData();
-    }, [basePath]); // Include basePath in the dependency array
+    }, [basePath]);
 
     return (
         <OrgUnitsContext.Provider
-            value={{ orgUnitsData, setOrgUnitsData, selectedOrgUnits, setSelectedOrgUnits }}
+            value={{
+                orgUnitsData,
+                setOrgUnitsData,
+                selectedOrgUnits,
+                setSelectedOrgUnits,
+                error
+        }}
         >
             {children}
         </OrgUnitsContext.Provider>

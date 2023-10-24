@@ -6,7 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import {Box, TableFooter, TablePagination} from "@mui/material";
+import {Alert, Box, TableFooter, TablePagination} from "@mui/material";
 import {useParams} from "react-router-dom";
 import TablePaginationActions from "../../common/TableFooter";
 import {useResource} from "../../../context/ResourceContext";
@@ -14,7 +14,7 @@ import {useResource} from "../../../context/ResourceContext";
 export const DataTable: any = () => {
 
     let paramRoleId = Number(useParams().roleId);
-    const {page, currentPage, setCurrentPage, setRoleId, size, setSize} = useResource();
+    const {page, currentPage, setCurrentPage, setRoleId, size, setSize, error} = useResource();
 
     useEffect(() => {
         //setSearchValue("");
@@ -41,8 +41,12 @@ export const DataTable: any = () => {
 
     return (
         <Box sx={{p: 1}}>
-            <TableContainer sx={{minWidth: 1040}}>
+            {error && (
+                <Alert severity="warning">{error}</Alert>
+            )}
 
+
+            <TableContainer sx={{minWidth: 1040}}>
                 <Table aria-label="Members">
                     <TableHead sx={{ th: { fontWeight: 'bold' } }}>
                         <TableRow>
