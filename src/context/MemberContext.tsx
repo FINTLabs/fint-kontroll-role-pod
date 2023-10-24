@@ -31,26 +31,30 @@ export function MembersProvider({ children, basePath }: { children: React.ReactN
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const getPage = async () => {
-            try {
-                // Log information about the request (remove in production)
-                console.log(
-                    `Getting a new member page with: currentPage: ${currentPage}, size: ${size}, roleId: ${roleId}, inputSearchValue: ${searchValue}`
-                );
+        const fetchData = async () => {
+            // Log information about the request (remove in production)
+            console.log(
+                `Getting a new member page with: currentPage: ${currentPage}, size: ${size}, roleId: ${roleId}, inputSearchValue: ${searchValue}`
+            );            try {
+                const pageResponse = await fetchMemberPage(basePath, currentPage, size, roleId, searchValue);
 
-                const response = await fetchMemberPage(basePath, currentPage, size, roleId, searchValue);
-                setPage(response);
+                return { pageResponse };
             } catch (error) {
                 console.error(error);
-                setError((error as Error).message);
+                throw error;
             }
         };
 
-        //TODO: Check for production and basepath ??
-        if (roleId !== 0) {
-            getPage();
-        }
+        fetchData()
+            .then(({ pageResponse }) => {
+                setPage(pageResponse);
+            })
+            .catch((error) => {
+                console.error(error);
+                setError((error as Error).message);
+            });
     }, [currentPage, searchValue, size, roleId, basePath]);
+
 
     // Define the context value
     const contextValue: MembersContextType = {

@@ -20,7 +20,7 @@ export const DataTable: any = () => {
 
     useEffect(() => {
         //setSearchValue("");
-        setCurrentPage(0);
+        //setCurrentPage(0);
         setRoleId(paramRoleId);
     });
 
