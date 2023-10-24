@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import {fetchRolePage} from './api';
+import { fetchRolePage } from './api';
 import {
     IRolePage,
     RoleContextState,
@@ -21,7 +21,6 @@ const contextDefaultValues: RoleContextState = {
     setIsAggregate(): void {},
     orgunits: [],
     setOrgunits(): void{},
-    error: null,
 };
 
 interface RolesContextType extends RoleContextState {}
@@ -38,37 +37,35 @@ export function RolesProvider({ children, basePath }: { children: React.ReactNod
     const [searchValue, setSearchValue] = useState<string>(contextDefaultValues.searchValue);
     const [isAggregate, setIsAggregate] = useState<boolean>(contextDefaultValues.isAggregate);
     const [orgunits, setOrgunits] = useState<string[]>(contextDefaultValues.orgunits);
-    const [error, setError] = useState<string | null>(null);
-
 
     useEffect(() => {
-        const getPage = async () => {
+        const fetchData = async () => {
+            console.log("role container basepath: ", basePath);
             try {
-                // Log information about the request (remove in production)
-                console.log(
-                    `Getting a new resource page with: currentPage: ${currentPage}, size: ${size}, roleId: ${roleId}, inputSearchValue: ${searchValue}`
-                );
-
-                const response = await fetchRolePage(
+                const pageResponse = await fetchRolePage(
                     basePath,
                     currentPage,
                     size,
                     roleType,
                     searchValue,
                     orgunits,
-                    isAggregate,
+                    isAggregate
                 );
-                setPage(response);
+
+                return { pageResponse };
             } catch (error) {
                 console.error(error);
-                setError((error as Error).message);
+                throw error;
             }
         };
 
-        //TODO: Check for production and basepath ??
-        if (roleId !== 0) {
-            getPage();
-        }
+        fetchData()
+            .then(({ pageResponse }) => {
+                setPage(pageResponse);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }, [
         currentPage,
         searchValue,
@@ -96,7 +93,6 @@ export function RolesProvider({ children, basePath }: { children: React.ReactNod
         setIsAggregate,
         orgunits,
         setOrgunits,
-        error
     };
 
     return (
