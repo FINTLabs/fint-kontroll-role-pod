@@ -1,53 +1,78 @@
-import React, {createContext, ReactNode, useState,} from "react";
-import { IResourceItem, ResourceContextState,} from "./types";
-import fakeResources from "../repositories/resourceFakeData.json"
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { fetchResourcePage } from './api';
+import {
+    IResourcePage,
+    ResourceContextState,
+} from './types';
 
 const contextDefaultValues: ResourceContextState = {
-    resources: [],
-    roleId: 0,
-    getResourcePage: () => {
-    },
-}
-export const ResourceContext = createContext<ResourceContextState>(
-    contextDefaultValues
-);
-
-type Props = {
-    children: ReactNode[] | ReactNode;
+    page: null,
+    currentPage: 0,
+    size: 5,
+    searchValue:"",
+    roleId:0,
+    setSearchValue: () => {},
+    setCurrentPage(): void {},
+    setSize(): void {},
+    setRoleId(): void {},
 };
 
-const ResourceProvider = ({children}: Props) => {
-    const [resources, setResources] = useState<IResourceItem[]>(contextDefaultValues.resources);
+interface ResourceContextType extends ResourceContextState {}
+
+const ResourceContext = createContext<ResourceContextType | undefined>(undefined);
+
+export function ResourceProvider({ children, basePath }: { children: React.ReactNode, basePath: string }) {
+    const [page, setPage] = useState<IResourcePage | null>(contextDefaultValues.page);
+    const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
+    const [size, setSize] = useState<number>(contextDefaultValues.size);
+    const [searchValue, setSearchValue] = useState<string>(contextDefaultValues.searchValue);
     const [roleId, setRoleId] = useState<number>(contextDefaultValues.roleId);
 
+    useEffect(() => {
+        const getPage = async () => {
+            try {
+                // Log information about the request (remove in production)
+                console.log(
+                    `Getting a new resource page with: currentPage: ${currentPage}, size: ${size}, roleId: ${roleId}, inputSearchValue: ${searchValue}`
+                );
 
-    // Returns some fake data
-    const getResourcePage = () => {
-        console.log("get resources page from context");
-        setRoleId(0);
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (fakeResources.length > 0) {
-                    setResources(fakeResources);
-                } else {
-                    reject(new Error('No resources found for the requested role ID.'));
-                }
-            }, 1000);
-        });
-    }
+                const response = await fetchResourcePage(basePath, currentPage, size, roleId, searchValue);
+                setPage(response);
+            } catch (error) {
+                console.error(error);
+            }
+        };
 
+        //TODO: Check for production and basepath ??
+        if (roleId !== 0) {
+            getPage();
+        }
+    }, [currentPage, searchValue, size, roleId, basePath]);
+
+    // Define the context value
+    const contextValue: ResourceContextType = {
+        page,
+        currentPage,
+        setCurrentPage,
+        size,
+        setSize,
+        searchValue,
+        setSearchValue,
+        roleId,
+        setRoleId,
+    };
 
     return (
-        <ResourceContext.Provider
-            value={{
-                resources,
-                roleId,
-                getResourcePage,
-            }}
-        >
+        <ResourceContext.Provider value={contextValue}>
             {children}
         </ResourceContext.Provider>
     );
-};
+}
 
-export default ResourceProvider;
+export function useResource() {
+    const context = useContext(ResourceContext);
+    if (!context) {
+        throw new Error('useResource must be used within a ResourceProvider');
+    }
+    return context;
+}

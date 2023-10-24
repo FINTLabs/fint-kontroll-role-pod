@@ -79,16 +79,39 @@ export type MemberContextState = {
     setRoleId: (roleId: number) => void;
 };
 
+export interface IResourcePage {
+    totalItems: number;
+    totalPages: number | any;
+    currentPage: number;
+    size: number;
+    assignments: IResourceItem[];
+}
+
 export interface IResourceItem {
     id: number;
-    "icon": string;
-    "name": string;
-    "description": string;
-    "active": boolean;
+    resourceRef: number,
+    azureGroupRef: number,
+    resourceName: string,
+    userRef: number,
+    azureUserRef: number,
+    userDisplayname: string,
+    userUsername: string,
+    userType: string,
+    assignerRef: number,
+    assignerDisplayname: string,
+    assignerUsername: string,
+    roleRef: number,
+    organizationUnitId: string
 }
 
 export type ResourceContextState = {
-    resources: IResourceItem[];
-    roleId : number;
-    getResourcePage: () => void;
+    page: IResourcePage | null;
+    size: number;
+    setSize: (size: number) => void;
+    currentPage: number;
+    setCurrentPage: (currentPage: number) => void;
+    searchValue: string;
+    setSearchValue: (searchValue: string) => void;
+    roleId: number;
+    setRoleId: (roleId: number) => void;
 };
