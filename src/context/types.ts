@@ -55,6 +55,7 @@ export type RoleContextState = {
     setIsAggregate: (isAggregate: boolean) => void;
     orgunits: string[];
     setOrgunits: (orgunits: string[]) => void;
+    error: string | null;
 };
 
 export interface IMemberPage {
