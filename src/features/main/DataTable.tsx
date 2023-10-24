@@ -15,12 +15,13 @@ import DataToolbar from "./DataToolbar";
 import DialogUnit from "./DialogUnit";
 import { useOrgUnits } from '../../context/OrgUnitContext';
 import {useRoles} from "../../context/RolesContext";
+import { Alert } from '@mui/material';
 
 export const DataTable: any = () => {
 
     const {page,  currentPage, setCurrentPage, size, setSize, setOrgunits} = useRoles();
     const [openDialog, setOpenDialog] = useState(false);
-    const { selectedOrgUnits } = useOrgUnits();
+    const { selectedOrgUnits, error } = useOrgUnits();
 
     const handleTypeSelect = () => {
         setOpenDialog(false);
@@ -54,6 +55,10 @@ export const DataTable: any = () => {
                 onClose={handleTypeSelect}
                 open={openDialog}
             />
+
+            {error && (
+                <Alert severity="warning">{error}</Alert>
+            )}
 
             <TableContainer sx={{maxWidth: 1040, minWidth: 1040}} id={"rolesDataTable"}>
                 <DataToolbar onShowDialog={() => setOpenDialog(true)}/>

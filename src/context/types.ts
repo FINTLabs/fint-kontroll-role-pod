@@ -14,6 +14,14 @@ export interface IOrgUnits {
     currentPage: number;
 }
 
+export interface OrgUnitsContextType {
+    orgUnitsData: IOrgUnits | null;
+    setOrgUnitsData: (data: IOrgUnits | null) => void;
+    selectedOrgUnits: IOrgUnit[];
+    setSelectedOrgUnits: (orgUnits: IOrgUnit[]) => void;
+    error: string | null;
+}
+
 export interface IRoleItem {
     "id": number;
     "roleName": string;
@@ -47,6 +55,7 @@ export type RoleContextState = {
     setIsAggregate: (isAggregate: boolean) => void;
     orgunits: string[];
     setOrgunits: (orgunits: string[]) => void;
+    error: string | null;
 };
 
 export interface IMemberPage {
@@ -77,6 +86,7 @@ export type MemberContextState = {
     setSearchValue: (searchValue: string) => void;
     roleId: number;
     setRoleId: (roleId: number) => void;
+    error: string | null;
 };
 
 export interface IResourcePage {
@@ -114,4 +124,5 @@ export type ResourceContextState = {
     setSearchValue: (searchValue: string) => void;
     roleId: number;
     setRoleId: (roleId: number) => void;
+    error: string | null;
 };

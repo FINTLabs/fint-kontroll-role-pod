@@ -11,11 +11,12 @@ import {useParams} from "react-router-dom";
 import TablePaginationActions from "../../common/TableFooter";
 import DataToolbar from "./DataToolbar";
 import {useMembers} from "../../../context/MemberContext";
+import { Alert } from '@mui/material';
 
 export const DataTable: any = () => {
 
     let paramRoleId = Number(useParams().roleId);
-    const {page, currentPage, setCurrentPage, setRoleId, size, setSize} = useMembers();
+    const {page, currentPage, setCurrentPage, setRoleId, size, setSize, error} = useMembers();
 
     useEffect(() => {
         //setSearchValue("");
@@ -42,6 +43,10 @@ export const DataTable: any = () => {
 
     return (
         <Box sx={{p: 1}}>
+            {error && (
+                <Alert severity="warning">{error}</Alert>
+            )}
+
             <TableContainer sx={{minWidth: 1040}}>
                 <DataToolbar />
                 <Table aria-label="Members">

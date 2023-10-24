@@ -15,6 +15,7 @@ const contextDefaultValues: MemberContextState = {
     setCurrentPage(): void {},
     setSize(): void {},
     setRoleId(): void {},
+    error:null,
 };
 
 interface MembersContextType extends MemberContextState {}
@@ -27,6 +28,7 @@ export function MembersProvider({ children, basePath }: { children: React.ReactN
     const [size, setSize] = useState<number>(contextDefaultValues.size);
     const [searchValue, setSearchValue] = useState<string>(contextDefaultValues.searchValue);
     const [roleId, setRoleId] = useState<number>(contextDefaultValues.roleId);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const getPage = async () => {
@@ -40,6 +42,7 @@ export function MembersProvider({ children, basePath }: { children: React.ReactN
                 setPage(response);
             } catch (error) {
                 console.error(error);
+                setError((error as Error).message);
             }
         };
 
@@ -60,6 +63,7 @@ export function MembersProvider({ children, basePath }: { children: React.ReactN
         setSearchValue,
         roleId,
         setRoleId,
+        error,
     };
 
     return (
