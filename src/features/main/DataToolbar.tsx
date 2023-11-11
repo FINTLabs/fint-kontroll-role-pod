@@ -1,7 +1,7 @@
 import React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import {Button, Tooltip} from "@mui/material";
+import {Button} from "@mui/material";
 import Search from "./Search";
 import FilterType from "./FilterType";
 import {Apartment} from "@mui/icons-material";
@@ -27,24 +27,20 @@ function CustomTableToolbar(props: CustomTableToolbarProps) {
                 sx={{flex: '1 1 100%'}}
                 variant="h1"
                 id="tableTitle"
-                component="div"
             >
                 Grupper
             </Typography>
             <Search/>
             <FilterType/>
-            <Tooltip title={"Velg enhet"}>
-                <Button
-                    id={'selectUnitsIcon'}
-                    variant="outlined"
-                    endIcon={<Apartment/>}
-                    onClick={onShowDialog}
-                    sx={style.changeOrgButton}
-                    style={{ fontSize: '1em' }}
-                >
-                    Velg enhet
-                </Button>
-            </Tooltip>
+            <Button
+                id={'selectUnitsIcon'}
+                variant="outlined"
+                endIcon={<Apartment/>}
+                onClick={onShowDialog}
+                sx={style.changeOrgButton}
+            >
+                Velg orgenhet
+            </Button>
 
             {/*{isAggregate ? (*/}
             {/*    <Tooltip title={"Aggregated"}>*/}

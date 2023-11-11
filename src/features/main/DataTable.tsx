@@ -50,7 +50,7 @@ export const DataTable: any = () => {
     };
 
     return (
-        <Box sx={{p: 1}}>
+        <Box>
             <DialogUnit
                 onClose={handleTypeSelect}
                 open={openDialog}
@@ -60,7 +60,7 @@ export const DataTable: any = () => {
                 <Alert severity="warning">{error}</Alert>
             )}
 
-            <TableContainer sx={{maxWidth: 1040, minWidth: 1040}} id={"rolesDataTable"}>
+            <TableContainer sx={{maxWidth: 1536, minWidth: 1040}} id={"rolesDataTable"}>
                 <DataToolbar onShowDialog={() => setOpenDialog(true)}/>
                 <Table aria-label="Roles" >
                     <TableHead sx={{ th: { fontWeight: 'bold' } }}>
