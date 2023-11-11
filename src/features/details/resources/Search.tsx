@@ -17,7 +17,7 @@ export default function ResourceSearch() {
             searchFunction={handleSearch}
             clearFunction={handleClear}
             inputValue={''}
-            placeholder="Search resources"
+            placeholder="Søk ressurs"
             // showClearIcon={ (searchValue === "" ? "none" : "flex")}
         />
     );

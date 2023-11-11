@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect} from "react";
+import {useEffect} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -40,15 +40,15 @@ export const DataTable: any = () => {
 
 
     return (
-        <Box sx={{p: 1}}>
+        <Box>
             {error && (
                 <Alert severity="warning">{error}</Alert>
             )}
 
 
-            <TableContainer sx={{minWidth: 1040}}>
+            <TableContainer sx={{maxWidth: 1536, minWidth: 1040}}>
                 <Table aria-label="Members">
-                    <TableHead sx={{ th: { fontWeight: 'bold' } }}>
+                    <TableHead sx={{th: {fontWeight: 'bold'}}}>
                         <TableRow>
                             <TableCell align="left">Name </TableCell>
                             <TableCell align="left">User Type</TableCell>

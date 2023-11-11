@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Box, Typography, Tabs, Tab} from "@mui/material";
+import {Box, Tab, Tabs, Typography} from "@mui/material";
 import {useParams} from "react-router-dom";
 import MemberContainer from "./members/Container";
 import ResourcesContainer from "./resources/Container";
@@ -34,22 +34,22 @@ function ContainerWithTabs() {
 
     return (
         <Box sx={style.content}>
-            <Typography variant="h2" sx={{fontWeight: 'regular', fontSize: 'h5.fontSize', marginBottom: '1rem'}}>
+            <Typography variant="h1" sx={{fontWeight: 'regular', fontSize: 'h5.fontSize', marginBottom: '1rem'}}>
                 {roleDetails?.roleName}
             </Typography>
-            <Box sx={style.content}>
+            <Box /*sx={style.content}*/>
                 <Tabs value={selectedTab} onChange={handleTabChange}>
-                    <Tab label="Members" />
-                    <Tab label="Resources" />
+                    <Tab label="Medlemmer"/>
+                    <Tab label="Ressurser"/>
                 </Tabs>
                 {selectedTab === 0 && (
-                    <Box sx={{ marginBottom: '1rem', padding: '2rem'}}>
-                        <MemberContainer />
+                    <Box /*sx={{ marginBottom: '1rem', padding: '2rem'}}*/>
+                        <MemberContainer/>
                     </Box>
                 )}
                 {selectedTab === 1 && (
-                    <Box sx={{ marginBottom: '1rem', padding: '2rem'}}>
-                        <ResourcesContainer />
+                    <Box sx={{marginBottom: '1rem', padding: '2rem'}}>
+                        <ResourcesContainer/>
                     </Box>
                 )}
             </Box>

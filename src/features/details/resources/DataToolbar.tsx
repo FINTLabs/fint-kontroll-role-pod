@@ -32,18 +32,18 @@ function DataToolbar(props: CustomTableToolbarProps) {
                     sx={{flex: '1 1 100%'}}
                     color="inherit"
                     variant="subtitle1"
-                    component="div"
+                    // component="div"
                 >
-                    {numSelected} selected
+                    {numSelected} {/*selected*/} valgt
                 </Typography>
             ) : (
                 <Typography
                     sx={{flex: '1 1 100%'}}
-                    variant="h6"
+                    variant="h2"
                     id="tableTitle"
-                    component="div"
+                    //  component="div"
                 >
-                    Resources
+                    Ressurser
                 </Typography>
             )}
             <Search/>

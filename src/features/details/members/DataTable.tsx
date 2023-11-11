@@ -1,17 +1,16 @@
 import * as React from 'react';
-import {useEffect} from "react";
+import {useEffect} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import {Box, TableFooter, TablePagination} from "@mui/material";
+import {Alert, Box, TableFooter, TablePagination} from "@mui/material";
 import {useParams} from "react-router-dom";
 import TablePaginationActions from "../../common/TableFooter";
 import DataToolbar from "./DataToolbar";
 import {useMembers} from "../../../context/MemberContext";
-import { Alert } from '@mui/material';
 
 export const DataTable: any = () => {
 
@@ -42,15 +41,15 @@ export const DataTable: any = () => {
 
 
     return (
-        <Box sx={{p: 1}}>
+        <Box>
             {error && (
                 <Alert severity="warning">{error}</Alert>
             )}
 
-            <TableContainer sx={{minWidth: 1040}}>
-                <DataToolbar />
+            <TableContainer sx={{maxWidth: 1536, minWidth: 1040}}>
+                <DataToolbar/>
                 <Table aria-label="Members">
-                    <TableHead sx={{ th: { fontWeight: 'bold' } }}>
+                    <TableHead sx={{th: {fontWeight: 'bold'}}}>
                         <TableRow>
                             <TableCell align="left">Name </TableCell>
                             <TableCell align="left">User Type</TableCell>
