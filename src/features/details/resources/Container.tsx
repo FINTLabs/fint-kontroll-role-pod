@@ -7,13 +7,11 @@ function Container() {
     const basePath = useBasePath() || '';
 
     return (
-        <Box>
             <Box>
                 <ResourceProvider basePath={basePath}>
                     <DataTable/>
                 </ResourceProvider>
             </Box>
-        </Box>
     );
 }
 

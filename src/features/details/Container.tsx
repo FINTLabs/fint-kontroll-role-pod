@@ -34,7 +34,7 @@ function ContainerWithTabs() {
 
     return (
         <Box sx={style.content}>
-            <Typography variant="h1" sx={{fontWeight: 'regular', fontSize: 'h5.fontSize', marginBottom: '1rem'}}>
+            <Typography variant="h1" sx={{marginBottom: '1.5rem'}}>
                 {roleDetails?.roleName}
             </Typography>
             <Box /*sx={style.content}*/>
