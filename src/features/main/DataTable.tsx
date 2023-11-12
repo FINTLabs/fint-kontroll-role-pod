@@ -77,7 +77,7 @@ export const DataTable: any = () => {
                                 <TableCell align="left" scope="row">{role.roleName}</TableCell>
                                 <TableCell align="left">{role.organisationUnitName}</TableCell>
                                 <TableCell align="left">{role.roleType} </TableCell>
-                                <TableCell align="left">
+                                <TableCell align="right">
                                     <Button
                                         id={`role-${role.id}`}
                                         variant={"outlined"}

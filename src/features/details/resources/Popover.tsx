@@ -2,7 +2,7 @@ import * as React from 'react';
 import Popover from '@mui/material/Popover';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from "@mui/material/IconButton";
-import {Alert, AlertTitle, Paper} from "@mui/material";
+import {Alert, Paper} from "@mui/material";
 
 export default function BasicPopover() {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -17,7 +17,7 @@ export default function BasicPopover() {
 
     const handleDelete = () => {
         handleClose();
-        console.log("DELETE GOES HERE");
+       // console.log("DELETE GOES HERE");
     }
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;

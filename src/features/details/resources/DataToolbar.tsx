@@ -27,9 +27,8 @@ function DataToolbar(/*props: CustomTableToolbarProps*/) {
                 sx={{flex: '1 1 100%'}}
                 variant="h2"
                 id="tableTitle"
-                // component="div"
             >
-                Ressurser gruppen er tildelt
+                Ressurser
             </Typography>
         </Toolbar>
         /*<Toolbar
