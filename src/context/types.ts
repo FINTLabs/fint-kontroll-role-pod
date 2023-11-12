@@ -42,11 +42,11 @@ export interface IRolePage {
 export type RoleContextState = {
     page: IRolePage | null;
     currentPage: number;
-    setCurrentPage: (currentPage:number) => void;
+    setCurrentPage: (currentPage: number) => void;
     size: number;
-    setSize: (size:number) => void;
+    setSize: (size: number) => void;
     roleType: string;
-    setRoleType: (roleType:string) => void;
+    setRoleType: (roleType: string) => void;
     searchValue: string;
     setSearchValue: (searchValue: string) => void;
     roleId: number;
@@ -94,12 +94,17 @@ export interface IResourcePage {
     totalPages: number | any;
     currentPage: number;
     size: number;
-    assignments: IResourceItem[];
+    //assignments: IResourceItem[];
+    resources: IResourceItem[]
 }
 
 export interface IResourceItem {
     id: number;
-    resourceRef: number,
+    resourceId: string;
+    resourceName: string;
+    resourceType: string;
+    assignmentRef: number;
+    /*resourceRef: number,
     azureGroupRef: number,
     resourceName: string,
     userRef: number,
@@ -111,7 +116,7 @@ export interface IResourceItem {
     assignerDisplayname: string,
     assignerUsername: string,
     roleRef: number,
-    organizationUnitId: string
+    organizationUnitId: string*/
 }
 
 export type ResourceContextState = {

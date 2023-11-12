@@ -50,12 +50,12 @@ export const DataTable: any = () => {
                     <TableHead sx={{th: {fontWeight: 'bold'}}}>
                         <TableRow>
                             <TableCell align="left">Ressurs </TableCell>
-                            <TableCell align="left">Tildelt av</TableCell>
+                            <TableCell align="left">Ressurstype</TableCell>
 
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {page?.assignments?.map((row) => (
+                        {page?.resources?.map((row) => (
                             <TableRow
                                 key={row.id}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
@@ -63,7 +63,7 @@ export const DataTable: any = () => {
                                 <TableCell align="left" component="th" scope="row">
                                     {row?.resourceName}
                                 </TableCell>
-                                <TableCell align="left"> {row?.assignerDisplayname} </TableCell>
+                                <TableCell align="left"> {row?.resourceType} </TableCell>
 
                             </TableRow>
                         ))}
@@ -74,7 +74,7 @@ export const DataTable: any = () => {
                                 rowsPerPageOptions={[5, 10, 25, 50]}
                                 colSpan={4}
                                 count={page ? page.totalItems : 0}
-                                // rowsPerPage={rowsPerPage}
+                                //rowsPerPage={rowsPerPage}
                                 rowsPerPage={size}
                                 page={currentPage}
                                 SelectProps={{

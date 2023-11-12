@@ -1,6 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
-import {IMemberPage, IOrgUnits, IResourcePage} from './types';
-import {IRoleItem, IRolePage} from "./types";
+import axios, {AxiosResponse} from 'axios';
+import {IMemberPage, IOrgUnits, IResourcePage, IRoleItem, IRolePage} from './types';
 
 export const fetchUnitTreeData = async (basePath: string): Promise<IOrgUnits> => {
     try {
@@ -127,7 +126,7 @@ export const fetchResourcePage = async (
     try {
         ///assignments/role/12/resources
         const baseUrl = `${basePath}/api/assignments/role/${roleId}/resources`;
-        console.log("fetch members with: ", baseUrl);
+        console.log("fetch resource with: ", baseUrl, roleId);
 
         let queryParams: string[] = [];
 
