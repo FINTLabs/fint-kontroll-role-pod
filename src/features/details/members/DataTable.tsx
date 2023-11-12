@@ -46,7 +46,7 @@ export const DataTable: any = () => {
                 <Alert severity="warning">{error}</Alert>
             )}
 
-            <TableContainer sx={{maxWidth: 1536, minWidth: 1040}}>
+            <TableContainer sx={{maxWidth: 1920, minWidth: 1040}}>
                 <DataToolbar/>
                 <Table aria-label="Members">
                     <TableHead sx={{th: {fontWeight: 'bold'}}}>

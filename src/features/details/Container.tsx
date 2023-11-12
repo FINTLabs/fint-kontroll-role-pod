@@ -40,7 +40,7 @@ function ContainerWithTabs() {
                     <Tab label="Ressurser"/>
                 </Tabs>
                 <Typography variant="h1" sx={{marginBottom: '1.5rem', marginTop: '1.5rem'}}>
-                    {roleDetails?.roleName} overskrift
+                    {roleDetails?.roleName}
                 </Typography>
                 {selectedTab === 0 && (
                     <Box>
@@ -48,7 +48,7 @@ function ContainerWithTabs() {
                     </Box>
                 )}
                 {selectedTab === 1 && (
-                    <Box sx={{marginBottom: '1rem', padding: '2rem'}}>
+                    <Box>
                         <ResourcesContainer/>
                     </Box>
                 )}

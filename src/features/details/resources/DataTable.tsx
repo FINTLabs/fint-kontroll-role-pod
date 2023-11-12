@@ -10,6 +10,7 @@ import {Alert, Box, TableFooter, TablePagination} from "@mui/material";
 import {useParams} from "react-router-dom";
 import TablePaginationActions from "../../common/TableFooter";
 import {useResource} from "../../../context/ResourceContext";
+import DataToolbar from "./DataToolbar";
 
 export const DataTable: any = () => {
 
@@ -26,7 +27,6 @@ export const DataTable: any = () => {
         event: React.MouseEvent<HTMLButtonElement> | null,
         newPage: number,
     ) => {
-        console.log("new page:", newPage)
         setCurrentPage(newPage)
     };
 
@@ -45,8 +45,9 @@ export const DataTable: any = () => {
                 <Alert severity="warning">{error}</Alert>
             )}
 
-            <TableContainer sx={{maxWidth: 1536, minWidth: 1040}}>
-                <Table aria-label="Members">
+            <TableContainer sx={{maxWidth: 1920, minWidth: 1040}}>
+                <DataToolbar/>
+                <Table aria-label="Ressurser">
                     <TableHead sx={{th: {fontWeight: 'bold'}}}>
                         <TableRow>
                             <TableCell align="left">Ressurs </TableCell>
@@ -74,7 +75,6 @@ export const DataTable: any = () => {
                                 rowsPerPageOptions={[5, 10, 25, 50]}
                                 colSpan={4}
                                 count={page ? page.totalItems : 0}
-                                //rowsPerPage={rowsPerPage}
                                 rowsPerPage={size}
                                 page={currentPage}
                                 SelectProps={{

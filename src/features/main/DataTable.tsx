@@ -1,27 +1,25 @@
 import * as React from 'react';
-import {useState} from "react";
+import {useState} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import IconButton from '@mui/material/IconButton';
-import {SettingsRounded} from "@mui/icons-material";
-import {Box, TableFooter, TablePagination,} from "@mui/material";
+import {InfoOutlined} from "@mui/icons-material";
+import {Alert, Box, Button, TableFooter, TablePagination,} from "@mui/material";
 import {Link} from "react-router-dom";
 import TablePaginationActions from "../common/TableFooter";
 import DataToolbar from "./DataToolbar";
 import DialogUnit from "./DialogUnit";
-import { useOrgUnits } from '../../context/OrgUnitContext';
+import {useOrgUnits} from '../../context/OrgUnitContext';
 import {useRoles} from "../../context/RolesContext";
-import { Alert } from '@mui/material';
 
 export const DataTable: any = () => {
 
-    const {page,  currentPage, setCurrentPage, size, setSize, setOrgunits} = useRoles();
+    const {page, currentPage, setCurrentPage, size, setSize, setOrgunits} = useRoles();
     const [openDialog, setOpenDialog] = useState(false);
-    const { selectedOrgUnits, error } = useOrgUnits();
+    const {selectedOrgUnits, error} = useOrgUnits();
 
     const handleTypeSelect = () => {
         setOpenDialog(false);
@@ -62,8 +60,8 @@ export const DataTable: any = () => {
 
             <TableContainer sx={{maxWidth: 1536, minWidth: 1040}} id={"rolesDataTable"}>
                 <DataToolbar onShowDialog={() => setOpenDialog(true)}/>
-                <Table aria-label="Roles" >
-                    <TableHead sx={{ th: { fontWeight: 'bold' } }}>
+                <Table aria-label="Roles">
+                    <TableHead sx={{th: {fontWeight: 'bold'}}}>
                         <TableRow>
                             <TableCell align="left">Navn</TableCell>
                             <TableCell align="left">Enhet</TableCell>
@@ -80,11 +78,23 @@ export const DataTable: any = () => {
                                 <TableCell align="left">{role.organisationUnitName}</TableCell>
                                 <TableCell align="left">{role.roleType} </TableCell>
                                 <TableCell align="left">
-                                    <IconButton aria-label="settings" id={`role-${role.id}`}
+                                    <Button
+                                        id={`role-${role.id}`}
+                                        variant={"outlined"}
+                                        aria-label="Se info"
+                                        component={Link}
+                                        to={`info/${role.id}`}
+                                        color={"primary"}
+                                        endIcon={<InfoOutlined/>}
+                                    >
+                                        Se info
+                                    </Button>
+
+                                    {/*<IconButton aria-label="settings" id={`role-${role.id}`}
                                                 component={Link} to={`info/${role.id}`}
                                     >
                                         <SettingsRounded color={"primary"}/>
-                                    </IconButton>
+                                    </IconButton>*/}
                                 </TableCell>
                             </TableRow>
                         ))}

@@ -1,23 +1,38 @@
 import React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import {alpha, Tooltip} from "@mui/material";
+/*import {alpha, Tooltip} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
 import Search from "./Search";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';*/
 
-interface CustomTableToolbarProps {
+/*interface CustomTableToolbarProps {
     numSelected: number;
     onDeleteClick: (event: React.MouseEvent<unknown>) => void;
-}
+}*/
 
-function DataToolbar(props: CustomTableToolbarProps) {
-    const {numSelected, onDeleteClick} = props;
+function DataToolbar(/*props: CustomTableToolbarProps*/) {
+    // const {numSelected, onDeleteClick} = props;
 
     return (
         <Toolbar
+            sx={{
+                pl: {sm: 2},
+                pr: {xs: 1, sm: 1},
+            }}
+        >
+            <Typography
+                sx={{flex: '1 1 100%'}}
+                variant="h2"
+                id="tableTitle"
+                // component="div"
+            >
+                Ressurser gruppen er tildelt
+            </Typography>
+        </Toolbar>
+        /*<Toolbar
             sx={{
                 pl: {sm: 2},
                 pr: {xs: 1, sm: 1},
@@ -34,7 +49,7 @@ function DataToolbar(props: CustomTableToolbarProps) {
                     variant="subtitle1"
                     // component="div"
                 >
-                    {numSelected} {/*selected*/} valgt
+                    {numSelected} {/!*selected*!/} valgt
                 </Typography>
             ) : (
                 <Typography
@@ -61,7 +76,7 @@ function DataToolbar(props: CustomTableToolbarProps) {
                     </IconButton>
                 </Tooltip>
             )}
-        </Toolbar>
+        </Toolbar>*/
     );
 }
 
