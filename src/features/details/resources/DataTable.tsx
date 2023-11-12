@@ -45,13 +45,12 @@ export const DataTable: any = () => {
                 <Alert severity="warning">{error}</Alert>
             )}
 
-
             <TableContainer sx={{maxWidth: 1536, minWidth: 1040}}>
                 <Table aria-label="Members">
                     <TableHead sx={{th: {fontWeight: 'bold'}}}>
                         <TableRow>
-                            <TableCell align="left">Name </TableCell>
-                            <TableCell align="left">User Type</TableCell>
+                            <TableCell align="left">Ressurs </TableCell>
+                            <TableCell align="left">Tildelt av</TableCell>
 
                         </TableRow>
                     </TableHead>
@@ -64,7 +63,7 @@ export const DataTable: any = () => {
                                 <TableCell align="left" component="th" scope="row">
                                     {row?.resourceName}
                                 </TableCell>
-                                <TableCell align="left"> {row?.userType} </TableCell>
+                                <TableCell align="left"> {row?.assignerDisplayname} </TableCell>
 
                             </TableRow>
                         ))}

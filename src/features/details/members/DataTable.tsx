@@ -51,8 +51,8 @@ export const DataTable: any = () => {
                 <Table aria-label="Members">
                     <TableHead sx={{th: {fontWeight: 'bold'}}}>
                         <TableRow>
-                            <TableCell align="left">Name </TableCell>
-                            <TableCell align="left">User Type</TableCell>
+                            <TableCell align="left">Navn </TableCell>
+                            <TableCell align="left">Brukertype</TableCell>
 
                         </TableRow>
                     </TableHead>

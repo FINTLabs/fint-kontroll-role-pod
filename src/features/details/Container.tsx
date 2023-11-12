@@ -34,9 +34,6 @@ function ContainerWithTabs() {
 
     return (
         <Box sx={style.content}>
-            <Typography variant="h1" sx={{marginBottom: '1.5rem'}}>
-                {roleDetails?.roleName}
-            </Typography>
             <Box /*sx={style.content}*/>
                 <Tabs value={selectedTab} onChange={handleTabChange}>
                     <Tab label="Medlemmer"/>
@@ -53,6 +50,10 @@ function ContainerWithTabs() {
                     </Box>
                 )}
             </Box>
+            <Typography variant="h1" sx={{marginBottom: '1.5rem'}}>
+                {roleDetails?.roleName}
+            </Typography>
+
         </Box>
     );
 }
