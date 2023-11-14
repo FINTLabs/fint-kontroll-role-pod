@@ -39,7 +39,7 @@ function CustomTableToolbar(props: CustomTableToolbarProps) {
                 onClick={onShowDialog}
                 sx={style.changeOrgButton}
             >
-                Velg Enhet
+                Velg enhet
             </Button>
 
             {/*{isAggregate ? (*/}

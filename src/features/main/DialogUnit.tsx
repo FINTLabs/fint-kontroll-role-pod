@@ -155,7 +155,7 @@ function UnitSelectDialog({ open, onClose }: DialogUnitProps) {
                 <div>
                     <FormControlLabel
                         control={<Switch />}
-                        label="Ta med underenheter"
+                        label="Inkluder underliggende enheter"
                         checked={aggregated}
                         onChange={handleAggregationToggle}
                         id="aggregatedCheckbox"
