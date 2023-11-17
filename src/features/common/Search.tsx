@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-    FormControl,
-    InputAdornment,
-    TextField,
-} from "@mui/material";
-import { useState } from "react";
+import {useState} from 'react';
+import {FormControl, InputAdornment, TextField,} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 
@@ -12,7 +8,7 @@ interface SearchProps {
     searchFunction: (value: string) => void;
     clearFunction: () => void;
     inputValue: string;
-    placeholder: string;
+    label: string;
     showClearIcon?: string;
 }
 
@@ -35,11 +31,12 @@ export default function Search(props: SearchProps) {
     return (
         <FormControl style={{minWidth: 220}} sx={{mx: '2rem', my: '1rem'}}>
             <TextField
-                label="Søk"
+                label={props.label}
                 id={"search-role"}
+                role="search"
                 onChange={handleSearch}
                 value={props.inputValue}
-                placeholder={props.placeholder}
+                autoComplete="off"
                 InputLabelProps={{
                     shrink: true,
                 }}
@@ -51,7 +48,7 @@ export default function Search(props: SearchProps) {
                                 display: showSearchIcon,
                             }}
                         >
-                            <SearchIcon />
+                            <SearchIcon/>
                         </InputAdornment>
                     ),
                     endAdornment: (
@@ -66,9 +63,6 @@ export default function Search(props: SearchProps) {
                             <ClearIcon id={"clearIcon"}/>
                         </InputAdornment>
                     )
-                }}
-                inputProps={{
-                    'aria-label': props.placeholder // Add an invisible label
                 }}
             />
         </FormControl>

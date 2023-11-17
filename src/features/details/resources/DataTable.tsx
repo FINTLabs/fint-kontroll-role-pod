@@ -82,6 +82,7 @@ export const DataTable: any = () => {
                                         'aria-label': 'rows per page',
                                     },
                                     native: true,
+                                    autoComplete: "off"
                                 }}
                                 onPageChange={handleChangePage}
                                 onRowsPerPageChange={handleChangeRowsPerPage}

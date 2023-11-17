@@ -19,7 +19,7 @@ export default function MemberSearch() {
             searchFunction={handleSearch}
             clearFunction={handleClear}
             inputValue={searchValue}
-            placeholder="Søk medlemmer"
+            label="Søk medlemmer"
             // showClearIcon={ (searchValue === "" ? "none" : "flex")}
         />
     );

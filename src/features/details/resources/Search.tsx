@@ -5,11 +5,11 @@ export default function ResourceSearch() {
     // const {searchValue} = useMembers();
 
     const handleSearch = () => {
-        console.log("Handle resources search")
+        // console.log("Handle resources search")
     };
 
     const handleClear = () => {
-        console.log("Handle search resources clear")
+        // console.log("Handle search resources clear")
     };
 
     return (
@@ -17,7 +17,7 @@ export default function ResourceSearch() {
             searchFunction={handleSearch}
             clearFunction={handleClear}
             inputValue={''}
-            placeholder="Søk ressurs"
+            label="Søk ressurs"
             // showClearIcon={ (searchValue === "" ? "none" : "flex")}
         />
     );
