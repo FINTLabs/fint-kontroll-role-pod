@@ -23,7 +23,7 @@ export const fetchMemberPage = async (
 ): Promise<IMemberPage> => {
     try {
 
-        const baseUrl = `${basePath}/api/roles/${roleId}/members/`;
+        const baseUrl = `${basePath}/api/roles/${roleId}/members`;
         console.log("fetch members with: ", baseUrl);
 
         let queryParams: string[] = [];
