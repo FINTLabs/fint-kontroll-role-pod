@@ -52,7 +52,7 @@ export const DataTable: any = () => {
                         <TableRow>
                             <TableCell align="left">Ressurs </TableCell>
                             <TableCell align="left">Ressurstype</TableCell>
-
+                            <TableCell align="left">Tildelt av</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -65,7 +65,9 @@ export const DataTable: any = () => {
                                     {row?.resourceName}
                                 </TableCell>
                                 <TableCell align="left"> {row?.resourceType} </TableCell>
-
+                                <TableCell align="left" component="th" scope="row">
+                                    {row.assignerDisplayname ? row.assignerDisplayname : row.assignerUsername}
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

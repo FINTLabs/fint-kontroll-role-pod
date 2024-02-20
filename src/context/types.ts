@@ -104,6 +104,8 @@ export interface IResourceItem {
     resourceName: string;
     resourceType: string;
     assignmentRef: number;
+    assignerUsername: string,
+    assignerDisplayname: string,
     /*resourceRef: number,
     azureGroupRef: number,
     resourceName: string,
